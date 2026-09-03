@@ -12,13 +12,14 @@ if (!args.out) { console.error("--out <file.json> is required"); process.exit(1)
 const [rows, cols] = parseSize(args.size, [g.defaults.rows, g.defaults.cols]);
 const count = parseInt(args.count ?? "8", 10), seed0 = parseInt(args.seed ?? "1", 10);
 const band = args.band ? parseInt(args.band, 10) : null;
+const maxAttempts = args.attempts ? parseInt(args.attempts, 10) : undefined;
 const batchName = args.batch || `${g.id}-${rows}x${cols}${band ? "-b" + band : ""}-s${seed0}`;
 
 const puzzles = [];
 const t0 = Date.now();
 for (let k = 0; k < count; k++) {
   const seed = seed0 + k, t1 = Date.now();
-  const p = g.generate({ rows, cols, seed, targetBand: band });
+  const p = g.generate({ rows, cols, seed, targetBand: band, ...(maxAttempts ? { maxAttempts } : {}) });
   if (!p) { console.error(`  seed ${seed}: no puzzle within budget, skipped`); continue; }
   p.generator_version = GENERATOR_VERSION;
   puzzles.push(p);

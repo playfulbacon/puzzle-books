@@ -33,7 +33,7 @@ export function edgeLayout(rows, cols) {
 /** Grow a random simply-connected "inside" region whose boundary is a single loop. */
 export function randomInside(rows, cols, rng, opts = {}) {
   const n = rows * cols;
-  const target = Math.round(n * (opts.fill ?? rng.range(38, 58) / 100));
+  const target = Math.round(n * (opts.fill ?? rng.range(45, 60) / 100));
   const inside = new Uint8Array(n);
   const sr = Math.min(rows - 1, Math.max(0, Math.floor(rows / 2) + rng.range(-1, 1)));
   const sc = Math.min(cols - 1, Math.max(0, Math.floor(cols / 2) + rng.range(-1, 1)));
@@ -70,7 +70,7 @@ export function randomInside(rows, cols, rng, opts = {}) {
     inside[i] = 1; count++;
     if (checkerboardAt(i) || !outsideConnected()) { inside[i] = 0; count--; stale++; } else stale = 0;
   }
-  const erosions = opts.erode ?? Math.round(n * 0.06);
+  const erosions = opts.erode ?? Math.round(n * 0.10); // meander: erode, keeping only moves that preserve a single loop
   for (let k = 0; k < erosions; k++) {
     const cand = [];
     for (let i = 0; i < n; i++) if (inside[i] && neighbors(i, rows, cols).some((j) => !inside[j])) cand.push(i);
@@ -210,7 +210,9 @@ export function generate({ rows = 8, cols = 8, seed = 1, targetBand = null, symm
       const seen = new Set();
       for (let i = 0; i < rows * cols; i++) { const j = rows * cols - 1 - i; if (seen.has(i)) continue; seen.add(i); seen.add(j); orbits.push(i === j ? [i] : [i, j]); }
     } else for (let i = 0; i < rows * cols; i++) orbits.push([i]);
+    // Zeros read as noise on the page and are usually redundant: try removing them first.
     rng.shuffle(orbits);
+    orbits.sort((a, b) => (clues[a[0]] === 0 && rng.chance(0.5) ? 0 : 1) - (clues[b[0]] === 0 && rng.chance(0.5) ? 0 : 1));
     let remaining = rows * cols;
     for (const orb of orbits) {
       if (remaining - orb.length < floor) continue;
