@@ -1,5 +1,5 @@
-import { Rng } from '/home/user/puzzle-books/core/lib/rng.js';
-import { neighbors, blocksAround, flood, components } from '/home/user/puzzle-books/core/lib/grid.js';
+import { Rng } from '../../core/lib/rng.js';
+import { neighbors, blocksAround, flood, components } from '../../core/lib/grid.js';
 import { writeFileSync } from 'node:fs';
 const N = 10, rng = new Rng(parseInt(process.argv[3]||'20260903',10));
 const isBorder = i => { const r = Math.floor(i/N), c = i%N; return r===0||c===0||r===N-1||c===N-1; };
