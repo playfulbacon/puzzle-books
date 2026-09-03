@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puzzle Review</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">◫</span> Puzzle Review</div>
+  <label class="field">Batch
+    <select id="batch-select"></select>
+  </label>
+  <div class="filters" id="status-filters"></div>
+  <div class="progress" id="progress"></div>
+  <div class="spacer"></div>
+  <button class="btn" id="btn-export" title="Download decisions for this batch as JSON">Export</button>
+  <button class="btn" id="btn-import" title="Import a decisions JSON file">Import</button>
+  <button class="btn" id="btn-sync" title="Push/pull decisions to the GitHub repo">GitHub sync</button>
+  <input type="file" id="import-file" accept="application/json" hidden>
+</header>
+
+<main class="layout">
+  <section class="sheet" id="sheet" aria-label="Contact sheet"></section>
+  <section class="detail" id="detail" aria-label="Puzzle detail" hidden></section>
+</main>
+
+<dialog id="sync-dialog">
+  <form method="dialog" class="sync-form">
+    <h2>GitHub sync</h2>
+    <p class="muted">Decisions are saved in this browser automatically. Sync writes them to
+      <code>review/decisions/&lt;batch&gt;.json</code> in the repo so they're versioned and available to the
+      generator. Use a fine-grained token with <em>Contents: read and write</em> on this one repository.
+      The token stays in this browser's local storage only.</p>
+    <label>Owner <input id="gh-owner" placeholder="playfulbacon"></label>
+    <label>Repo <input id="gh-repo" placeholder="puzzle-books"></label>
+    <label>Branch <input id="gh-branch" placeholder="main"></label>
+    <label>Token <input id="gh-token" type="password" placeholder="github_pat_…"></label>
+    <div class="row">
+      <button class="btn" value="cancel">Close</button>
+      <span class="spacer"></span>
+      <button class="btn" id="gh-pull" type="button">Pull</button>
+      <button class="btn primary" id="gh-push" type="button">Push this batch</button>
+    </div>
+    <p class="sync-status" id="sync-status"></p>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="data/batches.js"></script>
+<script src="renderers/sudoku.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+{
+ "batch": "sudoku-medium-sample",
+ "generated_at": "2026-09-03T16:13:20Z",
+ "generator_version": "0.1.0",
+ "puzzles": [
+  {
+   "id": "sudoku-9x9-s000300-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 300,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 44.1,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 8,
+     "hidden_single": 7
+    },
+    "path": {
+     "opening_width": 7,
+     "singles_resolved": 15
+    }
+   },
+   "clues": {
+    "grid": ".........7.869....326..8.9...2..5.819.......558.9..2...7.2..618....495.3........."
+   },
+   "solution": {
+    "grid": "194327856758694132326518794642735981917482365583961247479253618261849573835176429"
+   },
+   "stats": {
+    "clue_count": 28,
+    "attempts": 2
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000301-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 301,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 50.5,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 6,
+     "hidden_single": 19
+    },
+    "path": {
+     "opening_width": 5,
+     "singles_resolved": 25
+    }
+   },
+   "clues": {
+    "grid": ".....451....1....88.2...4.3.....9..1..14.62..3..5.....1.5...8.26....1....946....."
+   },
+   "solution": {
+    "grid": "963284517457193628812765493246879351571436289389512746135947862628351974794628135"
+   },
+   "stats": {
+    "clue_count": 26,
+    "attempts": 8
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000302-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 302,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 43.2,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 10,
+     "hidden_single": 6
+    },
+    "path": {
+     "opening_width": 4,
+     "singles_resolved": 16
+    }
+   },
+   "clues": {
+    "grid": "....13..552.8...61....6.83.69....4....2...5....8....16.81.5....24...9.579..74...."
+   },
+   "solution": {
+    "grid": "869213745523874961174965832697521483412638579358497216781352694246189357935746128"
+   },
+   "stats": {
+    "clue_count": 30,
+    "attempts": 2
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000303-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 303,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 42.7,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 1,
+     "hidden_single": 5
+    },
+    "path": {
+     "opening_width": 5,
+     "singles_resolved": 6
+    }
+   },
+   "clues": {
+    "grid": ".....58.9...7.4.5.3....146..3...25.6..6...9..5.96...4..523....4.9.5.7...7.31....."
+   },
+   "solution": {
+    "grid": "467235819981764352325891467834912576276458931519673248152386794698547123743129685"
+   },
+   "stats": {
+    "clue_count": 30,
+    "attempts": 2
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000304-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 304,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 45.1,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 19,
+     "hidden_single": 9
+    },
+    "path": {
+     "opening_width": 5,
+     "singles_resolved": 28
+    }
+   },
+   "clues": {
+    "grid": "..5..9.6....3.54.8......25..6..9.1.4...4.7...1.4.8..3..52......4.81.6....7.9..5.."
+   },
+   "solution": {
+    "grid": "785249361216375498349861257867593124523417689194682735952734816438156972671928543"
+   },
+   "stats": {
+    "clue_count": 28,
+    "attempts": 3
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000305-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 305,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 42.5,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 18,
+     "hidden_single": 5
+    },
+    "path": {
+     "opening_width": 5,
+     "singles_resolved": 23
+    }
+   },
+   "clues": {
+    "grid": "....47..1........6..95.64.7896......4.23791.8......2941.84.57..7........9..78...."
+   },
+   "solution": {
+    "grid": "683247951547891326219536487896124573452379168371658294128465739765913842934782615"
+   },
+   "stats": {
+    "clue_count": 31,
+    "attempts": 4
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000306-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 306,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 43.1,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 12,
+     "hidden_single": 5
+    },
+    "path": {
+     "opening_width": 8,
+     "singles_resolved": 17
+    }
+   },
+   "clues": {
+    "grid": ".5..73.4..8.....93.7.9.4.....27.8..4.........6..2.51.....5.9.7.82.....1..4.62..5."
+   },
+   "solution": {
+    "grid": "159873246486152793273964581532718964714396825698245137361589472825437619947621358"
+   },
+   "stats": {
+    "clue_count": 28,
+    "attempts": 1
+   }
+  },
+  {
+   "id": "sudoku-9x9-s000307-v0.1.0",
+   "type": "sudoku",
+   "generator_version": "0.1.0",
+   "seed": 307,
+   "params": {
+    "rows": 9,
+    "cols": 9,
+    "box_rows": 3,
+    "box_cols": 3,
+    "symmetry": "rotational-180",
+    "target_band": 3
+   },
+   "difficulty": {
+    "band": 3,
+    "label": "Medium+",
+    "score": 48.1,
+    "max_tier": null,
+    "rating_method": "provisional-singles-only",
+    "technique_counts": {
+     "naked_single": 8,
+     "hidden_single": 15
+    },
+    "path": {
+     "opening_width": 9,
+     "singles_resolved": 23
+    }
+   },
+   "clues": {
+    "grid": "....92.547.....3....5.1.72..7..29...9.......8...35..9..94.7.1....1.....368.23...."
+   },
+   "solution": {
+    "grid": "163792854729845361845613729578129436932467518416358297394576182251984673687231945"
+   },
+   "stats": {
+    "clue_count": 28,
+    "attempts": 1
+   }
+  }
+ ]
+}
