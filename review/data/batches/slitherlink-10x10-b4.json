@@ -1,0 +1,1052 @@
+{
+ "batch": "slitherlink-10x10-b4-s250",
+ "generated_at": "2026-09-03T18:06:19Z",
+ "generator_version": "0.2.0",
+ "genre": "slitherlink",
+ "puzzles": [
+  {
+   "id": "slitherlink-10x10-s000250",
+   "type": "slitherlink",
+   "seed": 250,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "none",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 82.8,
+    "rating_method": "provisional-clue-density",
+    "search_branches": 30156
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      null,
+      0,
+      null,
+      null,
+      1,
+      2,
+      null,
+      null,
+      null
+     ],
+     [
+      0,
+      null,
+      null,
+      2,
+      1,
+      null,
+      null,
+      null,
+      1,
+      null
+     ],
+     [
+      1,
+      null,
+      1,
+      null,
+      1,
+      null,
+      1,
+      2,
+      1,
+      null
+     ],
+     [
+      3,
+      1,
+      2,
+      null,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3,
+      1,
+      null,
+      3
+     ],
+     [
+      null,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null,
+      1,
+      null,
+      2
+     ],
+     [
+      null,
+      null,
+      null,
+      0,
+      null,
+      0,
+      null,
+      0,
+      2,
+      null
+     ],
+     [
+      null,
+      2,
+      2,
+      null,
+      null,
+      null,
+      null,
+      3,
+      null,
+      null
+     ],
+     [
+      0,
+      null,
+      null,
+      1,
+      2,
+      2,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      1,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0,
+      0
+     ]
+    ]
+   },
+   "solution": {
+    "h": [
+     "0000100100",
+     "0001001000",
+     "0000000000",
+     "1000010100",
+     "0010001001",
+     "0000001110",
+     "0100000001",
+     "1100001010",
+     "0010010100",
+     "0010100000",
+     "0011000000"
+    ],
+    "v": [
+     "00001101100",
+     "00010110100",
+     "00010110100",
+     "11010001000",
+     "11100010011",
+     "11100000001",
+     "10000000010",
+     "00100011100",
+     "00010100000",
+     "00101000000"
+    ]
+   },
+   "stats": {
+    "clue_count": 37,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "slitherlink-10x10-s000251",
+   "type": "slitherlink",
+   "seed": 251,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "none",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 82.8,
+    "rating_method": "provisional-clue-density",
+    "search_branches": 55554
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      null,
+      null,
+      2,
+      1,
+      null,
+      null,
+      0,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      2,
+      1,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      1,
+      2,
+      1,
+      null,
+      1,
+      null,
+      3,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      2,
+      null,
+      null,
+      2,
+      1,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      0,
+      null,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null,
+      0
+     ],
+     [
+      null,
+      1,
+      3,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      1,
+      null,
+      null,
+      1,
+      3,
+      1,
+      null,
+      0
+     ],
+     [
+      1,
+      3,
+      null,
+      0,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      1,
+      1,
+      null,
+      1,
+      3,
+      1,
+      null
+     ],
+     [
+      null,
+      1,
+      null,
+      null,
+      2,
+      null,
+      2,
+      null,
+      null,
+      1
+     ]
+    ]
+   },
+   "solution": {
+    "h": [
+     "0001110000",
+     "0000001000",
+     "0010100100",
+     "0000000100",
+     "0011010000",
+     "0010110000",
+     "0001001000",
+     "0100001100",
+     "0110000100",
+     "0010110110",
+     "0011001110"
+    ],
+    "v": [
+     "00010010000",
+     "00010001000",
+     "00101100100",
+     "00101101000",
+     "00000011000",
+     "00111001000",
+     "00100010000",
+     "01000000100",
+     "00010001000",
+     "00101010010"
+    ]
+   },
+   "stats": {
+    "clue_count": 37,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "slitherlink-10x10-s000252",
+   "type": "slitherlink",
+   "seed": 252,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "none",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 82.8,
+    "rating_method": "provisional-clue-density",
+    "search_branches": 5552
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      0,
+      null,
+      null,
+      null,
+      null,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      null,
+      null,
+      null,
+      null,
+      null,
+      1,
+      null,
+      null
+     ],
+     [
+      2,
+      null,
+      null,
+      2,
+      null,
+      1,
+      2,
+      2,
+      1,
+      null
+     ],
+     [
+      3,
+      null,
+      null,
+      2,
+      2,
+      null,
+      null,
+      1,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      1,
+      1,
+      null,
+      1,
+      2,
+      null
+     ],
+     [
+      1,
+      2,
+      0,
+      0,
+      null,
+      null,
+      null,
+      null,
+      3,
+      null
+     ],
+     [
+      null,
+      1,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3,
+      null
+     ],
+     [
+      3,
+      null,
+      null,
+      0,
+      null,
+      null,
+      null,
+      null,
+      null,
+      1
+     ],
+     [
+      2,
+      null,
+      null,
+      1,
+      null,
+      1,
+      1,
+      1,
+      2,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "h": [
+     "0000000000",
+     "0000000000",
+     "0000000000",
+     "0110001100",
+     "1001000000",
+     "1100110000",
+     "0100000010",
+     "0000000010",
+     "1000000010",
+     "1000000000",
+     "0111111110"
+    ],
+    "v": [
+     "00000000000",
+     "00000000000",
+     "00000000000",
+     "01010010100",
+     "10001010100",
+     "00100000100",
+     "01000000010",
+     "01000000100",
+     "10000000010",
+     "01000000010"
+    ]
+   },
+   "stats": {
+    "clue_count": 37,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "slitherlink-10x10-s000253",
+   "type": "slitherlink",
+   "seed": 253,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "none",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 82.8,
+    "rating_method": "provisional-clue-density",
+    "search_branches": 2076
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      null,
+      null,
+      0,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0,
+      1,
+      null,
+      3
+     ],
+     [
+      null,
+      0,
+      null,
+      null,
+      1,
+      null,
+      2,
+      2,
+      null,
+      2
+     ],
+     [
+      0,
+      null,
+      null,
+      0,
+      null,
+      null,
+      null,
+      0,
+      null,
+      null
+     ],
+     [
+      1,
+      null,
+      null,
+      null,
+      0,
+      0,
+      null,
+      null,
+      null,
+      2
+     ],
+     [
+      0,
+      null,
+      null,
+      null,
+      0,
+      null,
+      null,
+      1,
+      null,
+      2
+     ],
+     [
+      null,
+      null,
+      1,
+      null,
+      1,
+      null,
+      2,
+      null,
+      1,
+      null
+     ],
+     [
+      null,
+      0,
+      null,
+      null,
+      null,
+      2,
+      2,
+      1,
+      null,
+      0
+     ],
+     [
+      null,
+      null,
+      2,
+      null,
+      null,
+      null,
+      1,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      1,
+      2,
+      2,
+      2,
+      null,
+      2,
+      null,
+      0,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "h": [
+     "0000000000",
+     "0000100001",
+     "0001000110",
+     "0010011001",
+     "0100000001",
+     "0110000000",
+     "0000001111",
+     "0000100000",
+     "0010001100",
+     "0000000100",
+     "0011011000"
+    ],
+    "v": [
+     "00000000000",
+     "00001100011",
+     "00010101001",
+     "00100000010",
+     "01000000001",
+     "00010000001",
+     "00010010000",
+     "00011110000",
+     "00101100100",
+     "00101101000"
+    ]
+   },
+   "stats": {
+    "clue_count": 37,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "slitherlink-10x10-s000254",
+   "type": "slitherlink",
+   "seed": 254,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "none",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 82.8,
+    "rating_method": "provisional-clue-density",
+    "search_branches": 125
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      0,
+      1,
+      null,
+      null,
+      null,
+      2,
+      1,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      1,
+      null,
+      null,
+      3,
+      null,
+      3
+     ],
+     [
+      null,
+      null,
+      3,
+      null,
+      null,
+      null,
+      null,
+      3,
+      1,
+      2
+     ],
+     [
+      null,
+      null,
+      3,
+      null,
+      1,
+      null,
+      null,
+      2,
+      2,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      3,
+      null,
+      null,
+      1,
+      null,
+      null
+     ],
+     [
+      0,
+      null,
+      null,
+      2,
+      1,
+      0,
+      0,
+      null,
+      1,
+      null
+     ],
+     [
+      null,
+      0,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3,
+      null
+     ],
+     [
+      0,
+      1,
+      null,
+      0,
+      null,
+      null,
+      2,
+      null,
+      null,
+      null
+     ],
+     [
+      0,
+      1,
+      2,
+      2,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      1,
+      3,
+      1,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "h": [
+     "0000010000",
+     "0011101101",
+     "0010000100",
+     "0010000100",
+     "0011100000",
+     "0001100010",
+     "0000000101",
+     "0010010010",
+     "0000100000",
+     "0011000000",
+     "0000001000"
+    ],
+    "v": [
+     "00000110000",
+     "00100000111",
+     "00010001011",
+     "00100000111",
+     "00000100111",
+     "00010000001",
+     "00010001110",
+     "00100111000",
+     "00101011000",
+     "00000011000"
+    ]
+   },
+   "stats": {
+    "clue_count": 37,
+    "attempts": 2
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "slitherlink-10x10-s000255",
+   "type": "slitherlink",
+   "seed": 255,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "none",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 82.7,
+    "rating_method": "provisional-clue-density",
+    "search_branches": 97197
+   },
+   "clues": {
+    "grid": [
+     [
+      0,
+      null,
+      1,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null,
+      1
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      0,
+      null,
+      null,
+      null,
+      2,
+      3
+     ],
+     [
+      null,
+      null,
+      null,
+      0,
+      null,
+      1,
+      null,
+      null,
+      2,
+      3
+     ],
+     [
+      2,
+      null,
+      null,
+      2,
+      null,
+      null,
+      null,
+      1,
+      null,
+      null
+     ],
+     [
+      2,
+      1,
+      null,
+      2,
+      2,
+      2,
+      null,
+      null,
+      2,
+      null
+     ],
+     [
+      null,
+      2,
+      0,
+      null,
+      1,
+      1,
+      1,
+      1,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      1,
+      2
+     ],
+     [
+      null,
+      0,
+      1,
+      2,
+      2,
+      null,
+      null,
+      null,
+      3,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      2,
+      1,
+      null,
+      0,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      2,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "h": [
+     "0000011000",
+     "0110010011",
+     "1010000001",
+     "0010000101",
+     "1001000011",
+     "0000110001",
+     "0101001010",
+     "0010010101",
+     "0001000010",
+     "0000000000",
+     "0001100000"
+    ],
+    "v": [
+     "00000101000",
+     "01010011101",
+     "10100011110",
+     "10010010001",
+     "01001010100",
+     "01000000111",
+     "00111011001",
+     "00001100110",
+     "00010100000",
+     "00010100000"
+    ]
+   },
+   "stats": {
+    "clue_count": 38,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  }
+ ]
+}
