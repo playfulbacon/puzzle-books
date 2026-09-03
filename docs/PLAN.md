@@ -350,7 +350,7 @@ puzzle-books/
 |---|---|---|---|---|
 | Slitherlink | yes | yes | 6×6–10×10 | Clue density steered by band; rating is density-based until the technique solver exists. |
 | Shikaku | yes | yes | 8×8–12×12 | Fast; numbers relocated within rectangles until unique. |
-| Nurikabe | yes | yes | 7×7–8×8 reliably; 10×10 slow (about a third of structures converge) | Solve-and-patch generation. Needs a stronger propagation set or a constructive generator for 10×10 and up. |
+| Nurikabe | yes | yes | 7×7–8×8 reliably; 10×10 not yet (a batch run of 4 seeds × 3 attempts produced nothing within budget) | Solve-and-patch generation. Next step: stronger propagation or a constructive generator so 10×10 and up converge. |
 
 ---
 
