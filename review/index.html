@@ -15,9 +15,11 @@
   <div class="filters" id="status-filters"></div>
   <div class="progress" id="progress"></div>
   <div class="spacer"></div>
-  <button class="btn" id="btn-export" title="Download decisions for this batch as JSON">Export</button>
-  <button class="btn" id="btn-import" title="Import a decisions JSON file">Import</button>
-  <button class="btn" id="btn-sync" title="Push/pull decisions to the GitHub repo">GitHub sync</button>
+  <div class="actions">
+    <button class="btn" id="btn-export" title="Download decisions for this batch as JSON">Export</button>
+    <button class="btn" id="btn-import" title="Import a decisions JSON file">Import</button>
+    <button class="btn" id="btn-sync" title="Push/pull decisions to the GitHub repo">Sync</button>
+  </div>
   <input type="file" id="import-file" accept="application/json" hidden>
 </header>
 

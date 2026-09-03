@@ -148,5 +148,6 @@
   }
 
   window.PuzzleRenderers = window.PuzzleRenderers || {};
-  window.PuzzleRenderers.sudoku = { thumbnail, mount, label: "Sudoku" };
+  const inputs = [...Array.from({ length: 9 }, (_, i) => ({ key: String(i + 1), label: String(i + 1) })), { key: "Backspace", label: "⌫" }];
+  window.PuzzleRenderers.sudoku = { thumbnail, mount, inputs, label: "Sudoku" };
 })();

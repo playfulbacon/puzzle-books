@@ -147,6 +147,7 @@
             <button class="btn" id="btn-reset">Reset</button>
             <span class="timer" id="timer">${fmtTime(state.timer.base)}</span>
           </div>
+          <div class="keypad" id="keypad"></div>
           <div class="check-msg" id="check-msg"></div>
           <p class="hint">Click a cell, type <kbd>1</kbd>–<kbd>9</kbd>, <kbd>⌫</kbd> clears, arrows move.
             Decide with <kbd>A</kbd> approve · <kbd>M</kbd> maybe · <kbd>R</kbd> reject · <kbd>←</kbd>/<kbd>→</kbd> prev/next. Timer starts on your first entry.</p>
@@ -154,9 +155,11 @@
         <div class="panel">
           <h3>Decision</h3>
           <div class="decide">
+            <button class="btn nav-btn" id="btn-prev-m" aria-label="Previous puzzle">←</button>
             <button class="btn approve ${dec.status === "approved" ? "on" : ""}" data-decide="approved">Approve<kbd>A</kbd></button>
             <button class="btn maybe ${dec.status === "maybe" ? "on" : ""}" data-decide="maybe">Maybe<kbd>M</kbd></button>
             <button class="btn reject ${dec.status === "rejected" ? "on" : ""}" data-decide="rejected">Reject<kbd>R</kbd></button>
+            <button class="btn nav-btn" id="btn-next-m" aria-label="Next puzzle">→</button>
           </div>
           <h3>Tags</h3>
           <div class="tags">${TAGS.map((t) => `<button class="chip ${(dec.tags || []).includes(t) ? "active" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}</div>
@@ -196,6 +199,11 @@
         save(LS.progress, state.progress);
         $("#check-msg").textContent = ""; $("#check-msg").className = "check-msg";
       });
+      if (r.inputs) {
+        const pad = $("#keypad");
+        pad.innerHTML = r.inputs.map((k) => `<button type="button" data-key="${esc(k.key)}" aria-label="${esc(k.label)}">${esc(k.label)}</button>`).join("");
+        pad.onclick = (e) => { const b = e.target.closest("[data-key]"); if (b && state.ctrl) state.ctrl.handleKey({ key: b.dataset.key }); };
+      }
     } else {
       board.innerHTML = `<pre class="muted">${esc(JSON.stringify(p.clues, null, 1))}</pre>`;
     }
@@ -220,6 +228,8 @@
     $("#notes").oninput = (e) => setDecision(id, { notes: e.target.value });
     $("#btn-prev").onclick = () => step(-1);
     $("#btn-next").onclick = () => step(1);
+    $("#btn-prev-m").onclick = () => step(-1);
+    $("#btn-next-m").onclick = () => step(1);
     renderSheet();
     board.focus();
   }

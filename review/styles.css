@@ -29,6 +29,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 code { font-family: var(--mono); font-size: 0.92em; }
 .muted { color: var(--ink-soft); }
 .spacer { flex: 1; }
+.actions { display: flex; gap: 6px; }
+button { touch-action: manipulation; }
 [hidden] { display: none !important; }
 
 /* ---------- top bar */
@@ -66,7 +68,7 @@ code { font-family: var(--mono); font-size: 0.92em; }
 .btn kbd { font: 11px var(--mono); opacity: 0.6; margin-left: 6px; }
 
 /* ---------- layout */
-.layout { flex: 1; display: grid; grid-template-columns: 1fr; min-height: 0; }
+.layout { flex: 1; display: grid; grid-template-columns: 1fr; grid-auto-rows: minmax(0, 1fr); min-height: 0; }
 .layout.has-detail { grid-template-columns: minmax(280px, 1fr) minmax(520px, 1.6fr); }
 .sheet {
   padding: 18px; overflow: auto;
@@ -121,6 +123,7 @@ dl.kv dd { margin: 0; font-variant-numeric: tabular-nums; }
 .band .dots { letter-spacing: 2px; color: var(--accent); }
 .warn { color: var(--maybe); font-size: 12px; }
 .decide { display: flex; gap: 8px; }
+.decide .nav-btn { display: none; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 textarea.notes {
   width: 100%; min-height: 84px; resize: vertical; padding: 8px 10px;
@@ -141,4 +144,51 @@ dialog::backdrop { background: rgba(28,27,24,0.35); }
 .toast {
   position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
   background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 6px; font-size: 13px; z-index: 10;
+}
+
+/* ---------- on-screen keypad (touch devices and narrow screens) */
+.keypad { display: none; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
+.keypad:empty { display: none !important; }
+.keypad button { padding: 10px 0; font-size: 18px; font-family: var(--serif); background: var(--card); border: 1px solid var(--rule); border-radius: 6px; }
+.keypad button:active { background: var(--select); }
+@media (pointer: coarse) { .keypad { display: grid; } .hint { display: none; } }
+
+/* ---------- portrait / narrow screens */
+@media (max-width: 720px) {
+  .topbar { display: grid; grid-template-columns: 1fr auto; gap: 8px 10px; padding: 10px 12px; }
+  .brand { grid-column: 1; font-size: 17px; }
+  .actions { grid-column: 2; justify-content: end; }
+  .actions .btn { padding: 5px 9px; font-size: 13px; }
+  .spacer { display: none; }
+  .field { grid-column: 1 / -1; }
+  .field select { flex: 1; min-width: 0; }
+  .filters { grid-column: 1 / -1; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 2px; scrollbar-width: none; }
+  .filters::-webkit-scrollbar { display: none; }
+  .chip { white-space: nowrap; }
+  .progress { grid-column: 1 / -1; font-size: 12px; margin-top: -4px; }
+
+  .sheet { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px; }
+  .card { padding: 8px; }
+  .card .meta { font-size: 11px; }
+
+  .detail { padding: 14px 14px 24px; }
+  .detail-head { flex-wrap: wrap; gap: 6px 10px; margin-bottom: 10px; }
+  .detail-head h1 { font-size: 20px; }
+  .detail-head .id { order: 3; width: 100%; font-size: 11px; }
+  .detail-body { gap: 16px; }
+  .keypad { display: grid; }
+  .hint { display: none; }
+  .board-tools .btn { padding: 8px 12px; }
+
+  /* Decision bar is fixed to the bottom of the screen; the panel gets padding so nothing hides behind it. */
+  .detail { padding-bottom: 86px; }
+  .decide { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid var(--rule); z-index: 4; }
+  .decide .btn { flex: 1; padding: 11px 0; text-align: center; }
+  .decide .btn kbd { display: none; }
+  .decide .nav-btn { display: inline-block; flex: 0 0 44px; padding: 11px 0; }
+  .panel h3 { margin-top: 14px; }
+  .panel h3:first-of-type { margin-top: 0; }
+  .nav { display: none; }
+  dialog { padding: 16px; }
+  .sync-form label { grid-template-columns: 1fr; gap: 4px; }
 }
