@@ -4,7 +4,7 @@
 // Flat edge index: h -> r*cols + c ; v -> H + r*(cols+1) + c, with H = (rows+1)*cols.
 import { Rng } from "../../lib/rng.js";
 import { neighbors, blocksAround, flood } from "../../lib/grid.js";
-import { provisionalRating } from "../../lib/difficulty.js";
+import { provisionalRating, BAND_LABELS } from "../../lib/difficulty.js";
 
 export const UNKNOWN = 0, LINE = 1, CROSS = 2;
 
@@ -23,11 +23,9 @@ export function edgeLayout(rows, cols) {
     if (r < rows) e.push(vIdx(r, c));
     vertexEdges.push(e);
   }
-  // endpoints of each edge as vertex indices (vertex index = r*(cols+1)+c)
-  const ends = new Array(H + V);
+  const ends = new Array(H + V); // vertex index = r*(cols+1)+c
   for (let r = 0; r <= rows; r++) for (let c = 0; c < cols; c++) ends[hIdx(r, c)] = [r * (cols + 1) + c, r * (cols + 1) + c + 1];
   for (let r = 0; r < rows; r++) for (let c = 0; c <= cols; c++) ends[vIdx(r, c)] = [r * (cols + 1) + c, (r + 1) * (cols + 1) + c];
-  // which vertices touch which edges' cells (for search heuristics we only need vertexEdges/cellEdges)
   return { rows, cols, H, V, E: H + V, hIdx, vIdx, cellEdges, vertexEdges, ends };
 }
 
@@ -37,8 +35,9 @@ export function randomInside(rows, cols, rng, opts = {}) {
   const n = rows * cols;
   const target = Math.round(n * (opts.fill ?? rng.range(38, 58) / 100));
   const inside = new Uint8Array(n);
-  const start = Math.floor(rows / 2) * cols + Math.floor(cols / 2) + rng.range(-1, 1) * cols + rng.range(-1, 1);
-  inside[start] = 1;
+  const sr = Math.min(rows - 1, Math.max(0, Math.floor(rows / 2) + rng.range(-1, 1)));
+  const sc = Math.min(cols - 1, Math.max(0, Math.floor(cols / 2) + rng.range(-1, 1)));
+  inside[sr * cols + sc] = 1;
   let count = 1;
 
   const isIn = (i) => inside[i] === 1;
@@ -53,7 +52,6 @@ export function randomInside(rows, cols, rng, opts = {}) {
     const outs = [];
     for (let i = 0; i < n; i++) if (!inside[i]) outs.push(i);
     if (!outs.length) return false;
-    // Border outside cells are mutually connected through the exterior.
     const border = outs.filter((i) => { const r = Math.floor(i / cols), c = i % cols; return r === 0 || c === 0 || r === rows - 1 || c === cols - 1; });
     const seen = flood(border.length ? border : [outs[0]], rows, cols, (j) => !inside[j]);
     return seen.size === outs.length;
@@ -72,7 +70,6 @@ export function randomInside(rows, cols, rng, opts = {}) {
     inside[i] = 1; count++;
     if (checkerboardAt(i) || !outsideConnected()) { inside[i] = 0; count--; stale++; } else stale = 0;
   }
-  // A few random erosions make the outline meander instead of blobbing.
   const erosions = opts.erode ?? Math.round(n * 0.06);
   for (let k = 0; k < erosions; k++) {
     const cand = [];
@@ -96,50 +93,16 @@ export function loopFromInside(inside, L) {
 
 // ------------------------------------------------------------------ oracle solver
 /**
- * Count solutions up to `limit`. clues: array (rows*cols) of 0..3 or -1 for none.
- * Returns { count, branches, solution } where solution is the Uint8Array edge set of the first solution found.
+ * Count solutions up to `limit`. clues: Int8Array(rows*cols) with 0..3 or -1 for none.
+ * Returns { count, branches, solution } where solution is a Uint8Array edge set (1 = line).
  */
-export function countSolutions(L, clues, limit = 2, given = null) {
+export function countSolutions(L, clues, limit = 2) {
   const { E, cellEdges, vertexEdges, ends } = L;
   const nV = vertexEdges.length;
   let count = 0, branches = 0, firstSolution = null;
   const clueCells = [];
   for (let i = 0; i < clues.length; i++) if (clues[i] >= 0) clueCells.push(i);
 
-  function propagate(st) {
-    let changed = true;
-    while (changed) {
-      changed = false;
-      for (let v = 0; v < nV; v++) {
-        const es = vertexEdges[v];
-        let lines = 0, unk = 0;
-        for (const e of es) { if (st[e] === LINE) lines++; else if (st[e] === UNKNOWN) unk++; }
-        if (lines > 2 || (lines === 1 && unk === 0)) return false;
-        if (lines === 2 && unk) { for (const e of es) if (st[e] === UNKNOWN) st[e] = CROSS; changed = true; }
-        else if (lines === 1 && unk === 1) { for (const e of es) if (st[e] === UNKNOWN) st[e] = LINE; changed = true; }
-        else if (lines === 0 && unk === 1) { for (const e of es) if (st[e] === UNKNOWN) st[e] = CROSS; changed = true; }
-      }
-      for (const i of clueCells) {
-        const es = cellEdges[i], n = clues[i];
-        let lines = 0, unk = 0;
-        for (const e of es) { if (st[e] === LINE) lines++; else if (st[e] === UNKNOWN) unk++; }
-        if (lines > n || lines + unk < n) return false;
-        if (unk && lines === n) { for (const e of es) if (st[e] === UNKNOWN) st[e] = CROSS; changed = true; }
-        else if (unk && lines + unk === n) { for (const e of es) if (st[e] === UNKNOWN) st[e] = LINE; changed = true; }
-      }
-      // Premature loop: a closed cycle must be the only lines anywhere.
-      const closed = closedComponent(st);
-      if (closed) {
-        let other = false;
-        for (let e = 0; e < E; e++) if (st[e] === LINE && !closed.has(e)) { other = true; break; }
-        if (other) return false;
-        for (let e = 0; e < E; e++) if (st[e] === UNKNOWN) { st[e] = CROSS; changed = true; }
-      }
-    }
-    return true;
-  }
-
-  // Find a line component that is a closed cycle (all its vertices have degree 2). Returns Set of edges or null.
   function closedComponent(st) {
     const deg = new Int8Array(nV);
     for (let e = 0; e < E; e++) if (st[e] === LINE) { deg[ends[e][0]]++; deg[ends[e][1]]++; }
@@ -162,8 +125,37 @@ export function countSolutions(L, clues, limit = 2, given = null) {
     return null;
   }
 
+  function propagate(st) {
+    let changed = true;
+    while (changed) {
+      changed = false;
+      for (let v = 0; v < nV; v++) {
+        const es = vertexEdges[v];
+        let lines = 0, unk = 0;
+        for (const e of es) { if (st[e] === LINE) lines++; else if (st[e] === UNKNOWN) unk++; }
+        if (lines > 2 || (lines === 1 && unk === 0)) return false;
+        if (lines === 2 && unk) { for (const e of es) if (st[e] === UNKNOWN) st[e] = CROSS; changed = true; }
+        else if (lines === 1 && unk === 1) { for (const e of es) if (st[e] === UNKNOWN) st[e] = LINE; changed = true; }
+        else if (lines === 0 && unk === 1) { for (const e of es) if (st[e] === UNKNOWN) st[e] = CROSS; changed = true; }
+      }
+      for (const i of clueCells) {
+        const es = cellEdges[i], n = clues[i];
+        let lines = 0, unk = 0;
+        for (const e of es) { if (st[e] === LINE) lines++; else if (st[e] === UNKNOWN) unk++; }
+        if (lines > n || lines + unk < n) return false;
+        if (unk && lines === n) { for (const e of es) if (st[e] === UNKNOWN) st[e] = CROSS; changed = true; }
+        else if (unk && lines + unk === n) { for (const e of es) if (st[e] === UNKNOWN) st[e] = LINE; changed = true; }
+      }
+      const closed = closedComponent(st);
+      if (closed) {
+        for (let e = 0; e < E; e++) if (st[e] === LINE && !closed.has(e)) return false;
+        for (let e = 0; e < E; e++) if (st[e] === UNKNOWN) { st[e] = CROSS; changed = true; }
+      }
+    }
+    return true;
+  }
+
   function pickEdge(st) {
-    // Prefer extending an open path end; then an edge on a clue cell; then anything.
     for (let v = 0; v < nV; v++) {
       let lines = 0, cand = -1;
       for (const e of vertexEdges[v]) { if (st[e] === LINE) lines++; else if (st[e] === UNKNOWN) cand = e; }
@@ -178,7 +170,6 @@ export function countSolutions(L, clues, limit = 2, given = null) {
     if (!propagate(st)) return false;
     const e = pickEdge(st);
     if (e < 0) {
-      // All decided; degrees are 0/2 by propagation. Must be exactly one loop.
       let lines = 0; for (let k = 0; k < E; k++) if (st[k] === LINE) lines++;
       if (!lines) return false;
       const closed = closedComponent(st);
@@ -195,38 +186,46 @@ export function countSolutions(L, clues, limit = 2, given = null) {
     return false;
   }
 
-  const start = given ? given.slice() : new Int8Array(E);
-  rec(start);
+  rec(new Int8Array(E));
   return { count, branches, solution: firstSolution };
 }
 
 // ------------------------------------------------------------------ generation
+// Clue density to stop removing at, by target band. Nikoli-style Slitherlink keeps roughly
+// 40-55% of cells clued; a minimal clue set is far harder than anything printed.
+const DENSITY_BY_BAND = { 1: 0.56, 2: 0.49, 3: 0.43, 4: 0.37, 5: 0.31 };
+
 export function generate({ rows = 8, cols = 8, seed = 1, targetBand = null, symmetric = false, maxAttempts = 12 } = {}) {
   const rng = new Rng(seed);
   const L = edgeLayout(rows, cols);
+  const floor = Math.round(rows * cols * DENSITY_BY_BAND[targetBand ?? 3]);
   let best = null;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const inside = randomInside(rows, cols, rng);
     const loop = loopFromInside(inside, L);
-    const full = new Int8Array(rows * cols);
-    for (let i = 0; i < rows * cols; i++) full[i] = L.cellEdges[i].reduce((s, e) => s + loop[e], 0);
-    const clues = Int8Array.from(full);
-    // Remove clues (singly, or in 180° pairs) while uniqueness holds.
+    const clues = new Int8Array(rows * cols);
+    for (let i = 0; i < rows * cols; i++) clues[i] = L.cellEdges[i].reduce((s, e) => s + loop[e], 0);
     const orbits = [];
-    if (symmetric) { const seen = new Set(); for (let i = 0; i < rows * cols; i++) { const j = rows * cols - 1 - i; if (seen.has(i)) continue; seen.add(i); seen.add(j); orbits.push(i === j ? [i] : [i, j]); } }
-    else for (let i = 0; i < rows * cols; i++) orbits.push([i]);
+    if (symmetric) {
+      const seen = new Set();
+      for (let i = 0; i < rows * cols; i++) { const j = rows * cols - 1 - i; if (seen.has(i)) continue; seen.add(i); seen.add(j); orbits.push(i === j ? [i] : [i, j]); }
+    } else for (let i = 0; i < rows * cols; i++) orbits.push([i]);
     rng.shuffle(orbits);
-    let branches = 0;
+    let remaining = rows * cols;
     for (const orb of orbits) {
+      if (remaining - orb.length < floor) continue;
       const saved = orb.map((i) => clues[i]);
       for (const i of orb) clues[i] = -1;
-      const res = countSolutions(L, clues, 2);
-      if (res.count !== 1) orb.forEach((i, k) => (clues[i] = saved[k]));
-      else branches = res.branches;
+      if (countSolutions(L, clues, 2).count !== 1) orb.forEach((i, k) => (clues[i] = saved[k]));
+      else remaining -= orb.length;
     }
     const final = countSolutions(L, clues, 2);
     const clueCount = clues.reduce((s, x) => s + (x >= 0 ? 1 : 0), 0);
-    const rating = provisionalRating({ branches: final.branches, cells: rows * cols, clueDensity: clueCount / (rows * cols) });
+    // The oracle has no pattern rules yet, so its branch count overstates human difficulty here.
+    // Until the technique-ladder solver exists, the band is the density tier we removed clues to.
+    const density = clueCount / (rows * cols);
+    const band = Object.entries(DENSITY_BY_BAND).reduce((b, [k, d]) => (density <= d + 0.02 ? Math.max(b, +k) : b), 1);
+    const rating = { ...provisionalRating({ branches: final.branches, cells: rows * cols, clueDensity: density }), band, label: BAND_LABELS[band], rating_method: "provisional-clue-density" };
     const puzzle = pack({ rows, cols, seed, symmetric, clues, loop, L, rating, clueCount, attempt, targetBand });
     if (targetBand == null || rating.band === targetBand) return puzzle;
     if (!best || Math.abs(rating.band - targetBand) < Math.abs(best.difficulty.band - targetBand)) best = puzzle;

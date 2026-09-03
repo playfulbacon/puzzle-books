@@ -1,0 +1,613 @@
+{
+ "batch": "nurikabe-8x8-s500",
+ "generated_at": "2026-09-03T17:16:50Z",
+ "generator_version": "0.2.0",
+ "genre": "nurikabe",
+ "puzzles": [
+  {
+   "id": "nurikabe-8x8-s000501",
+   "type": "nurikabe",
+   "seed": 501,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": null
+   },
+   "difficulty": {
+    "band": 5,
+    "label": "Expert",
+    "score": 80.1,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 218
+   },
+   "clues": {
+    "grid": [
+     [
+      7,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      2
+     ],
+     [
+      null,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      5,
+      null,
+      null,
+      6
+     ],
+     [
+      null,
+      4,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "shaded": [
+     ".....###",
+     ".###.#..",
+     "##.#####",
+     "#.#.#..#",
+     "#.#..##.",
+     "#.#.##..",
+     "#.#.#...",
+     "########"
+    ]
+   },
+   "stats": {
+    "clue_count": 7,
+    "attempts": 14,
+    "patches": 3,
+    "plants": 0,
+    "white_cells": 27
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "nurikabe-8x8-s000503",
+   "type": "nurikabe",
+   "seed": 503,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": null
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 51,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 7
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      5,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null,
+      3
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      5,
+      null,
+      null,
+      null,
+      3
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      5,
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "shaded": [
+     "#...#.#.",
+     "#.###.#.",
+     "#.#..##.",
+     "#####.##",
+     "#.#...#.",
+     "#.#.###.",
+     "#.##..#.",
+     "#..#####"
+    ]
+   },
+   "stats": {
+    "clue_count": 8,
+    "attempts": 17,
+    "patches": 0,
+    "plants": 0,
+    "white_cells": 27
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "nurikabe-8x8-s000504",
+   "type": "nurikabe",
+   "seed": 504,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": null
+   },
+   "difficulty": {
+    "band": 5,
+    "label": "Expert",
+    "score": 66.6,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 14
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3
+     ],
+     [
+      null,
+      5,
+      null,
+      null,
+      null,
+      6,
+      null,
+      null
+     ],
+     [
+      3,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      4,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3
+     ],
+     [
+      null,
+      null,
+      4,
+      null,
+      2,
+      null,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "shaded": [
+     "####..#.",
+     "#..#..#.",
+     ".#.#..#.",
+     ".#.#####",
+     ".#.#...#",
+     "######.#",
+     "#..#.##.",
+     "#..#.#.."
+    ]
+   },
+   "stats": {
+    "clue_count": 8,
+    "attempts": 12,
+    "patches": 5,
+    "plants": 0,
+    "white_cells": 30
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "nurikabe-8x8-s000506",
+   "type": "nurikabe",
+   "seed": 506,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": null
+   },
+   "difficulty": {
+    "band": 5,
+    "label": "Expert",
+    "score": 79.4,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 336
+   },
+   "clues": {
+    "grid": [
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      4
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      6,
+      null,
+      null,
+      null
+     ],
+     [
+      5,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      6,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      3,
+      null,
+      null
+     ],
+     [
+      1,
+      null,
+      4,
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "shaded": [
+     "##...#..",
+     ".#...#..",
+     ".#######",
+     ".#...#..",
+     ".#..###.",
+     ".#.##.##",
+     "###.#..#",
+     ".#...###"
+    ]
+   },
+   "stats": {
+    "clue_count": 8,
+    "attempts": 8,
+    "patches": 10,
+    "plants": 0,
+    "white_cells": 32
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "nurikabe-8x8-s000507",
+   "type": "nurikabe",
+   "seed": 507,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": null
+   },
+   "difficulty": {
+    "band": 5,
+    "label": "Expert",
+    "score": 61.8,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 9
+   },
+   "clues": {
+    "grid": [
+     [
+      2,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      6,
+      null,
+      3,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      1,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      2,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      null,
+      5,
+      null,
+      5
+     ]
+    ]
+   },
+   "solution": {
+    "shaded": [
+     "..####.#",
+     "##..#..#",
+     ".#.#####",
+     ".##.#.#.",
+     "..###.#.",
+     ".#.#.##.",
+     ".#.#..#.",
+     "####..#."
+    ]
+   },
+   "stats": {
+    "clue_count": 9,
+    "attempts": 5,
+    "patches": 8,
+    "plants": 0,
+    "white_cells": 29
+   },
+   "generator_version": "0.2.0"
+  }
+ ]
+}

@@ -1,8 +1,11 @@
 // Puzzle Review — static curation app. No backend; state lives in localStorage,
 // exported as JSON or pushed to the repo via the GitHub contents API.
+// Drawing and rule-checking come from the shared core, the same code the book pipeline uses.
+import { GENRES } from "../core/index.js";
+
 (function () {
   const DATA = (window.PUZZLE_DATA && window.PUZZLE_DATA.batches) || [];
-  const RENDERERS = window.PuzzleRenderers || {};
+  const RENDERERS = Object.fromEntries(Object.values(GENRES).map((g) => [g.id, { label: g.label, japanese: g.japanese, rules: g.rules, thumbnail: g.render.thumbnail, mount: g.render.mount, hint: g.render.hint, inputs: g.render.inputs }]));
   const STATUSES = ["pending", "approved", "maybe", "rejected"];
   const TAGS = ["great opening", "showpiece", "flat path", "too easy", "too hard", "ugly layout", "clue cluster", "reprint candidate"];
   const LS = { decisions: "puzzle-review:decisions:v1", progress: "puzzle-review:progress:v1", gh: "puzzle-review:github:v1", ui: "puzzle-review:ui:v1" };
@@ -133,7 +136,7 @@
 
     detail.innerHTML = `
       <div class="detail-head">
-        <h1>${esc(r ? r.label : p.type)} ${p.params.rows}×${p.params.cols}</h1>
+        <h1>${esc(r ? r.label : p.type)} <span class="jp">${esc(r && r.japanese || "")}</span> ${p.params.rows}×${p.params.cols}</h1>
         <span class="id">${esc(p.id)}</span>
         <span class="spacer"></span>
         <button class="btn" id="btn-close" title="Back to sheet (Esc)">Close</button>
@@ -149,8 +152,8 @@
           </div>
           <div class="keypad" id="keypad"></div>
           <div class="check-msg" id="check-msg"></div>
-          <p class="hint">Click a cell, type <kbd>1</kbd>–<kbd>9</kbd>, <kbd>⌫</kbd> clears, arrows move.
-            Decide with <kbd>A</kbd> approve · <kbd>M</kbd> maybe · <kbd>R</kbd> reject · <kbd>←</kbd>/<kbd>→</kbd> prev/next. Timer starts on your first entry.</p>
+          <p class="hint">${esc(r && r.hint ? r.hint : "")}
+            Decide with <kbd>A</kbd> approve · <kbd>M</kbd> maybe · <kbd>R</kbd> reject · <kbd>←</kbd>/<kbd>→</kbd> prev/next. Timer starts on your first move.</p>
         </div>
         <div class="panel">
           <h3>Decision</h3>
@@ -214,8 +217,9 @@
       const res = state.ctrl.check();
       const m = $("#check-msg");
       if (res.correct) { stopTimer(); m.textContent = `Solved correctly in ${fmtTime(state.timer.base)}.`; m.className = "check-msg ok"; setDecision(id, { solvedCorrectly: true }); }
+      else if (res.reason) { m.textContent = `Not valid yet: ${res.reason}.`; m.className = "check-msg bad"; }
       else if (!res.complete) { m.textContent = `Incomplete${res.wrongCount ? `, ${res.wrongCount} wrong so far` : ", no errors so far"}.`; m.className = "check-msg " + (res.wrongCount ? "bad" : ""); }
-      else { m.textContent = `${res.wrongCount} cell${res.wrongCount === 1 ? "" : "s"} wrong.`; m.className = "check-msg bad"; }
+      else { m.textContent = `${res.wrongCount} mark${res.wrongCount === 1 ? "" : "s"} wrong.`; m.className = "check-msg bad"; }
     };
     $("#btn-reveal").onclick = () => { stopTimer(); state.ctrl && state.ctrl.reveal(); };
     $("#btn-reset").onclick = () => { stopTimer(); state.timer.base = 0; $("#timer").textContent = "0:00"; state.ctrl && state.ctrl.reset(); state.progress[id] = { seconds: 0 }; save(LS.progress, state.progress); };

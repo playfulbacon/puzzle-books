@@ -3,7 +3,7 @@ name: Deploy review app to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ["review/**", ".github/workflows/pages.yml"]
+    paths: ["review/**", "core/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
@@ -24,8 +24,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Stage site (review app + shared core, so ../core imports resolve)
+        run: |
+          mkdir -p _site
+          cp -r review _site/review
+          cp -r core _site/core
+          printf '<!doctype html><meta http-equiv="refresh" content="0; url=review/"><a href="review/">Puzzle Review</a>\n' > _site/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: review
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

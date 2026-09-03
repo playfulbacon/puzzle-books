@@ -312,36 +312,45 @@ rejected for:
 
 | Layer | Choice | Why |
 |---|---|---|
-| Language | **Python 3.12** | Fast to iterate, strong SAT/CP libraries, generation is offline so raw speed is secondary. Hot paths can move to Rust later without changing the JSON contract. |
-| Oracle solver | `python-sat` (CaDiCaL) with lazy connectivity; OR-Tools CP-SAT as alternative | Proven approach for loop/connectivity genres; trivial to prove uniqueness. |
-| Human solver | Pure Python, per-genre rule modules | Needs to be readable and auditable; each rule is a small function with a tier. |
-| Tests | `pytest`, property tests with `hypothesis` | Every rule gets a positive and a negative test; every genre gets a "1,000 random puzzles are unique and solvable" soak test. |
-| Rendering | SVG, generated directly (or via `svgwrite`) | Vector = crisp at any print resolution; easy to style consistently; embeds cleanly in PDF. |
+| Language | **JavaScript (ES modules), no build step** | One codebase runs in Node for batch generation and in the browser for the review site, so there is a single source of truth for generating, verifying, and drawing every genre. V8 is fast enough for 10×10–15×15 grids with custom propagation solvers. (Decision taken 2026-09-03; replaces the earlier Python recommendation.) |
+| Oracle solver | Hand-written propagation + DFS per genre in `core/genres/<genre>/logic.js`, with a search budget | Proves uniqueness; also yields a provisional difficulty signal (branch count). A SAT/WASM backend can be swapped in per genre later without changing the JSON contract. |
+| Human solver | Per-genre rule modules in the same core (to be written) | Needs to be readable and auditable; each rule is a small function with a tier. |
+| Tests | Node test runner, soak tests per genre | Every rule gets a positive and a negative test; every genre gets a "N random puzzles are unique and solvable" soak test. |
+| Rendering | SVG strings from `core/genres/<genre>/render.js` | The same drawing code serves the review site (interactive) and the book (static). Vector = crisp at any print resolution. |
 | Layout (later) | **Typst** as first choice; HTML+CSS via Paged.js/WeasyPrint or InDesign as alternatives | Typst is programmatic, fast, produces PDF with embedded fonts, and has good print controls. Decide in the layout phase. |
 | Parallelism | `multiprocessing` pool per genre | Hundreds of puzzles per book, minutes to hours overnight is fine. |
 
-CLI sketch:
+CLI (implemented):
 
 ```
-puzzlegen generate --type nurikabe --size 12x12 --band 3 --count 40 --seed 1000 --out build/puzzles/
-puzzlegen rate     build/puzzles/*.json
-puzzlegen render   build/puzzles/*.json --out build/svg/
-puzzlegen book     books/volume-1.yaml   # assembles manifest → layout input
+node cli/generate.mjs --genre nurikabe --size 10x10 --band 3 --count 40 --seed 1000 --out review/data/batches/nurikabe-10x10-b3.json
+node cli/pack.mjs                                   # bundles batches for the review site
+node cli/render.mjs review/data/batches/<batch>.json --out build/svg --cell 54   # SVGs for the book
+node cli/bundle.mjs --out build/puzzle-review.html  # single-file review app
 ```
 
 Repository layout:
 
 ```
 puzzle-books/
-  docs/                 planning, genre rule sheets, technique ladders, print specs
-  puzzlegen/
-    core/               grid model, JSON schema, SAT helpers, rating, CLI
-    genres/<name>/      structure.py  clues.py  oracle.py  human.py  render.py  tests/
-  render/               shared SVG style tokens (line weights, fonts, spacing)
-  book/                 layout sources (Typst), fonts, cover assets
-  books/                per-volume manifests (which puzzles, what order)
+  docs/                 planning, design brief, review-app guide
+  core/
+    index.js            genre registry (the single import for CLI, site, and book)
+    lib/                seeded RNG, grid helpers, SVG style, provisional difficulty
+    genres/<name>/      logic.js (generate + oracle)  render.js (svg + interactive mount)  index.js
+  cli/                  generate, pack, render, bundle
+  review/               static review site (imports ../core directly)
+  book/layout-studies/  page layout options (design canvas working files)
   build/                generated output (gitignored)
 ```
+
+### Genre status
+
+| Genre | Generate | Unique | Sizes that work | Notes |
+|---|---|---|---|---|
+| Slitherlink | yes | yes | 6×6–10×10 | Clue density steered by band; rating is density-based until the technique solver exists. |
+| Shikaku | yes | yes | 8×8–12×12 | Fast; numbers relocated within rectangles until unique. |
+| Nurikabe | yes | yes | 7×7–8×8 reliably; 10×10 slow (about a third of structures converge) | Solve-and-patch generation. Needs a stronger propagation set or a constructive generator for 10×10 and up. |
 
 ---
 
