@@ -1,0 +1,91 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Option A · Quiet",
+      "print": "fixed"
+    },
+    {
+      "file": "OptionB.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Option B · Morning page",
+      "print": "fixed"
+    },
+    {
+      "file": "OptionC.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Option C · Editorial",
+      "print": "fixed"
+    },
+    {
+      "file": "NurikabePage.dc.html",
+      "x": 0,
+      "y": 1140,
+      "w": 672,
+      "h": 960,
+      "title": "Option A · Nurikabe",
+      "print": "fixed"
+    },
+    {
+      "file": "ShikakuPage.dc.html",
+      "x": 800,
+      "y": 1140,
+      "w": 672,
+      "h": 960,
+      "title": "Option A · Shikaku",
+      "print": "fixed"
+    },
+    {
+      "file": "Solutions.dc.html",
+      "x": 1600,
+      "y": 1140,
+      "w": 672,
+      "h": 960,
+      "title": "Solutions · six per page",
+      "print": "fixed"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-a",
+      "x": 0,
+      "y": -170,
+      "w": 640,
+      "text": "Option A · Quiet. Closest to Nikoli. One rule line, a hairline running head, the grid as the only object on the page. Tradeoff: little room for the morning-ritual framing (day, time, notes)."
+    },
+    {
+      "id": "note-b",
+      "x": 800,
+      "y": -170,
+      "w": 640,
+      "text": "Option B · Morning page. Built around the ritual: Day number, Japanese name, started/finished fields and a notes rule. Tradeoff: busiest page; the grid is 500 px instead of 540 px."
+    },
+    {
+      "id": "note-c",
+      "x": 1600,
+      "y": -170,
+      "w": 640,
+      "text": "Option C · Editorial. Asymmetric. Big numeral, running head turned up the spine, grid pushed to the outer edge where the thumb lands. Tradeoff: boldest identity, least conventional for a puzzle book."
+    },
+    {
+      "id": "note-system",
+      "x": 0,
+      "y": 2160,
+      "w": 1000,
+      "text": "Second row: Option A applied to Nurikabe and Shikaku to show one system carrying several genres, plus a solutions page at six per page. All pages are 7 × 10 in (672 × 960 px at 96 px/in), black ink only, recto pages with a 0.75 in gutter. Puzzles shown are layout samples: valid structures, not yet verified for a unique solution."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
