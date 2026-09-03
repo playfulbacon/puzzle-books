@@ -11,6 +11,8 @@ This document covers three things:
 3. How difficulty is measured and controlled.
 
 Book layout and print production get their own document later (see §7 for the short version).
+The product vision, the Nikoli/Bellos design principles, and how "charm" is turned into generator
+requirements live in [DESIGN-BRIEF.md](DESIGN-BRIEF.md).
 
 ---
 
@@ -111,9 +113,12 @@ Every puzzle type goes through the same five stages. Only stages 1 and 2 are gen
 - **Stage 3** removes clues one at a time (random order, or difficulty-guided order) and keeps a removal
   only if the puzzle remains unique. For genres where clues can't be removed (Kakuro sums, Hashi numbers,
   LITS/Tentai Show geometry), this stage instead *perturbs the structure* until uniqueness holds.
-- **Stage 4** runs the human solver, produces a technique trace, and maps it to a rating.
-- **Stage 5** accepts the puzzle if it lands in the requested tier, else adjusts (add a clue back, remove
-  more, or discard and reseed).
+- **Stage 4** runs the human solver, produces a technique trace, maps it to a rating, and scores the
+  *shape* of the solving path (opening width, ramp, breakthroughs, stall depth; see DESIGN-BRIEF §4.2).
+- **Stage 5** accepts the puzzle if it lands in the requested tier *and* passes the path-shape and visual
+  gates, else adjusts (add a clue back, remove more, or discard and reseed).
+- **Stage 6 (curation)** renders a contact sheet of accepted candidates per book slot; a human picks.
+  This is where taste enters and is deliberately cheap.
 
 ### 3.2 Three generation families
 
@@ -291,7 +296,9 @@ Technique tiers are a hypothesis about human difficulty. Validate them:
 
 ### 4.5 Quality gates beyond difficulty
 
-Generated puzzles are also rejected for:
+Path-shape metrics (opening width, ramp position, breakthrough count, stall depth, finish cascade, tier
+variety) are defined with targets in DESIGN-BRIEF §4.2 and enforced here. Generated puzzles are also
+rejected for:
 
 - Trivial collapse (more than ~40% of the grid is forced by tier-1 rules in one sweep) at bands ≥ 3.
 - Degenerate structure: Shikaku with all 1×n strips, Nurikabe with all size-1 islands, Slitherlink loops
@@ -341,7 +348,8 @@ puzzle-books/
 ## 6. Build order and milestones
 
 **Milestone 1 — Framework + one genre end to end (Sudoku).**
-Grid model, JSON schema, CLI, DLX oracle, full technique ladder, rating, SVG render, soak test.
+Grid model, JSON schema, CLI, DLX oracle, full technique ladder, rating, path-shape metrics from the trace,
+symmetric clue-orbit reduction, SVG render, contact-sheet renderer for curation, soak test.
 Sudoku first because the ladder is well-documented, so it validates the rating architecture against known
 ground truth (compare against SE/HoDoKu ratings of published puzzles).
 
@@ -385,5 +393,7 @@ Constraints that affect puzzle design *now*, so we don't paint ourselves into a 
 3. **Difficulty labels** for the book: stars, words, or a Japanese-flavored scale?
 4. **Trim size** target, since it constrains the largest grids we generate.
 5. **Language/stack** confirmation: Python + SAT for generation, Typst as the layout candidate.
+6. **Product format:** "A Year of Puzzles" (365, one per page, weekly difficulty ramp), seasonal volumes,
+   or a conventional collection. See DESIGN-BRIEF §5; recommendation is the year format.
 
 Everything else in this document is a recommendation we can start executing on without further input.
