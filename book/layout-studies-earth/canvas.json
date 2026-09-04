@@ -323,6 +323,66 @@
       "title": "Chosen · kanji in the brush face",
       "print": "fixed",
       "page": "page-6"
+    },
+    {
+      "file": "HiLeft.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · left, subtle",
+      "print": "fixed",
+      "page": "page-7"
+    },
+    {
+      "file": "HiStrong.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · left, stronger wobble",
+      "print": "fixed",
+      "page": "page-7"
+    },
+    {
+      "file": "HiRight.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · right",
+      "print": "fixed",
+      "page": "page-7"
+    },
+    {
+      "file": "HiTwoEnds.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · two ends",
+      "print": "fixed",
+      "page": "page-7"
+    },
+    {
+      "file": "HiCross.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · crosswise",
+      "print": "fixed",
+      "page": "page-7"
+    },
+    {
+      "file": "HiNuri.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · medium wobble",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -349,6 +409,10 @@
     {
       "id": "page-6",
       "name": "Chosen"
+    },
+    {
+      "id": "page-7",
+      "name": "Hand-inked, refined"
     }
   ],
   "annotations": [
@@ -656,10 +720,66 @@
       "y": -110,
       "w": 640,
       "text": "Kanji in the brush face. A little larger, beside the day, the only brush mark on the page."
+    },
+    {
+      "id": "hi-brief",
+      "page": "page-7",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Hand-inked, refined. A full-width 536 px grid with the hand-ruled wobble from page one; only the day (with kanji) and the dots up top, at the refined weight; the genre caption a whisper beneath. The wobble is an SVG displacement filter; at 300 dpi keep it under about 0.3 pt, which is the subtle setting here."
+    },
+    {
+      "id": "hi-1",
+      "page": "page-7",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "Left, subtle. Day and dots at the gutter, caption at the gutter, wobble at the print-safe setting."
+    },
+    {
+      "id": "hi-2",
+      "page": "page-7",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "Left, stronger wobble. Same page with the displacement nearly doubled, to see where hand-ruled turns into a printing fault."
+    },
+    {
+      "id": "hi-3",
+      "page": "page-7",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Right. Day and dots at the outer margin, caption right-aligned, folio at the gutter."
+    },
+    {
+      "id": "hi-4",
+      "page": "page-7",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid."
+    },
+    {
+      "id": "hi-5",
+      "page": "page-7",
+      "x": 800,
+      "y": 2170,
+      "w": 640,
+      "text": "Crosswise. Day and dots left above, caption right below."
+    },
+    {
+      "id": "hi-6",
+      "page": "page-7",
+      "x": 1600,
+      "y": 2170,
+      "w": 640,
+      "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-6"
+    "page": "page-7"
   }
 }

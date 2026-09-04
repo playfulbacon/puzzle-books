@@ -498,6 +498,38 @@ writeFileSync(join(OUT, "Main.dc.html"), chosenMain);
 writeFileSync(join(OUT, "ChosenKanjiBelow.dc.html"), chosenKanjiBelow);
 writeFileSync(join(OUT, "ChosenKanjiBrush.dc.html"), chosenKanjiBrush);
 
+
+// =====================================================================================
+// Hand-inked, refined. Full-width grid with the hand-ruled wobble; day and dots up top at the
+// refined weight; the genre caption a whisper at the bottom.
+const inked = (p, scale, seed = 11) => { const cell = 536 / (p.params.cols + (p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3)); return `
+  <div style="position: absolute; left: 68px; top: 236px; width: 536px; height: 536px;">
+    <svg width="0" height="0" style="position:absolute;"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="${seed}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="${scale}"/></filter></defs></svg>
+    <div style="width: 100%; height: 100%; filter: url(#ink);">${art(p, cell)}</div>
+  </div>`; };
+const topDay = (day, band, align = "left") => `<div style="position: absolute; ${align === "right" ? "right: 64px" : "left: 72px"}; top: 96px; display: flex; flex-direction: column; gap: 12px; align-items: ${align === "right" ? "flex-end" : "flex-start"};"><div style="display: flex; align-items: baseline; gap: 14px;">${dayStrong(day)}${kanjiDay(day)}</div>${tinyDots(band)}</div>`;
+const bottomCaption = (p, side = "left") => `<div style="position: absolute; ${side}: ${side === "left" ? 72 : 64}px; top: 812px;">${whisper(p, { size: 10, width: side === "left" ? 460 : 536, align: side })}</div>`;
+const hiPage = (p, day, band, { scale = 1.6, top = "left", bottom = "left", twoEnds = false, seed = 11 } = {}) => wrap(`<div class="page">
+  ${twoEnds ? `<div style="position: absolute; left: 72px; right: 64px; top: 96px; display: flex; justify-content: space-between; align-items: baseline;"><div style="display: flex; align-items: baseline; gap: 14px;">${dayStrong(day)}${kanjiDay(day)}</div>${tinyDots(band)}</div>` : topDay(day, band, top)}
+  ${inked(p, scale, seed)}
+  ${bottomCaption(p, bottom)}
+  ${folio(day + 8, bottom === "left" ? "right: 64px;" : "left: 72px;")}
+</div>`);
+
+const hiLeft = hiPage(P.shikaku, 58, 2);                                   // 1. left / left, subtle wobble
+const hiStrong = hiPage(P.masyu, 63, 3, { scale: 2.8, seed: 5 });          // 2. left / left, stronger wobble
+const hiRight = hiPage(P.gokigen, 47, 3, { top: "right", bottom: "right" }); // 3. right / right
+const hiTwoEnds = hiPage(P.slither, 22, 2, { twoEnds: true });             // 4. day at the gutter, dots at the outer margin
+const hiCross = hiPage(P.hashi, 31, 2, { top: "left", bottom: "right" }); // 5. crosswise
+const hiNuri = hiPage(P.nurikabe, 14, 3, { scale: 2.2, seed: 9 });        // 6. nurikabe, medium wobble
+
+writeFileSync(join(OUT, "HiLeft.dc.html"), hiLeft);
+writeFileSync(join(OUT, "HiStrong.dc.html"), hiStrong);
+writeFileSync(join(OUT, "HiRight.dc.html"), hiRight);
+writeFileSync(join(OUT, "HiTwoEnds.dc.html"), hiTwoEnds);
+writeFileSync(join(OUT, "HiCross.dc.html"), hiCross);
+writeFileSync(join(OUT, "HiNuri.dc.html"), hiNuri);
+
 writeFileSync(join(OUT, "CreamAndInk.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -540,8 +572,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("Main.dc.html", 0, 0, "Chosen · kanji inline"), page: "page-6" },
     { ...A("ChosenKanjiBelow.dc.html", 800, 0, "Chosen · kanji on its own line"), page: "page-6" },
     { ...A("ChosenKanjiBrush.dc.html", 1600, 0, "Chosen · kanji in the brush face"), page: "page-6" },
+    { ...A("HiLeft.dc.html", 0, 0, "Hand-inked · left, subtle"), page: "page-7" },
+    { ...A("HiStrong.dc.html", 800, 0, "Hand-inked · left, stronger wobble"), page: "page-7" },
+    { ...A("HiRight.dc.html", 1600, 0, "Hand-inked · right"), page: "page-7" },
+    { ...A("HiTwoEnds.dc.html", 0, 1160, "Hand-inked · two ends"), page: "page-7" },
+    { ...A("HiCross.dc.html", 800, 1160, "Hand-inked · crosswise"), page: "page-7" },
+    { ...A("HiNuri.dc.html", 1600, 1160, "Hand-inked · medium wobble"), page: "page-7" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -582,7 +620,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "ch-1", page: "page-6", x: 0, y: -110, w: 640, text: "Kanji inline. The kanji follows the day on the same line, same size; the dots sit alone below. Lead candidate." },
     { id: "ch-2", page: "page-6", x: 800, y: -110, w: 640, text: "Kanji on its own line. Day, then kanji, then dots: three quiet lines." },
     { id: "ch-3", page: "page-6", x: 1600, y: -110, w: 640, text: "Kanji in the brush face. A little larger, beside the day, the only brush mark on the page." },
+    { id: "hi-brief", page: "page-7", x: 0, y: -230, w: 1240, text: "Hand-inked, refined. A full-width 536 px grid with the hand-ruled wobble from page one; only the day (with kanji) and the dots up top, at the refined weight; the genre caption a whisper beneath. The wobble is an SVG displacement filter; at 300 dpi keep it under about 0.3 pt, which is the subtle setting here." },
+    { id: "hi-1", page: "page-7", x: 0, y: -110, w: 640, text: "Left, subtle. Day and dots at the gutter, caption at the gutter, wobble at the print-safe setting." },
+    { id: "hi-2", page: "page-7", x: 800, y: -110, w: 640, text: "Left, stronger wobble. Same page with the displacement nearly doubled, to see where hand-ruled turns into a printing fault." },
+    { id: "hi-3", page: "page-7", x: 1600, y: -110, w: 640, text: "Right. Day and dots at the outer margin, caption right-aligned, folio at the gutter." },
+    { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
+    { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
+    { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
   ],
-  launch: { view: "canvas", page: "page-6" },
+  launch: { view: "canvas", page: "page-7" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

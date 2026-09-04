@@ -55,6 +55,16 @@ dots, day line one step heavier, day repeated in kanji numerals.
 - `Main.dc.html` — kanji inline after the day (lead)
 - `ChosenKanjiBelow.dc.html` — kanji on its own line
 - `ChosenKanjiBrush.dc.html` — kanji in the brush face
+
+Page seven, "Hand-inked, refined": full-width 536 px grid with the hand-ruled wobble, day with
+kanji and dots up top, whispered caption beneath.
+
+- `HiLeft.dc.html` — left, print-safe wobble
+- `HiStrong.dc.html` — left, stronger wobble
+- `HiRight.dc.html` — right-aligned
+- `HiTwoEnds.dc.html` — day at the gutter, dots at the outer margin
+- `HiCross.dc.html` — day left, caption right
+- `HiNuri.dc.html` — medium wobble on a heavy-bordered Nurikabe grid
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).
