@@ -10,6 +10,16 @@ All pages carry real verified puzzles from `review/data/batches`.
 - `EarthAccent.dc.html` — one clay tone; implies a colour interior (2–3× unit cost, white paper only)
 - `HandInked.dc.html` — faint hand-ruled wobble on the grid via an SVG displacement filter
 - `Ma.dc.html` — negative space as the composition
+
+Page two of the canvas, "Ma variants": six layouts that keep the grid alone in its horizontal band
+and group name, Japanese name, rules and difficulty into one block.
+
+- `MaHighText.dc.html` — text high at the gutter, grid low
+- `MaHighGrid.dc.html` — grid high, text low
+- `MaCentered.dc.html` — centred block and grid
+- `MaDiagonal.dc.html` — block flush right, smaller grid at the gutter
+- `MaBottom.dc.html` — block and grid stacked on the bottom margin
+- `MaBrush.dc.html` — kana in the brush face leads the block
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

@@ -15,6 +15,7 @@ const P = {
   hashi: batch("hashi-10x10.json")[2],
   slither: batch("slitherlink-10x10-b3.json")[3],
   shikaku: batch("shikaku-10x10.json")[4],
+  nurikabe: batch("nurikabe-8x8.json")[1],
 };
 // core SVG with the white ground removed so the paper shows through, and ink retinted
 const INK = "#1A1917";
@@ -179,6 +180,86 @@ const ma = wrap(`
   <div class="folio" style="position: absolute; bottom: 34px; right: 64px;">71</div>
 </div>`);
 
+
+// =====================================================================================
+// Ma variants. In every one the grid owns its full horizontal band; name, Japanese name,
+// rules and difficulty are one block. Only the positions and the grid size change.
+const RULES = {
+  masyu: "One loop through the centres of cells. Straight through white pearls, turning just before or after. Turn at black pearls, straight through both neighbours.",
+  gokigen: "One diagonal in every cell. A number at a crossing counts the diagonals that touch it. No loop may close.",
+  slitherlink: "One loop along the dotted lines. A number is how many of its four sides the loop uses.",
+  hashi: "Straight bridges between islands, one or two per pair, never crossing. Each number is an island's bridge count, and every island is reachable from every other.",
+  shikaku: "Cut the grid into rectangles. Each holds exactly one number, and that number is its area.",
+  nurikabe: "Shade a single connected sea with no 2×2 block. Each number is an island of that many cells; islands touch only at corners.",
+};
+const NAMES = { masyu: ["Masyu", "ましゅ"], gokigen: ["Gokigen Naname", "ごきげんななめ"], slitherlink: ["Slitherlink", "スリザーリンク"], hashi: ["Hashiwokakero", "橋をかけろ"], shikaku: ["Shikaku", "四角に切れ"], nurikabe: ["Nurikabe", "ぬりかべ"] };
+// The block: day, name + kana, rules, dots. `align` = left | right | center.
+const block = (p, day, band, { align = "left", width = 400, size = "regular", brushName = false } = {}) => {
+  const [name, kana] = NAMES[p.type];
+  const ta = align === "center" ? "center" : align === "right" ? "right" : "left";
+  const items = align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start";
+  const nameRow = brushName
+    ? `<div style="display: flex; flex-direction: column; align-items: ${items}; gap: 6px;"><span class="brush" style="font-size: 54px; line-height: 1; color: ${INK};">${kana}</span><span style="font-size: 15px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500;">${name}</span></div>`
+    : `<div style="display: flex; align-items: baseline; gap: 12px; justify-content: ${items};"><span style="font-size: ${size === "small" ? 24 : 30}px; font-weight: 300; line-height: 1.1;">${name}</span><span class="brush" style="font-size: ${size === "small" ? 15 : 19}px; color: #4A463F;">${kana}</span></div>`;
+  return `<div style="display: flex; flex-direction: column; align-items: ${items}; gap: 14px; width: ${width}px; text-align: ${ta};">
+    <span class="small">Day ${day}</span>
+    ${nameRow}
+    <p class="rules" style="margin: 0; font-size: ${size === "small" ? 14 : 16}px; color: #6B665C;">${RULES[p.type]}</p>
+    <span class="dots">${dots(band)}</span>
+  </div>`;
+};
+const grid = (p, cell, style) => `<div style="${style}">${art(p, cell)}</div>`;
+const folio = (n, where) => `<div class="folio" style="position: absolute; bottom: 34px; ${where}">${n}</div>`;
+
+// 1. Text high at the gutter, grid low and full width. The gap between them is the page.
+const maHighText = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 96px;">${block(P.masyu, 63, 3)}</div>
+  ${grid(P.masyu, 50, "position: absolute; left: 68px; top: 372px; width: 536px; height: 536px;")}
+  ${folio(71, "right: 64px;")}
+</div>`);
+
+// 2. Inverted: grid high, text low at the gutter. The eye lands on the puzzle first; the words wait.
+const maHighGrid = wrap(`<div class="page">
+  ${grid(P.gokigen, 50, "position: absolute; left: 68px; top: 84px; width: 536px; height: 536px;")}
+  <div style="position: absolute; left: 72px; bottom: 96px;">${block(P.gokigen, 47, 3)}</div>
+  ${folio(55, "right: 64px;")}
+</div>`);
+
+// 3. Centred: a small centred block high on the page like a haiku, the grid centred below.
+const maCentered = wrap(`<div class="page">
+  <div style="position: absolute; left: 0; right: 0; top: 108px; display: flex; justify-content: center;">${block(P.slither, 22, 2, { align: "center", width: 380, size: "small" })}</div>
+  ${grid(P.slither, 46, "position: absolute; left: 90px; top: 396px; width: 492px; height: 492px;")}
+  ${folio(30, "left: 0; right: 0; text-align: center;")}
+</div>`);
+
+// 4. Diagonal: text set flush right at the outer margin, a smaller grid low at the gutter.
+const maDiagonal = wrap(`<div class="page">
+  <div style="position: absolute; right: 64px; top: 96px;">${block(P.hashi, 31, 2, { align: "right", width: 340, size: "small" })}</div>
+  ${grid(P.hashi, 44, "position: absolute; left: 68px; top: 452px; width: 440px; height: 440px;")}
+  ${folio(39, "right: 64px;")}
+</div>`);
+
+// 5. Bottom-anchored: block directly above the grid, both sitting on the bottom margin; the top half is silence.
+const maBottom = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; bottom: 612px;">${block(P.shikaku, 58, 2, { width: 460 })}</div>
+  ${grid(P.shikaku, 50, "position: absolute; left: 68px; bottom: 60px; width: 536px; height: 536px;")}
+  ${folio(66, "right: 64px;")}
+</div>`);
+
+// 6. Brush name: the kana set large in the brush face leads the block; a smaller grid, low and centred.
+const maBrush = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 96px;">${block(P.nurikabe, 14, 3, { width: 420, brushName: true })}</div>
+  ${grid(P.nurikabe, 55, "position: absolute; left: 116px; top: 424px; width: 440px; height: 440px;")}
+  ${folio(22, "left: 0; right: 0; text-align: center;")}
+</div>`);
+
+writeFileSync(join(OUT, "MaHighText.dc.html"), maHighText);
+writeFileSync(join(OUT, "MaHighGrid.dc.html"), maHighGrid);
+writeFileSync(join(OUT, "MaCentered.dc.html"), maCentered);
+writeFileSync(join(OUT, "MaDiagonal.dc.html"), maDiagonal);
+writeFileSync(join(OUT, "MaBottom.dc.html"), maBottom);
+writeFileSync(join(OUT, "MaBrush.dc.html"), maBrush);
+
 writeFileSync(join(OUT, "Main.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -194,7 +275,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     A("EarthAccent.dc.html", 0, 1160, "Earth accent (colour interior)"),
     A("HandInked.dc.html", 800, 1160, "Hand-inked"),
     A("Ma.dc.html", 1600, 1160, "Ma"),
+    { ...A("MaHighText.dc.html", 0, 0, "Ma · text high, grid low"), page: "page-2" },
+    { ...A("MaHighGrid.dc.html", 800, 0, "Ma · grid high, text low"), page: "page-2" },
+    { ...A("MaCentered.dc.html", 1600, 0, "Ma · centred"), page: "page-2" },
+    { ...A("MaDiagonal.dc.html", 0, 1160, "Ma · diagonal"), page: "page-2" },
+    { ...A("MaBottom.dc.html", 800, 1160, "Ma · bottom-anchored"), page: "page-2" },
+    { ...A("MaBrush.dc.html", 1600, 1160, "Ma · brush name"), page: "page-2" },
   ],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -203,7 +291,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "n-earth", x: 0, y: 2180, w: 640, text: "Earth accent. One clay tone (#B5643C) on the day mark, difficulty and folio rules, nothing on the puzzle itself. Tradeoff: any colour switches the whole interior to colour printing, roughly two to three times the unit cost, and colour interiors print on white paper only." },
     { id: "n-hand", x: 800, y: 2180, w: 640, text: "Hand-inked. A faint wobble on the grid lines and digits, as though ruled by hand. Wabi-sabi in the object itself, not the decoration. Risk: at 300 dpi the wobble must stay under about 0.3 pt or it reads as a printing fault." },
     { id: "n-ma", x: 1600, y: 2180, w: 640, text: "Ma. Negative space as the subject: the top half is empty, the grid is smaller and sits low on the outer edge, the rules run in a narrow column. The quietest page, and the least conventional." },
+    { id: "ma-brief", page: "page-2", x: 0, y: -230, w: 1240, text: "Ma variants. Every page here follows two rules: the grid owns its full horizontal band and shares it with nothing, and the name, Japanese name, rules and difficulty are one block. Only the block's position and the grid's size and position change. Same cream stock, ink and type as page one." },
+    { id: "ma-1", page: "page-2", x: 0, y: -110, w: 640, text: "Text high, grid low. The default. The empty band between block and grid is the composition." },
+    { id: "ma-2", page: "page-2", x: 800, y: -110, w: 640, text: "Grid high, text low. The eye lands on the puzzle first; the words wait underneath. Strongest for a book you open already knowing the rules." },
+    { id: "ma-3", page: "page-2", x: 1600, y: -110, w: 640, text: "Centred. The block sits like a haiku, everything on one axis. Calmest and most formal; also the most conventional." },
+    { id: "ma-4", page: "page-2", x: 0, y: 2170, w: 640, text: "Diagonal. Block flush right at the outer margin, smaller grid at the gutter. The emptiness runs corner to corner. Most tension, least symmetry." },
+    { id: "ma-5", page: "page-2", x: 800, y: 2170, w: 640, text: "Bottom-anchored. Block and grid stack on the bottom margin; the whole top half is silence. Reads as one heavy object placed on a shelf." },
+    { id: "ma-6", page: "page-2", x: 1600, y: 2170, w: 640, text: "Brush name. The kana leads the block in the brush face, the Latin becomes a small caption. Same geometry as the default with a different voice." },
   ],
-  launch: { view: "canvas" },
+  launch: { view: "canvas", page: "page-2" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

@@ -53,6 +53,76 @@
       "h": 960,
       "title": "Ma",
       "print": "fixed"
+    },
+    {
+      "file": "MaHighText.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · text high, grid low",
+      "print": "fixed",
+      "page": "page-2"
+    },
+    {
+      "file": "MaHighGrid.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · grid high, text low",
+      "print": "fixed",
+      "page": "page-2"
+    },
+    {
+      "file": "MaCentered.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · centred",
+      "print": "fixed",
+      "page": "page-2"
+    },
+    {
+      "file": "MaDiagonal.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · diagonal",
+      "print": "fixed",
+      "page": "page-2"
+    },
+    {
+      "file": "MaBottom.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · bottom-anchored",
+      "print": "fixed",
+      "page": "page-2"
+    },
+    {
+      "file": "MaBrush.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · brush name",
+      "print": "fixed",
+      "page": "page-2"
+    }
+  ],
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Earth and ink"
+    },
+    {
+      "id": "page-2",
+      "name": "Ma variants"
     }
   ],
   "annotations": [
@@ -104,9 +174,66 @@
       "y": 2180,
       "w": 640,
       "text": "Ma. Negative space as the subject: the top half is empty, the grid is smaller and sits low on the outer edge, the rules run in a narrow column. The quietest page, and the least conventional."
+    },
+    {
+      "id": "ma-brief",
+      "page": "page-2",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Ma variants. Every page here follows two rules: the grid owns its full horizontal band and shares it with nothing, and the name, Japanese name, rules and difficulty are one block. Only the block's position and the grid's size and position change. Same cream stock, ink and type as page one."
+    },
+    {
+      "id": "ma-1",
+      "page": "page-2",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "Text high, grid low. The default. The empty band between block and grid is the composition."
+    },
+    {
+      "id": "ma-2",
+      "page": "page-2",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "Grid high, text low. The eye lands on the puzzle first; the words wait underneath. Strongest for a book you open already knowing the rules."
+    },
+    {
+      "id": "ma-3",
+      "page": "page-2",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Centred. The block sits like a haiku, everything on one axis. Calmest and most formal; also the most conventional."
+    },
+    {
+      "id": "ma-4",
+      "page": "page-2",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Diagonal. Block flush right at the outer margin, smaller grid at the gutter. The emptiness runs corner to corner. Most tension, least symmetry."
+    },
+    {
+      "id": "ma-5",
+      "page": "page-2",
+      "x": 800,
+      "y": 2170,
+      "w": 640,
+      "text": "Bottom-anchored. Block and grid stack on the bottom margin; the whole top half is silence. Reads as one heavy object placed on a shelf."
+    },
+    {
+      "id": "ma-6",
+      "page": "page-2",
+      "x": 1600,
+      "y": 2170,
+      "w": 640,
+      "text": "Brush name. The kana leads the block in the brush face, the Latin becomes a small caption. Same geometry as the default with a different voice."
     }
   ],
   "launch": {
-    "view": "canvas"
+    "view": "canvas",
+    "page": "page-2"
   }
 }
