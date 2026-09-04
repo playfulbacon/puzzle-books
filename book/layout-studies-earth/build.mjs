@@ -477,6 +477,8 @@ writeFileSync(join(OUT, "SmSmallest.dc.html"), smSmallest);
 const KANJI_NUM = (n) => { const d = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九"]; if (n < 10) return d[n]; const t = Math.floor(n / 10), u = n % 10; return (t > 1 ? d[t] : "") + "十" + (u ? d[u] : ""); };
 const tinyDots = (n, size = 7, gap = 6) => `<span style="display: inline-flex; gap: ${gap}px; align-items: center;">${Array.from({ length: 5 }, (_, i) => `<span style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 1.1px solid ${ASH}; background: ${i < n ? ASH : "transparent"}; display: inline-block;"></span>`).join("")}</span>`;
 const dayStrong = (day) => `<span style="font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: ${ASH};">Day ${day}</span>`;
+const dayInk = (day) => `<span style="font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: ${INK};">Day ${day}</span>`;
+const kanjiInk = (day) => `<span class="jp" style="font-size: 13px; letter-spacing: 0.12em; color: ${INK};">${KANJI_NUM(day)}</span>`;
 const kanjiDay = (day, { brush = false, size = 13 } = {}) => `<span class="${brush ? "brush" : "jp"}" style="font-size: ${size}px; letter-spacing: 0.12em; color: ${ASH};">${KANJI_NUM(day)}</span>`;
 const chosenPage = (p, day, band, topBlock) => { const c = 40, w = gw(p, c); return wrap(`<div class="page">
   <div style="position: absolute; left: ${LEFT}px; top: 96px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
@@ -498,8 +500,6 @@ writeFileSync(join(OUT, "Main.dc.html"), chosenMain);
 writeFileSync(join(OUT, "ChosenKanjiBelow.dc.html"), chosenKanjiBelow);
 writeFileSync(join(OUT, "ChosenKanjiBrush.dc.html"), chosenKanjiBrush);
 // Version of the lead: day in ink like the puzzle, dots smaller still (5 px).
-const dayInk = (day) => `<span style="font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: ${INK};">Day ${day}</span>`;
-const kanjiInk = (day) => `<span class="jp" style="font-size: 13px; letter-spacing: 0.12em; color: ${INK};">${KANJI_NUM(day)}</span>`;
 const chosenInkDay = chosenPage(P.slither, 22, 2, `<div style="display: flex; align-items: baseline; gap: 14px;">${dayInk(22)}${kanjiInk(22)}</div>${tinyDots(2, 5, 5)}`);
 writeFileSync(join(OUT, "ChosenInkDay.dc.html"), chosenInkDay);
 
@@ -528,6 +528,14 @@ const hiTwoEnds = hiPage(P.slither, 22, 2, { twoEnds: true });             // 4.
 const hiCross = hiPage(P.hashi, 31, 2, { top: "left", bottom: "right" }); // 5. crosswise
 const hiNuri = hiPage(P.nurikabe, 14, 3, { scale: 2.2, seed: 9 });        // 6. nurikabe, medium wobble
 
+const inkDots = (n, size = 5, gap = 5) => `<span style="display: inline-flex; gap: ${gap}px; align-items: center;">${Array.from({ length: 5 }, (_, i) => `<span style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 1.1px solid ${INK}; background: ${i < n ? INK : "transparent"}; display: inline-block;"></span>`).join("")}</span>`;
+const hiTwoEndsInk = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; right: 64px; top: 96px; display: flex; justify-content: space-between; align-items: baseline;"><div style="display: flex; align-items: baseline; gap: 14px;">${dayInk(22)}${kanjiInk(22)}</div>${inkDots(2)}</div>
+  ${inked(P.slither, 1.6)}
+  ${bottomCaption(P.slither)}
+  ${folio(30, "right: 64px;")}
+</div>`);
+writeFileSync(join(OUT, "HiTwoEndsInk.dc.html"), hiTwoEndsInk);
 writeFileSync(join(OUT, "HiLeft.dc.html"), hiLeft);
 writeFileSync(join(OUT, "HiStrong.dc.html"), hiStrong);
 writeFileSync(join(OUT, "HiRight.dc.html"), hiRight);
@@ -535,6 +543,18 @@ writeFileSync(join(OUT, "HiTwoEnds.dc.html"), hiTwoEnds);
 writeFileSync(join(OUT, "HiCross.dc.html"), hiCross);
 writeFileSync(join(OUT, "HiNuri.dc.html"), hiNuri);
 
+const maColumn = (() => { const p = P.slither, [name, kana] = NAMES[p.type]; return wrap(`<div class="page">
+  <div style="position: absolute; right: 64px; top: 428px; width: 440px; height: 440px;">${art(p, 40)}</div>
+  <div style="position: absolute; left: 72px; top: 428px; width: 84px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+    ${dayInk(63)}
+    ${kanjiInk(63)}
+    <div style="margin-top: 2px;">${inkDots(3)}</div>
+    <span style="margin-top: 14px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: ${ASH}; line-height: 1.6;">${name}</span>
+    <span class="jp" style="font-size: 10px; letter-spacing: 0; color: ${ASH}; margin-top: -8px; white-space: nowrap;">${kana}</span>
+  </div>
+  <div class="folio" style="position: absolute; bottom: 34px; right: 64px;">71</div>
+</div>`); })();
+writeFileSync(join(OUT, "MaColumn.dc.html"), maColumn);
 writeFileSync(join(OUT, "CreamAndInk.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -550,6 +570,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     A("EarthAccent.dc.html", 0, 1160, "Earth accent (colour interior)"),
     A("HandInked.dc.html", 800, 1160, "Hand-inked"),
     A("Ma.dc.html", 1600, 1160, "Ma"),
+    A("MaColumn.dc.html", 2400, 1160, "Ma · day and dots in the column"),
     { ...A("MaHighText.dc.html", 0, 0, "Ma · text high, grid low"), page: "page-2" },
     { ...A("MaHighGrid.dc.html", 800, 0, "Ma · grid high, text low"), page: "page-2" },
     { ...A("MaCentered.dc.html", 1600, 0, "Ma · centred"), page: "page-2" },
@@ -584,6 +605,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("HiTwoEnds.dc.html", 0, 1160, "Hand-inked · two ends"), page: "page-7" },
     { ...A("HiCross.dc.html", 800, 1160, "Hand-inked · crosswise"), page: "page-7" },
     { ...A("HiNuri.dc.html", 1600, 1160, "Hand-inked · medium wobble"), page: "page-7" },
+    { ...A("HiTwoEndsInk.dc.html", 2400, 1160, "Hand-inked · two ends, in ink"), page: "page-7" },
   ],
   pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }],
   annotations: [
@@ -593,6 +615,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "n-tategaki", x: 1600, y: -120, w: 640, text: "Tategaki. The genre runs vertically down the outer edge in Japanese, the day number appears twice, once in kanji. The Japanese carries the identity; the Latin is the caption." },
     { id: "n-earth", x: 0, y: 2180, w: 640, text: "Earth accent. One clay tone (#B5643C) on the day mark, difficulty and folio rules, nothing on the puzzle itself. Tradeoff: any colour switches the whole interior to colour printing, roughly two to three times the unit cost, and colour interiors print on white paper only." },
     { id: "n-hand", x: 800, y: 2180, w: 640, text: "Hand-inked. A faint wobble on the grid lines and digits, as though ruled by hand. Wabi-sabi in the object itself, not the decoration. Risk: at 300 dpi the wobble must stay under about 0.3 pt or it reads as a printing fault." },
+    { id: "n-ma-col", x: 2400, y: 2180, w: 640, text: "Ma, column. The original Ma with the day, its kanji and the dots moved into the narrow column beside the grid, where the title and rules were. The genre name stays as a whisper below them; the rules are gone; nothing sits at the top of the page." },
     { id: "n-ma", x: 1600, y: 2180, w: 640, text: "Ma. Negative space as the subject: the top half is empty, the grid is smaller and sits low on the outer edge, the rules run in a narrow column. The quietest page, and the least conventional." },
     { id: "ma-brief", page: "page-2", x: 0, y: -230, w: 1240, text: "Ma variants. Every page here follows two rules: the grid owns its full horizontal band and shares it with nothing, and the name, Japanese name, rules and difficulty are one block. Only the block's position and the grid's size and position change. Same cream stock, ink and type as page one." },
     { id: "ma-1", page: "page-2", x: 0, y: -110, w: 640, text: "Text high, grid low. The default. The empty band between block and grid is the composition." },
@@ -634,7 +657,8 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
+    { id: "hi-7", page: "page-7", x: 2400, y: 2170, w: 640, text: "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px." },
   ],
-  launch: { view: "canvas", page: "page-6" },
+  launch: { view: "canvas", page: "page-7" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

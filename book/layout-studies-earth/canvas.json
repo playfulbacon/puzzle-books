@@ -55,6 +55,15 @@
       "print": "fixed"
     },
     {
+      "file": "MaColumn.dc.html",
+      "x": 2400,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · day and dots in the column",
+      "print": "fixed"
+    },
+    {
       "file": "MaHighText.dc.html",
       "x": 0,
       "y": 0,
@@ -393,6 +402,16 @@
       "title": "Hand-inked · medium wobble",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "HiTwoEndsInk.dc.html",
+      "x": 2400,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · two ends, in ink",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -467,6 +486,13 @@
       "y": 2180,
       "w": 640,
       "text": "Hand-inked. A faint wobble on the grid lines and digits, as though ruled by hand. Wabi-sabi in the object itself, not the decoration. Risk: at 300 dpi the wobble must stay under about 0.3 pt or it reads as a printing fault."
+    },
+    {
+      "id": "n-ma-col",
+      "x": 2400,
+      "y": 2180,
+      "w": 640,
+      "text": "Ma, column. The original Ma with the day, its kanji and the dots moved into the narrow column beside the grid, where the title and rules were. The genre name stays as a whisper below them; the rules are gone; nothing sits at the top of the page."
     },
     {
       "id": "n-ma",
@@ -794,10 +820,18 @@
       "y": 2170,
       "w": 640,
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
+    },
+    {
+      "id": "hi-7",
+      "page": "page-7",
+      "x": 2400,
+      "y": 2170,
+      "w": 640,
+      "text": "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-6"
+    "page": "page-7"
   }
 }

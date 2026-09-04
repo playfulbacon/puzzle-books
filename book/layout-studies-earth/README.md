@@ -10,6 +10,7 @@ All pages carry real verified puzzles from `review/data/batches`.
 - `EarthAccent.dc.html` — one clay tone; implies a colour interior (2–3× unit cost, white paper only)
 - `HandInked.dc.html` — faint hand-ruled wobble on the grid via an SVG displacement filter
 - `Ma.dc.html` — negative space as the composition
+- `MaColumn.dc.html` — Ma with day, kanji, dots and a whispered title in the column, no rules
 
 Page two of the canvas, "Ma variants": six layouts that keep the grid alone in its horizontal band
 and group name, Japanese name, rules and difficulty into one block.
@@ -66,6 +67,7 @@ kanji and dots up top, whispered caption beneath.
 - `HiTwoEnds.dc.html` — day at the gutter, dots at the outer margin
 - `HiCross.dc.html` — day left, caption right
 - `HiNuri.dc.html` — medium wobble on a heavy-bordered Nurikabe grid
+- `HiTwoEndsInk.dc.html` — two ends with the whole upper line in ink and 5 px dots
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).
