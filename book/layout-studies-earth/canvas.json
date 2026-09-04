@@ -325,6 +325,16 @@
       "page": "page-6"
     },
     {
+      "file": "ChosenInkDay.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Chosen · day in ink, 5 px dots",
+      "print": "fixed",
+      "page": "page-6"
+    },
+    {
       "file": "HiLeft.dc.html",
       "x": 0,
       "y": 0,
@@ -722,6 +732,14 @@
       "text": "Kanji in the brush face. A little larger, beside the day, the only brush mark on the page."
     },
     {
+      "id": "ch-4",
+      "page": "page-6",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Day in ink. The kanji-inline lead with the day and kanji in the same black as the puzzle, and the dots down to 5 px. The day now belongs to the puzzle; the dots and caption stay ash."
+    },
+    {
       "id": "hi-brief",
       "page": "page-7",
       "x": 0,
@@ -780,6 +798,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-7"
+    "page": "page-6"
   }
 }

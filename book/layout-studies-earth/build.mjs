@@ -497,6 +497,11 @@ const chosenKanjiBrush = chosenPage(P.gokigen, 47, 3, `<div style="display: flex
 writeFileSync(join(OUT, "Main.dc.html"), chosenMain);
 writeFileSync(join(OUT, "ChosenKanjiBelow.dc.html"), chosenKanjiBelow);
 writeFileSync(join(OUT, "ChosenKanjiBrush.dc.html"), chosenKanjiBrush);
+// Version of the lead: day in ink like the puzzle, dots smaller still (5 px).
+const dayInk = (day) => `<span style="font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: ${INK};">Day ${day}</span>`;
+const kanjiInk = (day) => `<span class="jp" style="font-size: 13px; letter-spacing: 0.12em; color: ${INK};">${KANJI_NUM(day)}</span>`;
+const chosenInkDay = chosenPage(P.slither, 22, 2, `<div style="display: flex; align-items: baseline; gap: 14px;">${dayInk(22)}${kanjiInk(22)}</div>${tinyDots(2, 5, 5)}`);
+writeFileSync(join(OUT, "ChosenInkDay.dc.html"), chosenInkDay);
 
 
 // =====================================================================================
@@ -572,6 +577,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("Main.dc.html", 0, 0, "Chosen · kanji inline"), page: "page-6" },
     { ...A("ChosenKanjiBelow.dc.html", 800, 0, "Chosen · kanji on its own line"), page: "page-6" },
     { ...A("ChosenKanjiBrush.dc.html", 1600, 0, "Chosen · kanji in the brush face"), page: "page-6" },
+    { ...A("ChosenInkDay.dc.html", 0, 1160, "Chosen · day in ink, 5 px dots"), page: "page-6" },
     { ...A("HiLeft.dc.html", 0, 0, "Hand-inked · left, subtle"), page: "page-7" },
     { ...A("HiStrong.dc.html", 800, 0, "Hand-inked · left, stronger wobble"), page: "page-7" },
     { ...A("HiRight.dc.html", 1600, 0, "Hand-inked · right"), page: "page-7" },
@@ -620,6 +626,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "ch-1", page: "page-6", x: 0, y: -110, w: 640, text: "Kanji inline. The kanji follows the day on the same line, same size; the dots sit alone below. Lead candidate." },
     { id: "ch-2", page: "page-6", x: 800, y: -110, w: 640, text: "Kanji on its own line. Day, then kanji, then dots: three quiet lines." },
     { id: "ch-3", page: "page-6", x: 1600, y: -110, w: 640, text: "Kanji in the brush face. A little larger, beside the day, the only brush mark on the page." },
+    { id: "ch-4", page: "page-6", x: 0, y: 2170, w: 640, text: "Day in ink. The kanji-inline lead with the day and kanji in the same black as the puzzle, and the dots down to 5 px. The day now belongs to the puzzle; the dots and caption stay ash." },
     { id: "hi-brief", page: "page-7", x: 0, y: -230, w: 1240, text: "Hand-inked, refined. A full-width 536 px grid with the hand-ruled wobble from page one; only the day (with kanji) and the dots up top, at the refined weight; the genre caption a whisper beneath. The wobble is an SVG displacement filter; at 300 dpi keep it under about 0.3 pt, which is the subtle setting here." },
     { id: "hi-1", page: "page-7", x: 0, y: -110, w: 640, text: "Left, subtle. Day and dots at the gutter, caption at the gutter, wobble at the print-safe setting." },
     { id: "hi-2", page: "page-7", x: 800, y: -110, w: 640, text: "Left, stronger wobble. Same page with the displacement nearly doubled, to see where hand-ruled turns into a printing fault." },
@@ -628,6 +635,6 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
   ],
-  launch: { view: "canvas", page: "page-7" },
+  launch: { view: "canvas", page: "page-6" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

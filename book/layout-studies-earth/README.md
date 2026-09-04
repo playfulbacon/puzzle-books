@@ -55,6 +55,7 @@ dots, day line one step heavier, day repeated in kanji numerals.
 - `Main.dc.html` — kanji inline after the day (lead)
 - `ChosenKanjiBelow.dc.html` — kanji on its own line
 - `ChosenKanjiBrush.dc.html` — kanji in the brush face
+- `ChosenInkDay.dc.html` — the lead with the day in ink and 5 px dots
 
 Page seven, "Hand-inked, refined": full-width 536 px grid with the hand-ruled wobble, day with
 kanji and dots up top, whispered caption beneath.
