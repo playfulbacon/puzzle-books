@@ -1,0 +1,1112 @@
+{
+ "batch": "gokigen-10x10-b4-s800",
+ "generated_at": "2026-09-04T02:27:37Z",
+ "generator_version": "0.2.0",
+ "genre": "gokigen",
+ "puzzles": [
+  {
+   "id": "gokigen-10x10-s000800",
+   "type": "gokigen",
+   "seed": 800,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "rotational-180",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 53.3,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 7
+   },
+   "clues": {
+    "vertices": [
+     [
+      null,
+      0,
+      1,
+      1,
+      null,
+      null,
+      1,
+      null,
+      null,
+      1,
+      1
+     ],
+     [
+      null,
+      2,
+      null,
+      null,
+      null,
+      1,
+      null,
+      3,
+      1,
+      null,
+      null
+     ],
+     [
+      0,
+      null,
+      null,
+      2,
+      3,
+      1,
+      null,
+      null,
+      null,
+      null,
+      1
+     ],
+     [
+      null,
+      null,
+      2,
+      2,
+      null,
+      null,
+      null,
+      1,
+      4,
+      null,
+      0
+     ],
+     [
+      null,
+      2,
+      null,
+      3,
+      2,
+      1,
+      null,
+      4,
+      null,
+      2,
+      1
+     ],
+     [
+      0,
+      null,
+      null,
+      null,
+      4,
+      null,
+      2,
+      null,
+      null,
+      null,
+      1
+     ],
+     [
+      1,
+      1,
+      null,
+      1,
+      null,
+      2,
+      2,
+      2,
+      null,
+      3,
+      null
+     ],
+     [
+      1,
+      null,
+      1,
+      3,
+      null,
+      null,
+      null,
+      1,
+      2,
+      null,
+      null
+     ],
+     [
+      1,
+      null,
+      null,
+      null,
+      null,
+      2,
+      2,
+      2,
+      null,
+      null,
+      1
+     ],
+     [
+      null,
+      null,
+      1,
+      4,
+      null,
+      1,
+      null,
+      null,
+      null,
+      3,
+      null
+     ],
+     [
+      0,
+      2,
+      null,
+      null,
+      1,
+      null,
+      null,
+      0,
+      2,
+      1,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "cells": [
+     "\\////\\\\///",
+     "\\/\\\\//\\\\//",
+     "//\\\\\\/\\\\//",
+     "\\/\\\\/\\\\/\\\\",
+     "\\//\\///\\\\\\",
+     "/\\//\\//\\\\\\",
+     "//\\/\\//\\/\\",
+     "////\\\\\\\\//",
+     "//\\/\\\\\\\\\\/",
+     "\\//\\\\//\\//"
+    ]
+   },
+   "stats": {
+    "clue_count": 58,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "gokigen-10x10-s000801",
+   "type": "gokigen",
+   "seed": 801,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "rotational-180",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 52.8,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 7
+   },
+   "clues": {
+    "vertices": [
+     [
+      null,
+      2,
+      null,
+      null,
+      2,
+      null,
+      1,
+      2,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      2,
+      2,
+      1,
+      3,
+      null,
+      1,
+      2,
+      null,
+      1
+     ],
+     [
+      1,
+      null,
+      2,
+      null,
+      2,
+      null,
+      null,
+      null,
+      2,
+      1,
+      1
+     ],
+     [
+      null,
+      1,
+      4,
+      null,
+      null,
+      2,
+      null,
+      3,
+      2,
+      2,
+      null
+     ],
+     [
+      1,
+      null,
+      1,
+      4,
+      1,
+      1,
+      4,
+      null,
+      null,
+      2,
+      2
+     ],
+     [
+      1,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+     ],
+     [
+      1,
+      1,
+      null,
+      null,
+      4,
+      2,
+      2,
+      2,
+      1,
+      null,
+      1
+     ],
+     [
+      null,
+      2,
+      1,
+      3,
+      null,
+      2,
+      null,
+      null,
+      2,
+      1,
+      null
+     ],
+     [
+      0,
+      3,
+      2,
+      null,
+      null,
+      null,
+      1,
+      null,
+      3,
+      null,
+      1
+     ],
+     [
+      2,
+      null,
+      1,
+      1,
+      null,
+      2,
+      3,
+      1,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      1,
+      1,
+      null,
+      1,
+      null,
+      null,
+      2,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "cells": [
+     "/\\//\\//\\\\\\",
+     "\\\\///////\\",
+     "\\\\///\\\\\\\\\\",
+     "\\/\\//\\/\\\\\\",
+     "\\//\\//\\\\//",
+     "\\\\\\\\/////\\",
+     "\\/\\/\\\\\\\\/\\",
+     "\\//////\\//",
+     "///\\/\\/\\\\/",
+     "\\\\///\\\\\\\\/"
+    ]
+   },
+   "stats": {
+    "clue_count": 64,
+    "attempts": 2
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "gokigen-10x10-s000802",
+   "type": "gokigen",
+   "seed": 802,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "rotational-180",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 50.9,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 4
+   },
+   "clues": {
+    "vertices": [
+     [
+      1,
+      null,
+      null,
+      null,
+      1,
+      null,
+      null,
+      1,
+      null,
+      null,
+      null
+     ],
+     [
+      1,
+      1,
+      null,
+      3,
+      null,
+      2,
+      1,
+      1,
+      null,
+      2,
+      2
+     ],
+     [
+      null,
+      3,
+      1,
+      2,
+      null,
+      null,
+      3,
+      null,
+      3,
+      1,
+      null
+     ],
+     [
+      null,
+      null,
+      null,
+      null,
+      1,
+      4,
+      null,
+      null,
+      1,
+      3,
+      null
+     ],
+     [
+      1,
+      null,
+      1,
+      4,
+      2,
+      null,
+      1,
+      null,
+      null,
+      null,
+      2
+     ],
+     [
+      1,
+      1,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      2,
+      1
+     ],
+     [
+      1,
+      null,
+      null,
+      null,
+      1,
+      null,
+      2,
+      2,
+      2,
+      null,
+      1
+     ],
+     [
+      null,
+      4,
+      1,
+      null,
+      null,
+      3,
+      3,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      null,
+      1,
+      1,
+      null,
+      3,
+      null,
+      null,
+      2,
+      2,
+      3,
+      null
+     ],
+     [
+      1,
+      1,
+      null,
+      2,
+      2,
+      1,
+      null,
+      2,
+      null,
+      1,
+      1
+     ],
+     [
+      null,
+      null,
+      null,
+      0,
+      null,
+      null,
+      0,
+      null,
+      null,
+      null,
+      0
+     ]
+    ]
+   },
+   "solution": {
+    "cells": [
+     "\\\\\\///\\\\\\\\",
+     "\\///\\\\\\///",
+     "\\\\//\\/\\/\\/",
+     "\\\\\\//\\\\\\\\\\",
+     "\\\\/\\\\\\/\\//",
+     "\\///\\\\////",
+     "\\/\\\\\\\\////",
+     "/\\\\\\/\\\\\\\\/",
+     "\\\\/\\\\\\////",
+     "\\//\\\\/\\\\\\/"
+    ]
+   },
+   "stats": {
+    "clue_count": 58,
+    "attempts": 5
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "gokigen-10x10-s000803",
+   "type": "gokigen",
+   "seed": 803,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "rotational-180",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 49.9,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 3
+   },
+   "clues": {
+    "vertices": [
+     [
+      1,
+      null,
+      1,
+      null,
+      2,
+      null,
+      1,
+      null,
+      null,
+      1,
+      null
+     ],
+     [
+      null,
+      3,
+      3,
+      2,
+      null,
+      2,
+      null,
+      2,
+      null,
+      null,
+      1
+     ],
+     [
+      null,
+      2,
+      null,
+      null,
+      2,
+      null,
+      null,
+      3,
+      2,
+      1,
+      null
+     ],
+     [
+      null,
+      3,
+      null,
+      3,
+      null,
+      null,
+      1,
+      2,
+      2,
+      4,
+      null
+     ],
+     [
+      null,
+      null,
+      3,
+      2,
+      null,
+      null,
+      1,
+      3,
+      null,
+      2,
+      1
+     ],
+     [
+      null,
+      null,
+      1,
+      2,
+      null,
+      2,
+      null,
+      1,
+      4,
+      null,
+      null
+     ],
+     [
+      0,
+      2,
+      null,
+      1,
+      1,
+      null,
+      null,
+      2,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      1,
+      1,
+      3,
+      2,
+      null,
+      null,
+      2,
+      null,
+      3,
+      null
+     ],
+     [
+      null,
+      3,
+      2,
+      1,
+      null,
+      null,
+      1,
+      null,
+      null,
+      1,
+      null
+     ],
+     [
+      1,
+      null,
+      null,
+      1,
+      null,
+      2,
+      null,
+      2,
+      1,
+      3,
+      null
+     ],
+     [
+      null,
+      0,
+      null,
+      null,
+      0,
+      null,
+      2,
+      null,
+      1,
+      null,
+      1
+     ]
+    ]
+   },
+   "solution": {
+    "cells": [
+     "\\///\\\\\\///",
+     "//\\\\\\\\\\///",
+     "//////\\\\\\/",
+     "/\\/\\\\////\\",
+     "///\\\\\\/\\/\\",
+     "\\\\/\\\\\\//\\\\",
+     "//\\\\/\\//\\\\",
+     "\\//\\/////\\",
+     "////\\\\//\\\\",
+     "/\\\\/\\\\///\\"
+    ]
+   },
+   "stats": {
+    "clue_count": 61,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "gokigen-10x10-s000804",
+   "type": "gokigen",
+   "seed": 804,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "rotational-180",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 52.9,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 7
+   },
+   "clues": {
+    "vertices": [
+     [
+      null,
+      null,
+      0,
+      null,
+      1,
+      1,
+      1,
+      2,
+      null,
+      null,
+      1
+     ],
+     [
+      0,
+      null,
+      null,
+      null,
+      2,
+      null,
+      2,
+      null,
+      1,
+      null,
+      null
+     ],
+     [
+      null,
+      3,
+      null,
+      1,
+      null,
+      null,
+      2,
+      1,
+      3,
+      1,
+      null
+     ],
+     [
+      2,
+      null,
+      3,
+      null,
+      2,
+      2,
+      null,
+      2,
+      2,
+      null,
+      0
+     ],
+     [
+      null,
+      1,
+      2,
+      null,
+      1,
+      null,
+      3,
+      3,
+      null,
+      null,
+      1
+     ],
+     [
+      null,
+      null,
+      2,
+      2,
+      null,
+      2,
+      null,
+      3,
+      2,
+      null,
+      null
+     ],
+     [
+      1,
+      null,
+      null,
+      2,
+      1,
+      null,
+      2,
+      null,
+      2,
+      2,
+      null
+     ],
+     [
+      1,
+      null,
+      1,
+      2,
+      null,
+      2,
+      2,
+      null,
+      2,
+      null,
+      2
+     ],
+     [
+      null,
+      2,
+      4,
+      1,
+      1,
+      null,
+      null,
+      2,
+      null,
+      2,
+      null
+     ],
+     [
+      null,
+      null,
+      1,
+      null,
+      3,
+      null,
+      1,
+      null,
+      null,
+      null,
+      0
+     ],
+     [
+      1,
+      null,
+      null,
+      1,
+      0,
+      2,
+      1,
+      null,
+      0,
+      null,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "cells": [
+     "\\\\/////\\\\/",
+     "///\\\\\\\\\\/\\",
+     "/\\//\\\\\\///",
+     "\\\\\\/\\\\\\//\\",
+     "\\/////\\\\\\\\",
+     "\\//////\\\\\\",
+     "\\\\\\\\///\\\\\\",
+     "\\\\//\\\\\\\\\\/",
+     "//\\///\\\\\\/",
+     "////\\///\\\\"
+    ]
+   },
+   "stats": {
+    "clue_count": 63,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "gokigen-10x10-s000805",
+   "type": "gokigen",
+   "seed": 805,
+   "params": {
+    "rows": 10,
+    "cols": 10,
+    "symmetry": "rotational-180",
+    "target_band": 4
+   },
+   "difficulty": {
+    "band": 4,
+    "label": "Hard",
+    "score": 53.1,
+    "rating_method": "provisional-search-branches",
+    "search_branches": 7
+   },
+   "clues": {
+    "vertices": [
+     [
+      null,
+      1,
+      null,
+      null,
+      null,
+      null,
+      1,
+      1,
+      null,
+      0,
+      null
+     ],
+     [
+      null,
+      null,
+      3,
+      null,
+      2,
+      4,
+      1,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      4,
+      1,
+      null,
+      2,
+      null,
+      null,
+      2,
+      null,
+      3,
+      0
+     ],
+     [
+      1,
+      null,
+      2,
+      3,
+      null,
+      2,
+      1,
+      null,
+      1,
+      null,
+      2
+     ],
+     [
+      null,
+      1,
+      2,
+      null,
+      2,
+      2,
+      null,
+      null,
+      2,
+      1,
+      null
+     ],
+     [
+      1,
+      3,
+      null,
+      null,
+      null,
+      2,
+      null,
+      null,
+      null,
+      3,
+      0
+     ],
+     [
+      null,
+      3,
+      3,
+      null,
+      null,
+      2,
+      2,
+      null,
+      2,
+      1,
+      null
+     ],
+     [
+      2,
+      null,
+      1,
+      null,
+      2,
+      3,
+      null,
+      1,
+      3,
+      null,
+      0
+     ],
+     [
+      1,
+      2,
+      null,
+      1,
+      null,
+      null,
+      2,
+      null,
+      1,
+      3,
+      null
+     ],
+     [
+      null,
+      null,
+      2,
+      null,
+      2,
+      1,
+      2,
+      null,
+      2,
+      null,
+      null
+     ],
+     [
+      null,
+      1,
+      null,
+      1,
+      2,
+      null,
+      null,
+      null,
+      null,
+      0,
+      null
+     ]
+    ]
+   },
+   "solution": {
+    "cells": [
+     "\\\\\\\\\\///\\/",
+     "\\/\\//\\//\\/",
+     "/\\\\/////\\\\",
+     "////\\\\////",
+     "\\///\\\\/\\\\/",
+     "\\\\////\\\\\\\\",
+     "/\\\\\\//\\\\\\/",
+     "\\\\/\\/\\\\/\\\\",
+     "\\\\\\\\/\\\\//\\",
+     "\\\\\\\\/////\\"
+    ]
+   },
+   "stats": {
+    "clue_count": 61,
+    "attempts": 7
+   },
+   "generator_version": "0.2.0"
+  }
+ ]
+}

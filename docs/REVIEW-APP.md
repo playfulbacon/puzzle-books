@@ -25,7 +25,7 @@ node cli/pack.mjs                       # bundles all batches into review/data/b
 git add review/data && git commit -m "review: add batch slitherlink-10x10-b3" && git push
 ```
 
-Genres: `slitherlink`, `shikaku`, `nurikabe`. Bands 1–5 are provisional (see PLAN.md §4).
+Genres: `slitherlink`, `shikaku`, `nurikabe`, `gokigen`, `hashi`, `masyu`. Bands 1–5 are provisional (see PLAN.md §4).
 
 Open the app, pick the batch, click a puzzle. Solve it if you want to feel the path (the timer starts on
 your first entry and is stored with the decision). Press **A / M / R**. The app advances to the next

@@ -1,0 +1,480 @@
+{
+ "batch": "masyu-8x8-b2-s1000",
+ "generated_at": "2026-09-04T02:29:06Z",
+ "generator_version": "0.2.0",
+ "genre": "masyu",
+ "puzzles": [
+  {
+   "id": "masyu-8x8-s001000",
+   "type": "masyu",
+   "seed": 1000,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 78.3,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 24
+   },
+   "clues": {
+    "grid": [
+     "........",
+     "...oo...",
+     ".o*.*oo.",
+     "........",
+     "o.oo..o.",
+     "........",
+     "....oo*.",
+     ".*o....."
+    ]
+   },
+   "solution": {
+    "h": [
+     "0001000",
+     "0000000",
+     "1100111",
+     "0000001",
+     "0000000",
+     "1010000",
+     "0001110",
+     "0110000"
+    ],
+    "v": [
+     "00011000",
+     "00011000",
+     "10110001",
+     "10110010",
+     "10110010",
+     "01000010",
+     "01010000"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 12,
+    "black": 4,
+    "loop_cells": 34,
+    "mutations": 18,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001001",
+   "type": "masyu",
+   "seed": 1001,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 55.5,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 8
+   },
+   "clues": {
+    "grid": [
+     "........",
+     ".o..oo..",
+     "o...*..*",
+     "o..*.*.o",
+     "........",
+     "...*.o.o",
+     ".....*o*",
+     "........"
+    ]
+   },
+   "solution": {
+    "h": [
+     "0000100",
+     "1100000",
+     "0011011",
+     "0001100",
+     "1000000",
+     "0110000",
+     "0000011",
+     "0000000"
+    ],
+    "v": [
+     "00001100",
+     "10101100",
+     "10000001",
+     "10010101",
+     "01010101",
+     "00000101",
+     "00000000"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 9,
+    "black": 7,
+    "loop_cells": 32,
+    "mutations": 12,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001002",
+   "type": "masyu",
+   "seed": 1002,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 52.3,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 4
+   },
+   "clues": {
+    "grid": [
+     "........",
+     "....oo*.",
+     ".*o.....",
+     "*.o..o..",
+     "o....o*.",
+     "..**....",
+     "..o..oo.",
+     "........"
+    ]
+   },
+   "solution": {
+    "h": [
+     "0110000",
+     "0001110",
+     "0110000",
+     "1110110",
+     "0000110",
+     "1101100",
+     "0000000",
+     "0010010"
+    ],
+    "v": [
+     "01010000",
+     "01000010",
+     "00010010",
+     "10001000",
+     "10000010",
+     "00110110",
+     "00110110"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 10,
+    "black": 6,
+    "loop_cells": 38,
+    "mutations": 12,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001003",
+   "type": "masyu",
+   "seed": 1003,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 52.3,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 4
+   },
+   "clues": {
+    "grid": [
+     "..o.....",
+     ".o...o.*",
+     ".*...o..",
+     ".*o.....",
+     "...o....",
+     "..o..ooo",
+     ".oo.....",
+     "....*..."
+    ]
+   },
+   "solution": {
+    "h": [
+     "0111000",
+     "0000111",
+     "0110110",
+     "0110101",
+     "0011001",
+     "0000000",
+     "0000010",
+     "0100111"
+    ],
+    "v": [
+     "01001000",
+     "01000001",
+     "00011011",
+     "01000100",
+     "01101111",
+     "01101111",
+     "01101001"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 12,
+    "black": 4,
+    "loop_cells": 48,
+    "mutations": 16,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001004",
+   "type": "masyu",
+   "seed": 1004,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 83.3,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 117
+   },
+   "clues": {
+    "grid": [
+     ".*o.....",
+     ".o..o.oo",
+     "........",
+     "..ooo..o",
+     ".....o..",
+     "..oooo..",
+     "........",
+     "........"
+    ]
+   },
+   "solution": {
+    "h": [
+     "0110001",
+     "0001100",
+     "0101010",
+     "0000010",
+     "0000001",
+     "0000000",
+     "0010100",
+     "0000000"
+    ],
+    "v": [
+     "01010011",
+     "01000111",
+     "00111001",
+     "00111111",
+     "00111100",
+     "00111100",
+     "00000000"
+    ]
+   },
+   "stats": {
+    "clue_count": 15,
+    "white": 14,
+    "black": 1,
+    "loop_cells": 38,
+    "mutations": 15,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001005",
+   "type": "masyu",
+   "seed": 1005,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 52.3,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 4
+   },
+   "clues": {
+    "grid": [
+     ".....o..",
+     "...o...o",
+     ".*o.....",
+     "..o..ooo",
+     "o....o..",
+     "*..o....",
+     ".....o..",
+     "....oo.."
+    ]
+   },
+   "solution": {
+    "h": [
+     "0100111",
+     "0011000",
+     "0110010",
+     "1110000",
+     "0010001",
+     "1100100",
+     "0000110",
+     "0001110"
+    ],
+    "v": [
+     "01101001",
+     "01000001",
+     "00010111",
+     "10000111",
+     "10110100",
+     "00011000",
+     "00010010"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 14,
+    "black": 2,
+    "loop_cells": 44,
+    "mutations": 15,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001006",
+   "type": "masyu",
+   "seed": 1006,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 71.1,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 15
+   },
+   "clues": {
+    "grid": [
+     "..o..o..",
+     "..o...o.",
+     ".*..ooo.",
+     ".o......",
+     "..o.o...",
+     "......o.",
+     ".o..o.*.",
+     ".o......"
+    ]
+   },
+   "solution": {
+    "h": [
+     "0111110",
+     "0110100",
+     "0110000",
+     "0000010",
+     "0110010",
+     "0010100",
+     "1101110",
+     "1110000"
+    ],
+    "v": [
+     "01000010",
+     "00011110",
+     "01001110",
+     "01001000",
+     "00011110",
+     "00100010",
+     "10010000"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 14,
+    "black": 2,
+    "loop_cells": 44,
+    "mutations": 7,
+    "attempts": 2
+   },
+   "generator_version": "0.2.0"
+  },
+  {
+   "id": "masyu-8x8-s001007",
+   "type": "masyu",
+   "seed": 1007,
+   "params": {
+    "rows": 8,
+    "cols": 8,
+    "target_band": 2
+   },
+   "difficulty": {
+    "band": 2,
+    "label": "Easy",
+    "score": 29.1,
+    "rating_method": "provisional-pearl-density",
+    "search_branches": 0
+   },
+   "clues": {
+    "grid": [
+     ".o..o...",
+     "...oo...",
+     ".o..o...",
+     "..o..o..",
+     "*.o.....",
+     "o...o...",
+     "*o......",
+     "...o*..."
+    ]
+   },
+   "solution": {
+    "h": [
+     "1111100",
+     "1011100",
+     "0011100",
+     "0110000",
+     "1110100",
+     "0000000",
+     "1100000",
+     "0011000"
+    ],
+    "v": [
+     "10000100",
+     "01100000",
+     "01000100",
+     "00010100",
+     "10001000",
+     "10001000",
+     "00101000"
+    ]
+   },
+   "stats": {
+    "clue_count": 16,
+    "white": 13,
+    "black": 3,
+    "loop_cells": 36,
+    "mutations": 8,
+    "attempts": 1
+   },
+   "generator_version": "0.2.0"
+  }
+ ]
+}

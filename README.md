@@ -14,5 +14,5 @@ node cli/pack.mjs
 python3 -m http.server 8000      # then open http://localhost:8000/review/
 ```
 
-Genres so far: Slitherlink, Shikaku, Nurikabe. See [docs/REVIEW-APP.md](docs/REVIEW-APP.md) for the
+Genres so far: Slitherlink, Shikaku, Nurikabe, Gokigen Naname, Hashiwokakero, Masyu. See [docs/REVIEW-APP.md](docs/REVIEW-APP.md) for the
 review workflow and [docs/DESIGN-BRIEF.md](docs/DESIGN-BRIEF.md) for what the book is trying to be.

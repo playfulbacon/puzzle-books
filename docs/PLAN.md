@@ -351,6 +351,9 @@ puzzle-books/
 | Slitherlink | yes | yes | 6×6–10×10 | Clue density steered by band; rating is density-based until the technique solver exists. |
 | Shikaku | yes | yes | 8×8–12×12 | Fast; numbers relocated within rectangles until unique. |
 | Nurikabe | yes | yes | 7×7–8×8 reliably; 10×10 not yet (a batch run of 4 seeds × 3 attempts produced nothing within budget) | Solve-and-patch generation. Next step: stronger propagation or a constructive generator so 10×10 and up converge. |
+| Gokigen Naname | yes | yes | 6×6–10×10 | Random acyclic diagonal assignment, 180° symmetric clue removal to a band density, union-find oracle. Fast. |
+| Hashiwokakero | yes | yes | 7×7–13×13 | Bridge-tree growth plus extra bridges; all degrees are clues, so uniqueness comes from retrying structures (cheap). Fast. |
+| Masyu | yes | yes | 6×6–10×10 | Loop from a dual-grid region (shares Slitherlink's generator), hill-climbed until all candidate pearls pin it, then pearls removed to a band density. Seconds to ~30 s per puzzle. |
 
 ---
 
