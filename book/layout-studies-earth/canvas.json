@@ -1,0 +1,112 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Cream and ink",
+      "print": "fixed"
+    },
+    {
+      "file": "EnsoOpener.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Enso opener",
+      "print": "fixed"
+    },
+    {
+      "file": "Tategaki.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Tategaki",
+      "print": "fixed"
+    },
+    {
+      "file": "EarthAccent.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Earth accent (colour interior)",
+      "print": "fixed"
+    },
+    {
+      "file": "HandInked.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked",
+      "print": "fixed"
+    },
+    {
+      "file": "Ma.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Ma",
+      "print": "fixed"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "brief",
+      "x": 0,
+      "y": -260,
+      "w": 1240,
+      "text": "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter."
+    },
+    {
+      "id": "n-main",
+      "x": 0,
+      "y": -120,
+      "w": 640,
+      "text": "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design."
+    },
+    {
+      "id": "n-enso",
+      "x": 800,
+      "y": -120,
+      "w": 640,
+      "text": "Enso opener. One brush mark per genre section, drawn imperfect on purpose, the kana in a brush face. Used six times in the whole book, never on a puzzle page."
+    },
+    {
+      "id": "n-tategaki",
+      "x": 1600,
+      "y": -120,
+      "w": 640,
+      "text": "Tategaki. The genre runs vertically down the outer edge in Japanese, the day number appears twice, once in kanji. The Japanese carries the identity; the Latin is the caption."
+    },
+    {
+      "id": "n-earth",
+      "x": 0,
+      "y": 2180,
+      "w": 640,
+      "text": "Earth accent. One clay tone (#B5643C) on the day mark, difficulty and folio rules, nothing on the puzzle itself. Tradeoff: any colour switches the whole interior to colour printing, roughly two to three times the unit cost, and colour interiors print on white paper only."
+    },
+    {
+      "id": "n-hand",
+      "x": 800,
+      "y": 2180,
+      "w": 640,
+      "text": "Hand-inked. A faint wobble on the grid lines and digits, as though ruled by hand. Wabi-sabi in the object itself, not the decoration. Risk: at 300 dpi the wobble must stay under about 0.3 pt or it reads as a printing fault."
+    },
+    {
+      "id": "n-ma",
+      "x": 1600,
+      "y": 2180,
+      "w": 640,
+      "text": "Ma. Negative space as the subject: the top half is empty, the grid is smaller and sits low on the outer edge, the rules run in a narrow column. The quietest page, and the least conventional."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
