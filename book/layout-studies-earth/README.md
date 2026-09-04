@@ -4,7 +4,7 @@ Second set of page studies, aimed at a wabi-sabi / zen brief: cream stock, one b
 negative space, brush-drawn Japanese, deliberate imperfection, and one earth-accent variant.
 All pages carry real verified puzzles from `review/data/batches`.
 
-- `Main.dc.html` — Cream and ink (base page)
+- `CreamAndInk.dc.html` — Cream and ink (base page)
 - `EnsoOpener.dc.html` — genre section opener with a brushed enso
 - `Tategaki.dc.html` — vertical Japanese running head, kanji day number
 - `EarthAccent.dc.html` — one clay tone; implies a colour interior (2–3× unit cost, white paper only)
@@ -48,6 +48,13 @@ caption in its own band.
 - `SmTextTop.dc.html` — all words in one whisper block at the top-left
 - `SmInverted.dc.html` — grid high, words at the bottom-left
 - `SmSmallest.dc.html` — 360 px grid, the most empty page
+
+Page six, "Chosen": the refined direction, small grid with words up top. No challenge label, 7 px
+dots, day line one step heavier, day repeated in kanji numerals.
+
+- `Main.dc.html` — kanji inline after the day (lead)
+- `ChosenKanjiBelow.dc.html` — kanji on its own line
+- `ChosenKanjiBrush.dc.html` — kanji in the brush face
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

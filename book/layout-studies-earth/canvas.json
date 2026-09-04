@@ -1,7 +1,7 @@
 {
   "artboards": [
     {
-      "file": "Main.dc.html",
+      "file": "CreamAndInk.dc.html",
       "x": 0,
       "y": 0,
       "w": 672,
@@ -293,6 +293,36 @@
       "title": "Small grid · smallest",
       "print": "fixed",
       "page": "page-5"
+    },
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Chosen · kanji inline",
+      "print": "fixed",
+      "page": "page-6"
+    },
+    {
+      "file": "ChosenKanjiBelow.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Chosen · kanji on its own line",
+      "print": "fixed",
+      "page": "page-6"
+    },
+    {
+      "file": "ChosenKanjiBrush.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Chosen · kanji in the brush face",
+      "print": "fixed",
+      "page": "page-6"
     }
   ],
   "pages": [
@@ -315,6 +345,10 @@
     {
       "id": "page-5",
       "name": "Ma, small grid"
+    },
+    {
+      "id": "page-6",
+      "name": "Chosen"
     }
   ],
   "annotations": [
@@ -590,10 +624,42 @@
       "y": 2170,
       "w": 640,
       "text": "Smallest. A 360 px grid low at the outer margin, one whisper line up top, caption at the bottom-left. The most empty page in the set; check the 9.5 mm cells feel right in your hand."
+    },
+    {
+      "id": "ch-brief",
+      "page": "page-6",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Chosen: small grid, words up top. Refined per the brief: the Challenge label is gone and the five dots shrink to 7 px; the day line goes up a step in weight and size; the day is repeated in kanji numerals in the same ash. The genre caption stays a whisper beneath. Three placements for the kanji."
+    },
+    {
+      "id": "ch-1",
+      "page": "page-6",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "Kanji inline. The kanji follows the day on the same line, same size; the dots sit alone below. Lead candidate."
+    },
+    {
+      "id": "ch-2",
+      "page": "page-6",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "Kanji on its own line. Day, then kanji, then dots: three quiet lines."
+    },
+    {
+      "id": "ch-3",
+      "page": "page-6",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Kanji in the brush face. A little larger, beside the day, the only brush mark on the page."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-5"
+    "page": "page-6"
   }
 }

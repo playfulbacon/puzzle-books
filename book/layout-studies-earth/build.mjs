@@ -24,7 +24,7 @@ const art = (p, cell, extra = {}) => GENRES[p.type].render.svg(p, { cell, ...ext
   .replace(/#1c1b18/g, INK)
   .replace(/<svg /, '<svg width="100%" height="100%" ');
 
-const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Yuji+Syuku&amp;family=Shippori+Mincho:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap">`;
+const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Yuji+Syuku&amp;family=Shippori+Mincho:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap">`;
 const CSS = `
   body { margin: 0; background: #F3EEE3; color: ${INK}; }
   a { color: ${INK}; } a:hover { color: #8E877B; }
@@ -470,7 +470,35 @@ writeFileSync(join(OUT, "SmTextTop.dc.html"), smTextTop);
 writeFileSync(join(OUT, "SmInverted.dc.html"), smInverted);
 writeFileSync(join(OUT, "SmSmallest.dc.html"), smSmallest);
 
-writeFileSync(join(OUT, "Main.dc.html"), creamAndInk);
+
+// =====================================================================================
+// Chosen direction: small grid, words up top. Refined: no challenge label, 7 px dots, the day a
+// touch heavier, and the day repeated in kanji numerals.
+const KANJI_NUM = (n) => { const d = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九"]; if (n < 10) return d[n]; const t = Math.floor(n / 10), u = n % 10; return (t > 1 ? d[t] : "") + "十" + (u ? d[u] : ""); };
+const tinyDots = (n, size = 7, gap = 6) => `<span style="display: inline-flex; gap: ${gap}px; align-items: center;">${Array.from({ length: 5 }, (_, i) => `<span style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 1.1px solid ${ASH}; background: ${i < n ? ASH : "transparent"}; display: inline-block;"></span>`).join("")}</span>`;
+const dayStrong = (day) => `<span style="font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: ${ASH};">Day ${day}</span>`;
+const kanjiDay = (day, { brush = false, size = 13 } = {}) => `<span class="${brush ? "brush" : "jp"}" style="font-size: ${size}px; letter-spacing: 0.12em; color: ${ASH};">${KANJI_NUM(day)}</span>`;
+const chosenPage = (p, day, band, topBlock) => { const c = 40, w = gw(p, c); return wrap(`<div class="page">
+  <div style="position: absolute; left: ${LEFT}px; top: 96px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+    ${topBlock}
+    <div style="margin-top: 10px;">${whisper(p, { size: 10, width: 300 })}</div>
+  </div>
+  ${smallGrid(p, c, PAGE_W - RIGHT - w, 420)}
+  ${folio(day + 8, "right: 64px;")}
+</div>`); };
+
+// Main: kanji inline after the day, same line; dots on the line below.
+const chosenMain = chosenPage(P.slither, 22, 2, `<div style="display: flex; align-items: baseline; gap: 14px;">${dayStrong(22)}${kanjiDay(22)}</div>${tinyDots(2)}`);
+// Alternate: kanji on its own line between the day and the dots.
+const chosenKanjiBelow = chosenPage(P.masyu, 63, 3, `${dayStrong(63)}${kanjiDay(63)}${tinyDots(3)}`);
+// Alternate: kanji in the brush face, a little larger, beside the day; dots below.
+const chosenKanjiBrush = chosenPage(P.gokigen, 47, 3, `<div style="display: flex; align-items: baseline; gap: 14px;">${dayStrong(47)}${kanjiDay(47, { brush: true, size: 17 })}</div>${tinyDots(3)}`);
+
+writeFileSync(join(OUT, "Main.dc.html"), chosenMain);
+writeFileSync(join(OUT, "ChosenKanjiBelow.dc.html"), chosenKanjiBelow);
+writeFileSync(join(OUT, "ChosenKanjiBrush.dc.html"), chosenKanjiBrush);
+
+writeFileSync(join(OUT, "CreamAndInk.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
 writeFileSync(join(OUT, "EarthAccent.dc.html"), earthAccent);
@@ -479,7 +507,7 @@ writeFileSync(join(OUT, "Ma.dc.html"), ma);
 const A = (file, x, y, title) => ({ file, x, y, w: 672, h: 960, title, print: "fixed" });
 writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
   artboards: [
-    A("Main.dc.html", 0, 0, "Cream and ink"),
+    A("CreamAndInk.dc.html", 0, 0, "Cream and ink"),
     A("EnsoOpener.dc.html", 800, 0, "Enso opener"),
     A("Tategaki.dc.html", 1600, 0, "Tategaki"),
     A("EarthAccent.dc.html", 0, 1160, "Earth accent (colour interior)"),
@@ -509,8 +537,11 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("SmTextTop.dc.html", 0, 1160, "Small grid · words up top"), page: "page-5" },
     { ...A("SmInverted.dc.html", 800, 1160, "Small grid · inverted diagonal"), page: "page-5" },
     { ...A("SmSmallest.dc.html", 1600, 1160, "Small grid · smallest"), page: "page-5" },
+    { ...A("Main.dc.html", 0, 0, "Chosen · kanji inline"), page: "page-6" },
+    { ...A("ChosenKanjiBelow.dc.html", 800, 0, "Chosen · kanji on its own line"), page: "page-6" },
+    { ...A("ChosenKanjiBrush.dc.html", 1600, 0, "Chosen · kanji in the brush face"), page: "page-6" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -547,7 +578,11 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "sm-4", page: "page-5", x: 0, y: 2170, w: 640, text: "Words up top. Day, challenge and caption gathered into one whisper block top-left; nothing under the grid. The reader takes in everything before the puzzle." },
     { id: "sm-5", page: "page-5", x: 800, y: 2170, w: 640, text: "Inverted diagonal. Grid high at the outer margin, all the words at the bottom-left. The emptiness runs down and to the left instead." },
     { id: "sm-6", page: "page-5", x: 1600, y: 2170, w: 640, text: "Smallest. A 360 px grid low at the outer margin, one whisper line up top, caption at the bottom-left. The most empty page in the set; check the 9.5 mm cells feel right in your hand." },
+    { id: "ch-brief", page: "page-6", x: 0, y: -230, w: 1240, text: "Chosen: small grid, words up top. Refined per the brief: the Challenge label is gone and the five dots shrink to 7 px; the day line goes up a step in weight and size; the day is repeated in kanji numerals in the same ash. The genre caption stays a whisper beneath. Three placements for the kanji." },
+    { id: "ch-1", page: "page-6", x: 0, y: -110, w: 640, text: "Kanji inline. The kanji follows the day on the same line, same size; the dots sit alone below. Lead candidate." },
+    { id: "ch-2", page: "page-6", x: 800, y: -110, w: 640, text: "Kanji on its own line. Day, then kanji, then dots: three quiet lines." },
+    { id: "ch-3", page: "page-6", x: 1600, y: -110, w: 640, text: "Kanji in the brush face. A little larger, beside the day, the only brush mark on the page." },
   ],
-  launch: { view: "canvas", page: "page-5" },
+  launch: { view: "canvas", page: "page-6" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);
