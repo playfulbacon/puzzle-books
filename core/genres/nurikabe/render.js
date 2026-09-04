@@ -1,19 +1,19 @@
 import { cluesFromPuzzle, solutionShaded } from "./logic.js";
-import { INK, open, digit, gridLines, cellTargets } from "../../lib/svg.js";
+import { INK, PAPER, DIGIT_FONT, open, digit, gridLines, cellTargets } from "../../lib/svg.js";
 
 /** marks: Int8Array (0 unknown, 1 black, 2 dot) or Uint8Array 0/1 for a solution. */
-export function svg(puzzle, { cell = 40, marks = null, interactive = false, wrong = null } = {}) {
+export function svg(puzzle, { cell = 40, marks = null, interactive = false, wrong = null, paper = PAPER, font = DIGIT_FONT } = {}) {
   const { rows, cols } = puzzle.params;
   const clues = cluesFromPuzzle(puzzle);
   const pad = cell * 0.15, W = cols * cell + pad * 2, H = rows * cell + pad * 2;
-  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="${paper}"/>`;
   if (marks) for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
     const m = marks[r * cols + c], i = r * cols + c;
     if (m === 1) o += `<rect x="${pad + c * cell}" y="${pad + r * cell}" width="${cell}" height="${cell}" fill="${wrong && wrong.has(i) ? "#b23a3a" : INK}"/>`;
     else if (m === 2 && interactive) o += `<circle cx="${pad + c * cell + cell / 2}" cy="${pad + r * cell + cell / 2}" r="${cell * 0.08}" fill="#9a958a"/>`;
   }
-  o += gridLines(rows, cols, cell, pad, { inner: cell * 0.018 });
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (clues[r * cols + c]) o += digit(pad + c * cell + cell / 2, pad + r * cell + cell / 2, cell, clues[r * cols + c]);
+  o += gridLines(rows, cols, cell, pad);
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (clues[r * cols + c]) o += digit(pad + c * cell + cell / 2, pad + r * cell + cell / 2, cell, clues[r * cols + c], INK, font);
   if (interactive) o += cellTargets(rows, cols, cell, pad);
   return o + "</svg>";
 }

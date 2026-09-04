@@ -1,16 +1,16 @@
 import { cluesFromPuzzle, validate } from "./logic.js";
-import { INK, open, digit, gridLines, cellTargets } from "../../lib/svg.js";
+import { INK, PAPER, DIGIT_FONT, open, digit, gridLines, cellTargets } from "../../lib/svg.js";
 
-export function svg(puzzle, { cell = 40, rects = [], preview = null, interactive = false, bad = false } = {}) {
+export function svg(puzzle, { cell = 40, rects = [], preview = null, interactive = false, bad = false, paper = PAPER, font = DIGIT_FONT } = {}) {
   const { rows, cols } = puzzle.params;
   const clues = cluesFromPuzzle(puzzle);
   const pad = cell * 0.15, W = cols * cell + pad * 2, H = rows * cell + pad * 2;
-  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="${paper}"/>`;
   for (const [r, c, h, w] of rects) o += `<rect x="${pad + c * cell}" y="${pad + r * cell}" width="${w * cell}" height="${h * cell}" fill="#f1efe9"/>`;
   o += gridLines(rows, cols, cell, pad);
   for (const [r, c, h, w] of rects) o += `<rect x="${pad + c * cell}" y="${pad + r * cell}" width="${w * cell}" height="${h * cell}" fill="none" stroke="${bad ? "#b23a3a" : INK}" stroke-width="${cell * 0.075}" stroke-linejoin="round"/>`;
   if (preview) { const [r, c, h, w] = preview; o += `<rect x="${pad + c * cell}" y="${pad + r * cell}" width="${w * cell}" height="${h * cell}" fill="rgba(47,93,98,0.12)" stroke="#2f5d62" stroke-width="${cell * 0.05}" stroke-dasharray="${cell * 0.12} ${cell * 0.08}"/>`; }
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (clues[r * cols + c]) o += digit(pad + c * cell + cell / 2, pad + r * cell + cell / 2, cell, clues[r * cols + c]);
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (clues[r * cols + c]) o += digit(pad + c * cell + cell / 2, pad + r * cell + cell / 2, cell, clues[r * cols + c], INK, font);
   if (interactive) o += cellTargets(rows, cols, cell, pad);
   return o + "</svg>";
 }

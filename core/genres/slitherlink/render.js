@@ -1,16 +1,16 @@
 import { edgeLayout, cluesFromPuzzle, solutionEdges, UNKNOWN, LINE, CROSS } from "./logic.js";
-import { INK, open, digit } from "../../lib/svg.js";
+import { INK, PAPER, DIGIT_FONT, open, digit } from "../../lib/svg.js";
 
 /** Pure SVG. state: Int8Array(E) of UNKNOWN/LINE/CROSS (interactive) or Uint8Array 0/1 (solution). */
-export function svg(puzzle, { cell = 40, state = null, interactive = false, wrong = null } = {}) {
+export function svg(puzzle, { cell = 40, state = null, interactive = false, wrong = null, paper = PAPER, font = DIGIT_FONT } = {}) {
   const { rows, cols } = puzzle.params;
   const L = edgeLayout(rows, cols);
   const clues = cluesFromPuzzle(puzzle);
   const pad = cell * 0.5, W = cols * cell + pad * 2, H = rows * cell + pad * 2;
   let o = open(W, H, 'data-role="board"');
-  o += `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  o += `<rect width="${W}" height="${H}" fill="${paper}"/>`;
   const x = (c) => pad + c * cell, y = (r) => pad + r * cell;
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (clues[r * cols + c] >= 0) o += digit(x(c) + cell / 2, y(r) + cell / 2, cell, clues[r * cols + c]);
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (clues[r * cols + c] >= 0) o += digit(x(c) + cell / 2, y(r) + cell / 2, cell, clues[r * cols + c], INK, font);
   const seg = (e) => (e < L.H ? [x(e % cols), y(Math.floor(e / cols)), x(e % cols + 1), y(Math.floor(e / cols))]
     : [x((e - L.H) % (cols + 1)), y(Math.floor((e - L.H) / (cols + 1))), x((e - L.H) % (cols + 1)), y(Math.floor((e - L.H) / (cols + 1)) + 1)]);
   if (state) for (let e = 0; e < L.E; e++) {
@@ -18,7 +18,7 @@ export function svg(puzzle, { cell = 40, state = null, interactive = false, wron
     if (state[e] === LINE) o += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${wrong && wrong.has(e) ? "#b23a3a" : INK}" stroke-width="${cell * 0.085}" stroke-linecap="round"/>`;
     else if (state[e] === CROSS && interactive) { const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, d = cell * 0.07; o += `<path d="M${mx - d} ${my - d}L${mx + d} ${my + d}M${mx + d} ${my - d}L${mx - d} ${my + d}" stroke="#9a958a" stroke-width="1.5"/>`; }
   }
-  for (let r = 0; r <= rows; r++) for (let c = 0; c <= cols; c++) o += `<circle cx="${x(c)}" cy="${y(r)}" r="${cell * 0.055}" fill="${INK}"/>`;
+  for (let r = 0; r <= rows; r++) for (let c = 0; c <= cols; c++) o += `<circle cx="${x(c)}" cy="${y(r)}" r="${cell * 0.042}" fill="${INK}"/>`;
   if (interactive) for (let e = 0; e < L.E; e++) {
     const [x1, y1, x2, y2] = seg(e), t = cell * 0.36;
     o += x1 === x2 ? `<rect data-edge="${e}" x="${x1 - t / 2}" y="${y1 + cell * 0.12}" width="${t}" height="${cell * 0.76}" fill="transparent" style="cursor:pointer"/>`

@@ -591,6 +591,86 @@
       "title": "Nurikabe",
       "print": "fixed",
       "page": "page-9"
+    },
+    {
+      "file": "RfCormorant.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Digits · Cormorant Garamond",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfGaramond.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Digits · EB Garamond",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfShippori.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Digits · Shippori Mincho",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfKlee.dc.html",
+      "x": 2400,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Digits · Klee One",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfZenKaku.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Digits · Zen Kaku Gothic",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfShikakuGaramond.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Shikaku · light grid, EB Garamond",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfMasyu.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Masyu · paper pearls, light grid",
+      "print": "fixed",
+      "page": "page-10"
+    },
+    {
+      "file": "RfHashiGaramond.dc.html",
+      "x": 2400,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hashi · paper islands, EB Garamond",
+      "print": "fixed",
+      "page": "page-10"
     }
   ],
   "pages": [
@@ -629,6 +709,10 @@
     {
       "id": "page-9",
       "name": "The format, dots above the title"
+    },
+    {
+      "id": "page-10",
+      "name": "Puzzle refinements"
     }
   ],
   "annotations": [
@@ -1016,6 +1100,54 @@
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
     },
     {
+      "id": "rf-brief",
+      "page": "page-10",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Puzzle refinements, in the shared core so the book and the review site draw the same thing. No white anywhere: pearls, islands and vertex circles fill with the paper tone. Grids go light: inner rules 0.012 of a cell in ash, only the outer border in ink at 0.03; Slitherlink dots and pearl strokes thinner too. The top row tries five digit faces on the same Slitherlink; the bottom row shows the lighter grids on Shikaku, Masyu and Hashi."
+    },
+    {
+      "id": "rf-1",
+      "page": "page-10",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "Cormorant Garamond. Matches the page type exactly; lining figures, fine and a little delicate at this size."
+    },
+    {
+      "id": "rf-2",
+      "page": "page-10",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "EB Garamond. A sturdier Garamond; same family feeling, more ink on the page, reads clearly at 12.9 mm cells. Recommended."
+    },
+    {
+      "id": "rf-3",
+      "page": "page-10",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Shippori Mincho. The Japanese book face already used for the kana; its Latin digits are mincho-flavoured, calm and slightly formal."
+    },
+    {
+      "id": "rf-4",
+      "page": "page-10",
+      "x": 2400,
+      "y": -110,
+      "w": 640,
+      "text": "Klee One. A Japanese pen-script face; the most natural and hand-made, and the biggest departure from the page type."
+    },
+    {
+      "id": "rf-5",
+      "page": "page-10",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Zen Kaku Gothic New, light. A quiet Japanese gothic; clean and modern, closest to the current Plex Sans."
+    },
+    {
       "id": "dl-brief",
       "page": "page-9",
       "x": 0,
@@ -1082,6 +1214,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-9"
+    "page": "page-10"
   }
 }

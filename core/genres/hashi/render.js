@@ -1,13 +1,13 @@
 import { buildEdges, validate, solutionState } from "./logic.js";
-import { INK, open, DIGIT_FONT, esc } from "../../lib/svg.js";
+import { INK, PAPER, open, DIGIT_FONT, esc } from "../../lib/svg.js";
 
 /** st: Int8Array over candidate edges (0/1/2, -1 unknown). */
-export function svg(puzzle, { cell = 40, st = null, interactive = false, bad = false } = {}) {
+export function svg(puzzle, { cell = 40, st = null, interactive = false, bad = false, paper = PAPER, font = DIGIT_FONT } = {}) {
   const { rows, cols } = puzzle.params, islands = puzzle.clues.islands;
   const { edges } = buildEdges(rows, cols, islands);
   const pad = cell * 0.5, W = cols * cell + pad * 2, H = rows * cell + pad * 2, R = cell * 0.36;
   const cx = (c) => pad + c * cell + cell / 2, cy = (r) => pad + r * cell + cell / 2;
-  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="${paper}"/>`;
   // faint dots mark empty cells so the sea has texture on the page
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) o += `<circle cx="${cx(c)}" cy="${cy(r)}" r="${cell * 0.025}" fill="#c9c4b8"/>`;
   if (st) edges.forEach((e, idx) => {
@@ -18,8 +18,8 @@ export function svg(puzzle, { cell = 40, st = null, interactive = false, bad = f
     for (const d of offs) o += e.horiz ? `<line x1="${x1 + R}" y1="${y1 + d}" x2="${x2 - R}" y2="${y2 + d}" stroke="${col}" stroke-width="${cell * 0.07}"/>` : `<line x1="${x1 + d}" y1="${y1 + R}" x2="${x2 + d}" y2="${y2 - R}" stroke="${col}" stroke-width="${cell * 0.07}"/>`;
   });
   for (const [r, c, n] of islands) {
-    o += `<circle cx="${cx(c)}" cy="${cy(r)}" r="${R}" fill="#fff" stroke="${INK}" stroke-width="${cell * 0.045}"/>`;
-    o += `<text x="${cx(c)}" y="${cy(r) + R * 0.45}" text-anchor="middle" font-family="${DIGIT_FONT}" font-size="${R * 1.35}" fill="${INK}">${esc(n)}</text>`;
+    o += `<circle cx="${cx(c)}" cy="${cy(r)}" r="${R}" fill="${paper}" stroke="${INK}" stroke-width="${cell * 0.03}"/>`;
+    o += `<text x="${cx(c)}" y="${cy(r) + R * 0.42}" text-anchor="middle" font-family="${font}" font-size="${R * 1.35}" fill="${INK}">${esc(n)}</text>`;
   }
   if (interactive) edges.forEach((e, idx) => {
     const [ar, ac] = islands[e.a], [br, bc] = islands[e.b], t = cell * 0.5;

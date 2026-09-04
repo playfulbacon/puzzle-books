@@ -19,12 +19,13 @@ const P = {
 };
 // core SVG with the white ground removed so the paper shows through, and ink retinted
 const INK = "#1A1917";
-const art = (p, cell, extra = {}) => GENRES[p.type].render.svg(p, { cell, ...extra })
+const PAPER_TONE = "#F3EEE3";
+const art = (p, cell, extra = {}) => GENRES[p.type].render.svg(p, { cell, paper: PAPER_TONE, ...extra })
   .replace(/<rect width="[^"]+" height="[^"]+" fill="#fff"\/>/, "")
   .replace(/#1c1b18/g, INK)
   .replace(/<svg /, '<svg width="100%" height="100%" ');
 
-const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Yuji+Syuku&amp;family=Shippori+Mincho:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap">`;
+const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Yuji+Syuku&amp;family=Shippori+Mincho:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;family=Klee+One:wght@400;600&amp;family=Zen+Kaku+Gothic+New:wght@300;400&amp;family=EB+Garamond:wght@400;500&amp;display=swap">`;
 const CSS = `
   body { margin: 0; background: #F3EEE3; color: ${INK}; }
   a { color: ${INK}; } a:hover { color: #8E877B; }
@@ -546,10 +547,10 @@ const hiTwoEndsInkLow = wrap(`<div class="page">
 writeFileSync(join(OUT, "HiTwoEndsInkLow.dc.html"), hiTwoEndsInkLow);
 // Centred: a 440 px grid in the middle of the page with space on every side; day line up top;
 // the caption anchored to the bottom margin.
-const inkedAt = (p, size, left, top, scale = 1.6, seed = 11) => { const cell = size / (p.params.cols + (p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3)); return `
+const inkedAt = (p, size, left, top, scale = 1.6, seed = 11, extra = {}) => { const cell = size / (p.params.cols + (p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3)); return `
   <div style="position: absolute; left: ${left}px; top: ${top}px; width: ${size}px; height: ${size}px;">
     <svg width="0" height="0" style="position:absolute;"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="${seed}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="${scale}"/></filter></defs></svg>
-    <div style="width: 100%; height: 100%; filter: url(#ink);">${art(p, cell)}</div>
+    <div style="width: 100%; height: 100%; filter: url(#ink);">${art(p, cell, extra)}</div>
   </div>`; };
 const hiCentred = wrap(`<div class="page">
   <div style="position: absolute; left: 72px; right: 64px; top: 96px; display: flex; justify-content: space-between; align-items: baseline;"><div style="display: flex; align-items: baseline; gap: 14px;">${dayInk(22)}${kanjiInk(22)}</div>${inkDots(2)}</div>
@@ -601,13 +602,13 @@ const formatPage = (p, day, band, folioNo) => {
 </div>`);
 };
 // Variant: the dots leave the day line and sit directly above the caption, at the gutter.
-const formatPageDotsLow = (p, day, band, folioNo) => {
+const formatPageDotsLow = (p, day, band, folioNo, opts = {}) => {
   const cols = p.params.cols, L = 96, R = 88, visible = 672 - L - R;
   const extra = p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3;
   const cell = visible / cols, size = cell * (cols + extra), left = L - (extra / 2) * cell, top = (960 - size) / 2;
   return wrap(`<div class="page">
   <div style="position: absolute; left: ${L}px; top: 104px; display: flex; align-items: baseline; gap: 14px;">${dayInk(day)}${kanjiInk(day)}</div>
-  ${inkedAt(p, size, left, top)}
+  ${inkedAt(p, size, left, top, 1.6, 11, opts)}
   <div style="position: absolute; left: ${L}px; bottom: 72px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">${quietDots(band, 5, 5)}${whisper(p, { size: 10, width: visible })}</div>
   <div class="folio" style="position: absolute; bottom: 34px; right: ${R}px;">${folioNo}</div>
 </div>`);
@@ -618,6 +619,22 @@ writeFileSync(join(OUT, "DlGokigen.dc.html"), formatPageDotsLow(P.gokigen, 47, 3
 writeFileSync(join(OUT, "DlHashi.dc.html"), formatPageDotsLow(P.hashi, 31, 2, 39));
 writeFileSync(join(OUT, "DlShikaku.dc.html"), formatPageDotsLow(P.shikaku, 58, 2, 66));
 writeFileSync(join(OUT, "DlNurikabe.dc.html"), formatPageDotsLow(P.nurikabe, 14, 3, 22));
+// Digit font candidates for the refined puzzles (page 10).
+const FONTS_TRY = {
+  cormorant: "'Cormorant Garamond', 'EB Garamond', Garamond, Georgia, serif",
+  ebgaramond: "'EB Garamond', Garamond, Georgia, serif",
+  shippori: "'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif",
+  klee: "'Klee One', 'Hiragino Maru Gothic ProN', sans-serif",
+  zenkaku: "'Zen Kaku Gothic New', 'Hiragino Sans', 'Yu Gothic', sans-serif",
+};
+writeFileSync(join(OUT, "RfCormorant.dc.html"), formatPageDotsLow(P.slither, 22, 2, 30, { font: FONTS_TRY.cormorant }));
+writeFileSync(join(OUT, "RfGaramond.dc.html"), formatPageDotsLow(P.slither, 22, 2, 30, { font: FONTS_TRY.ebgaramond }));
+writeFileSync(join(OUT, "RfShippori.dc.html"), formatPageDotsLow(P.slither, 22, 2, 30, { font: FONTS_TRY.shippori }));
+writeFileSync(join(OUT, "RfKlee.dc.html"), formatPageDotsLow(P.slither, 22, 2, 30, { font: FONTS_TRY.klee }));
+writeFileSync(join(OUT, "RfZenKaku.dc.html"), formatPageDotsLow(P.slither, 22, 2, 30, { font: FONTS_TRY.zenkaku }));
+writeFileSync(join(OUT, "RfShikakuGaramond.dc.html"), formatPageDotsLow(P.shikaku, 58, 2, 66, { font: FONTS_TRY.ebgaramond }));
+writeFileSync(join(OUT, "RfMasyu.dc.html"), formatPageDotsLow(P.masyu, 63, 3, 71));
+writeFileSync(join(OUT, "RfHashiGaramond.dc.html"), formatPageDotsLow(P.hashi, 31, 2, 39, { font: FONTS_TRY.ebgaramond }));
 writeFileSync(join(OUT, "Main.dc.html"), formatPage(P.slither, 22, 2, 30));
 writeFileSync(join(OUT, "FmtMasyu.dc.html"), formatPage(P.masyu, 63, 3, 71));
 writeFileSync(join(OUT, "FmtGokigen.dc.html"), formatPage(P.gokigen, 47, 3, 55));
@@ -724,8 +741,16 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("DlHashi.dc.html", 0, 1160, "Hashiwokakero"), page: "page-9" },
     { ...A("DlShikaku.dc.html", 800, 1160, "Shikaku"), page: "page-9" },
     { ...A("DlNurikabe.dc.html", 1600, 1160, "Nurikabe"), page: "page-9" },
+    { ...A("RfCormorant.dc.html", 0, 0, "Digits · Cormorant Garamond"), page: "page-10" },
+    { ...A("RfGaramond.dc.html", 800, 0, "Digits · EB Garamond"), page: "page-10" },
+    { ...A("RfShippori.dc.html", 1600, 0, "Digits · Shippori Mincho"), page: "page-10" },
+    { ...A("RfKlee.dc.html", 2400, 0, "Digits · Klee One"), page: "page-10" },
+    { ...A("RfZenKaku.dc.html", 0, 1160, "Digits · Zen Kaku Gothic"), page: "page-10" },
+    { ...A("RfShikakuGaramond.dc.html", 800, 1160, "Shikaku · light grid, EB Garamond"), page: "page-10" },
+    { ...A("RfMasyu.dc.html", 1600, 1160, "Masyu · paper pearls, light grid"), page: "page-10" },
+    { ...A("RfHashiGaramond.dc.html", 2400, 1160, "Hashi · paper islands, EB Garamond"), page: "page-10" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }, { id: "page-8", name: "The format, all genres" }, { id: "page-9", name: "The format, dots above the title" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }, { id: "page-8", name: "The format, all genres" }, { id: "page-9", name: "The format, dots above the title" }, { id: "page-10", name: "Puzzle refinements" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -776,6 +801,12 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
+    { id: "rf-brief", page: "page-10", x: 0, y: -230, w: 1240, text: "Puzzle refinements, in the shared core so the book and the review site draw the same thing. No white anywhere: pearls, islands and vertex circles fill with the paper tone. Grids go light: inner rules 0.012 of a cell in ash, only the outer border in ink at 0.03; Slitherlink dots and pearl strokes thinner too. The top row tries five digit faces on the same Slitherlink; the bottom row shows the lighter grids on Shikaku, Masyu and Hashi." },
+    { id: "rf-1", page: "page-10", x: 0, y: -110, w: 640, text: "Cormorant Garamond. Matches the page type exactly; lining figures, fine and a little delicate at this size." },
+    { id: "rf-2", page: "page-10", x: 800, y: -110, w: 640, text: "EB Garamond. A sturdier Garamond; same family feeling, more ink on the page, reads clearly at 12.9 mm cells. Recommended." },
+    { id: "rf-3", page: "page-10", x: 1600, y: -110, w: 640, text: "Shippori Mincho. The Japanese book face already used for the kana; its Latin digits are mincho-flavoured, calm and slightly formal." },
+    { id: "rf-4", page: "page-10", x: 2400, y: -110, w: 640, text: "Klee One. A Japanese pen-script face; the most natural and hand-made, and the biggest departure from the page type." },
+    { id: "rf-5", page: "page-10", x: 0, y: 2170, w: 640, text: "Zen Kaku Gothic New, light. A quiet Japanese gothic; clean and modern, closest to the current Plex Sans." },
     { id: "dl-brief", page: "page-9", x: 0, y: -200, w: 1240, text: "The format with the dots moved down: only the day and its kanji remain on the top line; the five ash dots sit directly above the genre caption at the foot, so the difficulty reads as part of the whisper rather than part of the day." },
     { id: "fmt-brief", page: "page-8", x: 0, y: -200, w: 1240, text: "The format, applied to all six genres. Margins 96 px at the gutter and 88 px at the outer edge; the grid's visible edges sit on the text margins and the grid is centred vertically; the ink day with kanji at the gutter and ash dots at the outer margin; whispered caption at the foot; the hand-ruled wobble on every grid. Cells: 12.9 mm on the 10×10 grids, 16 mm on the 8×8 Nurikabe. Every puzzle is real and verified." },
     { id: "hi-12", page: "page-7", x: 6400, y: 2170, w: 640, text: "Margins in. Gutter margin 96 px and outer margin 88 px instead of 72 and 64; the day line, grid and caption still share the same edges. Cells are 12.9 mm." },
@@ -785,6 +816,6 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-8", page: "page-7", x: 3200, y: 2170, w: 640, text: "Two ends, in ink, lower. The grid drops 70 px and the caption tucks in 16 px beneath it, so puzzle and caption read as one object and the empty band above grows to a third of the page." },
     { id: "hi-7", page: "page-7", x: 2400, y: 2170, w: 640, text: "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px." },
   ],
-  launch: { view: "canvas", page: "page-9" },
+  launch: { view: "canvas", page: "page-10" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

@@ -83,6 +83,12 @@ applied to every genre. `Main.dc.html` is the Slitherlink page; `FmtMasyu`, `Fmt
 Page nine, "The format, dots above the title": the same format with only the day on the top line
 and the dots directly above the caption at the foot. `DlSlitherlink`, `DlMasyu`, `DlGokigen`,
 `DlHashi`, `DlShikaku`, `DlNurikabe`.
+
+Page ten, "Puzzle refinements": the drawings themselves, changed in `core/` so the book and the
+review site agree. No white fills (paper tone instead), inner grid rules 0.012 of a cell in ash
+with only the outer border in ink, thinner dots and pearl strokes, and a digit-font option.
+`RfCormorant`, `RfGaramond`, `RfShippori`, `RfKlee`, `RfZenKaku` try five faces on one
+Slitherlink; `RfShikakuGaramond`, `RfMasyu`, `RfHashiGaramond` show the lighter grids.
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

@@ -1,15 +1,15 @@
 import { layout, pearlsFromPuzzle, solutionEdges, UNKNOWN, LINE, CROSS, WHITE, BLACK } from "./logic.js";
-import { INK, open } from "../../lib/svg.js";
+import { INK, PAPER, SOFT, LINE_INNER, open } from "../../lib/svg.js";
 
 /** state: Int8Array(E) UNKNOWN/LINE/CROSS (interactive) or Uint8Array 0/1 (solution). */
-export function svg(puzzle, { cell = 40, state = null, interactive = false, wrong = null } = {}) {
+export function svg(puzzle, { cell = 40, state = null, interactive = false, wrong = null, paper = PAPER } = {}) {
   const { rows, cols } = puzzle.params;
   const L = layout(rows, cols), pearls = pearlsFromPuzzle(puzzle);
   const pad = cell * 0.15, W = cols * cell + pad * 2, H = rows * cell + pad * 2;
   const cx = (c) => pad + c * cell + cell / 2, cy = (r) => pad + r * cell + cell / 2;
-  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="#fff"/>`;
-  for (let k = 0; k <= cols; k++) o += `<line x1="${pad + k * cell}" y1="${pad}" x2="${pad + k * cell}" y2="${pad + rows * cell}" stroke="#b9b4a8" stroke-width="${k === 0 || k === cols ? cell * 0.04 : cell * 0.015}"/>`;
-  for (let k = 0; k <= rows; k++) o += `<line x1="${pad}" y1="${pad + k * cell}" x2="${pad + cols * cell}" y2="${pad + k * cell}" stroke="#b9b4a8" stroke-width="${k === 0 || k === rows ? cell * 0.04 : cell * 0.015}"/>`;
+  let o = open(W, H, 'data-role="board"') + `<rect width="${W}" height="${H}" fill="${paper}"/>`;
+  for (let k = 0; k <= cols; k++) o += `<line x1="${pad + k * cell}" y1="${pad}" x2="${pad + k * cell}" y2="${pad + rows * cell}" stroke="${SOFT}" stroke-width="${k === 0 || k === cols ? cell * 0.02 : cell * LINE_INNER}"/>`;
+  for (let k = 0; k <= rows; k++) o += `<line x1="${pad}" y1="${pad + k * cell}" x2="${pad + cols * cell}" y2="${pad + k * cell}" stroke="${SOFT}" stroke-width="${k === 0 || k === rows ? cell * 0.02 : cell * LINE_INNER}"/>`;
   const seg = (e) => { const [a, b] = L.ends[e]; return [cx(a % cols), cy(Math.floor(a / cols)), cx(b % cols), cy(Math.floor(b / cols))]; };
   if (state) for (let e = 0; e < L.E; e++) {
     const [x1, y1, x2, y2] = seg(e);
@@ -19,7 +19,7 @@ export function svg(puzzle, { cell = 40, state = null, interactive = false, wron
   const R = cell * 0.3;
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
     const p = pearls[r * cols + c]; if (!p) continue;
-    o += p === WHITE ? `<circle cx="${cx(c)}" cy="${cy(r)}" r="${R}" fill="#fff" stroke="${INK}" stroke-width="${cell * 0.06}"/>` : `<circle cx="${cx(c)}" cy="${cy(r)}" r="${R}" fill="${INK}"/>`;
+    o += p === WHITE ? `<circle cx="${cx(c)}" cy="${cy(r)}" r="${R}" fill="${paper}" stroke="${INK}" stroke-width="${cell * 0.045}"/>` : `<circle cx="${cx(c)}" cy="${cy(r)}" r="${R}" fill="${INK}"/>`;
   }
   if (interactive) for (let e = 0; e < L.E; e++) {
     const [x1, y1, x2, y2] = seg(e), t = cell * 0.4;
