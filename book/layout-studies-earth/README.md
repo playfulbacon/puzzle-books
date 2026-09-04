@@ -79,6 +79,10 @@ Page eight, "The format, all genres": the chosen page format (margins 96 / 88 px
 text margins, centred vertically, ink day with kanji, ash dots, whispered caption, hand-ruled wobble)
 applied to every genre. `Main.dc.html` is the Slitherlink page; `FmtMasyu`, `FmtGokigen`, `FmtHashi`,
 `FmtShikaku`, `FmtNurikabe` are the others.
+
+Page nine, "The format, dots above the title": the same format with only the day on the top line
+and the dots directly above the caption at the foot. `DlSlitherlink`, `DlMasyu`, `DlGokigen`,
+`DlHashi`, `DlShikaku`, `DlNurikabe`.
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

@@ -531,6 +531,66 @@
       "title": "Nurikabe",
       "print": "fixed",
       "page": "page-8"
+    },
+    {
+      "file": "DlSlitherlink.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Slitherlink",
+      "print": "fixed",
+      "page": "page-9"
+    },
+    {
+      "file": "DlMasyu.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Masyu",
+      "print": "fixed",
+      "page": "page-9"
+    },
+    {
+      "file": "DlGokigen.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Gokigen Naname",
+      "print": "fixed",
+      "page": "page-9"
+    },
+    {
+      "file": "DlHashi.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hashiwokakero",
+      "print": "fixed",
+      "page": "page-9"
+    },
+    {
+      "file": "DlShikaku.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Shikaku",
+      "print": "fixed",
+      "page": "page-9"
+    },
+    {
+      "file": "DlNurikabe.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Nurikabe",
+      "print": "fixed",
+      "page": "page-9"
     }
   ],
   "pages": [
@@ -565,6 +625,10 @@
     {
       "id": "page-8",
       "name": "The format, all genres"
+    },
+    {
+      "id": "page-9",
+      "name": "The format, dots above the title"
     }
   ],
   "annotations": [
@@ -952,6 +1016,14 @@
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
     },
     {
+      "id": "dl-brief",
+      "page": "page-9",
+      "x": 0,
+      "y": -200,
+      "w": 1240,
+      "text": "The format with the dots moved down: only the day and its kanji remain on the top line; the five ash dots sit directly above the genre caption at the foot, so the difficulty reads as part of the whisper rather than part of the day."
+    },
+    {
       "id": "fmt-brief",
       "page": "page-8",
       "x": 0,
@@ -1010,6 +1082,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-8"
+    "page": "page-9"
   }
 }

@@ -600,6 +600,24 @@ const formatPage = (p, day, band, folioNo) => {
   <div class="folio" style="position: absolute; bottom: 34px; right: ${R}px;">${folioNo}</div>
 </div>`);
 };
+// Variant: the dots leave the day line and sit directly above the caption, at the gutter.
+const formatPageDotsLow = (p, day, band, folioNo) => {
+  const cols = p.params.cols, L = 96, R = 88, visible = 672 - L - R;
+  const extra = p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3;
+  const cell = visible / cols, size = cell * (cols + extra), left = L - (extra / 2) * cell, top = (960 - size) / 2;
+  return wrap(`<div class="page">
+  <div style="position: absolute; left: ${L}px; top: 104px; display: flex; align-items: baseline; gap: 14px;">${dayInk(day)}${kanjiInk(day)}</div>
+  ${inkedAt(p, size, left, top)}
+  <div style="position: absolute; left: ${L}px; bottom: 72px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">${quietDots(band, 5, 5)}${whisper(p, { size: 10, width: visible })}</div>
+  <div class="folio" style="position: absolute; bottom: 34px; right: ${R}px;">${folioNo}</div>
+</div>`);
+};
+writeFileSync(join(OUT, "DlSlitherlink.dc.html"), formatPageDotsLow(P.slither, 22, 2, 30));
+writeFileSync(join(OUT, "DlMasyu.dc.html"), formatPageDotsLow(P.masyu, 63, 3, 71));
+writeFileSync(join(OUT, "DlGokigen.dc.html"), formatPageDotsLow(P.gokigen, 47, 3, 55));
+writeFileSync(join(OUT, "DlHashi.dc.html"), formatPageDotsLow(P.hashi, 31, 2, 39));
+writeFileSync(join(OUT, "DlShikaku.dc.html"), formatPageDotsLow(P.shikaku, 58, 2, 66));
+writeFileSync(join(OUT, "DlNurikabe.dc.html"), formatPageDotsLow(P.nurikabe, 14, 3, 22));
 writeFileSync(join(OUT, "Main.dc.html"), formatPage(P.slither, 22, 2, 30));
 writeFileSync(join(OUT, "FmtMasyu.dc.html"), formatPage(P.masyu, 63, 3, 71));
 writeFileSync(join(OUT, "FmtGokigen.dc.html"), formatPage(P.gokigen, 47, 3, 55));
@@ -700,8 +718,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("FmtHashi.dc.html", 0, 1160, "Hashiwokakero"), page: "page-8" },
     { ...A("FmtShikaku.dc.html", 800, 1160, "Shikaku"), page: "page-8" },
     { ...A("FmtNurikabe.dc.html", 1600, 1160, "Nurikabe"), page: "page-8" },
+    { ...A("DlSlitherlink.dc.html", 0, 0, "Slitherlink"), page: "page-9" },
+    { ...A("DlMasyu.dc.html", 800, 0, "Masyu"), page: "page-9" },
+    { ...A("DlGokigen.dc.html", 1600, 0, "Gokigen Naname"), page: "page-9" },
+    { ...A("DlHashi.dc.html", 0, 1160, "Hashiwokakero"), page: "page-9" },
+    { ...A("DlShikaku.dc.html", 800, 1160, "Shikaku"), page: "page-9" },
+    { ...A("DlNurikabe.dc.html", 1600, 1160, "Nurikabe"), page: "page-9" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }, { id: "page-8", name: "The format, all genres" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }, { id: "page-8", name: "The format, all genres" }, { id: "page-9", name: "The format, dots above the title" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -752,6 +776,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
+    { id: "dl-brief", page: "page-9", x: 0, y: -200, w: 1240, text: "The format with the dots moved down: only the day and its kanji remain on the top line; the five ash dots sit directly above the genre caption at the foot, so the difficulty reads as part of the whisper rather than part of the day." },
     { id: "fmt-brief", page: "page-8", x: 0, y: -200, w: 1240, text: "The format, applied to all six genres. Margins 96 px at the gutter and 88 px at the outer edge; the grid's visible edges sit on the text margins and the grid is centred vertically; the ink day with kanji at the gutter and ash dots at the outer margin; whispered caption at the foot; the hand-ruled wobble on every grid. Cells: 12.9 mm on the 10×10 grids, 16 mm on the 8×8 Nurikabe. Every puzzle is real and verified." },
     { id: "hi-12", page: "page-7", x: 6400, y: 2170, w: 640, text: "Margins in. Gutter margin 96 px and outer margin 88 px instead of 72 and 64; the day line, grid and caption still share the same edges. Cells are 12.9 mm." },
     { id: "hi-11", page: "page-7", x: 5600, y: 2170, w: 640, text: "Text-width. The grid's outer dots sit exactly on the text margins, so the day line, the grid and the caption share one left edge and one right edge. Cells are 14.2 mm, the largest in the set." },
@@ -760,6 +785,6 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-8", page: "page-7", x: 3200, y: 2170, w: 640, text: "Two ends, in ink, lower. The grid drops 70 px and the caption tucks in 16 px beneath it, so puzzle and caption read as one object and the empty band above grows to a third of the page." },
     { id: "hi-7", page: "page-7", x: 2400, y: 2170, w: 640, text: "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px." },
   ],
-  launch: { view: "canvas", page: "page-8" },
+  launch: { view: "canvas", page: "page-9" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);
