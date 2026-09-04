@@ -73,6 +73,7 @@ kanji and dots up top, whispered caption beneath.
 - `HiCentred.dc.html` — 440 px grid centred on the page, caption anchored to the bottom margin
 - `HiCentredAshDots.dc.html` — the same with the dots in the caption's ash
 - `HiTextWidth.dc.html` — grid's visible edges on the text margins, centred vertically
+- `HiTextWidthIn.dc.html` — the same with margins brought in to 96 / 88 px
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

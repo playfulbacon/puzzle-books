@@ -461,6 +461,16 @@
       "title": "Hand-inked · text-width grid",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "HiTextWidthIn.dc.html",
+      "x": 6400,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · text-width, margins in",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -876,6 +886,14 @@
       "y": 2170,
       "w": 640,
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
+    },
+    {
+      "id": "hi-12",
+      "page": "page-7",
+      "x": 6400,
+      "y": 2170,
+      "w": 640,
+      "text": "Margins in. Gutter margin 96 px and outer margin 88 px instead of 72 and 64; the day line, grid and caption still share the same edges. Cells are 12.9 mm."
     },
     {
       "id": "hi-11",
