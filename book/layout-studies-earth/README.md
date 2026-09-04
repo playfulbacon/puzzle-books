@@ -54,7 +54,7 @@ caption in its own band.
 Page six, "Chosen": the refined direction, small grid with words up top. No challenge label, 7 px
 dots, day line one step heavier, day repeated in kanji numerals.
 
-- `Main.dc.html` — kanji inline after the day (lead)
+- `ChosenSmallGrid.dc.html` — kanji inline after the day
 - `ChosenKanjiBelow.dc.html` — kanji on its own line
 - `ChosenKanjiBrush.dc.html` — kanji in the brush face
 - `ChosenInkDay.dc.html` — the lead with the day in ink and 5 px dots
@@ -74,6 +74,11 @@ kanji and dots up top, whispered caption beneath.
 - `HiCentredAshDots.dc.html` — the same with the dots in the caption's ash
 - `HiTextWidth.dc.html` — grid's visible edges on the text margins, centred vertically
 - `HiTextWidthIn.dc.html` — the same with margins brought in to 96 / 88 px
+
+Page eight, "The format, all genres": the chosen page format (margins 96 / 88 px, grid edges on the
+text margins, centred vertically, ink day with kanji, ash dots, whispered caption, hand-ruled wobble)
+applied to every genre. `Main.dc.html` is the Slitherlink page; `FmtMasyu`, `FmtGokigen`, `FmtHashi`,
+`FmtShikaku`, `FmtNurikabe` are the others.
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

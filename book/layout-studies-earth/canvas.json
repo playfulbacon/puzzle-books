@@ -313,7 +313,7 @@
       "page": "page-5"
     },
     {
-      "file": "Main.dc.html",
+      "file": "ChosenSmallGrid.dc.html",
       "x": 0,
       "y": 0,
       "w": 672,
@@ -471,6 +471,66 @@
       "title": "Hand-inked · text-width, margins in",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Slitherlink",
+      "print": "fixed",
+      "page": "page-8"
+    },
+    {
+      "file": "FmtMasyu.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Masyu",
+      "print": "fixed",
+      "page": "page-8"
+    },
+    {
+      "file": "FmtGokigen.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Gokigen Naname",
+      "print": "fixed",
+      "page": "page-8"
+    },
+    {
+      "file": "FmtHashi.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hashiwokakero",
+      "print": "fixed",
+      "page": "page-8"
+    },
+    {
+      "file": "FmtShikaku.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Shikaku",
+      "print": "fixed",
+      "page": "page-8"
+    },
+    {
+      "file": "FmtNurikabe.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Nurikabe",
+      "print": "fixed",
+      "page": "page-8"
     }
   ],
   "pages": [
@@ -501,6 +561,10 @@
     {
       "id": "page-7",
       "name": "Hand-inked, refined"
+    },
+    {
+      "id": "page-8",
+      "name": "The format, all genres"
     }
   ],
   "annotations": [
@@ -888,6 +952,14 @@
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
     },
     {
+      "id": "fmt-brief",
+      "page": "page-8",
+      "x": 0,
+      "y": -200,
+      "w": 1240,
+      "text": "The format, applied to all six genres. Margins 96 px at the gutter and 88 px at the outer edge; the grid's visible edges sit on the text margins and the grid is centred vertically; the ink day with kanji at the gutter and ash dots at the outer margin; whispered caption at the foot; the hand-ruled wobble on every grid. Cells: 12.9 mm on the 10×10 grids, 16 mm on the 8×8 Nurikabe. Every puzzle is real and verified."
+    },
+    {
       "id": "hi-12",
       "page": "page-7",
       "x": 6400,
@@ -938,6 +1010,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-7"
+    "page": "page-8"
   }
 }
