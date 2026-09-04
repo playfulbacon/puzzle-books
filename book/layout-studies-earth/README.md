@@ -11,6 +11,7 @@ All pages carry real verified puzzles from `review/data/batches`.
 - `HandInked.dc.html` — faint hand-ruled wobble on the grid via an SVG displacement filter
 - `Ma.dc.html` — negative space as the composition
 - `MaColumn.dc.html` — Ma with day, kanji, dots and a whispered title in the column, no rules
+- `MaColumnTitle.dc.html` — day up top in ink; whispered title then 4 px dots in the column
 
 Page two of the canvas, "Ma variants": six layouts that keep the grid alone in its horizontal band
 and group name, Japanese name, rules and difficulty into one block.

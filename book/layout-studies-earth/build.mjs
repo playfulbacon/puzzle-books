@@ -555,6 +555,18 @@ const maColumn = (() => { const p = P.slither, [name, kana] = NAMES[p.type]; ret
   <div class="folio" style="position: absolute; bottom: 34px; right: 64px;">71</div>
 </div>`); })();
 writeFileSync(join(OUT, "MaColumn.dc.html"), maColumn);
+// Day back up top; the column beside the grid carries the whispered title, then very small dots.
+const maColumnTitle = (() => { const p = P.slither, [name, kana] = NAMES[p.type]; return wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 96px; display: flex; align-items: baseline; gap: 14px;">${dayInk(63)}${kanjiInk(63)}</div>
+  <div style="position: absolute; right: 64px; top: 428px; width: 440px; height: 440px;">${art(p, 40)}</div>
+  <div style="position: absolute; left: 72px; top: 428px; width: 84px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+    <span style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: ${ASH}; line-height: 1.6;">${name}</span>
+    <span class="jp" style="font-size: 10px; letter-spacing: 0; color: ${ASH}; white-space: nowrap;">${kana}</span>
+    <div style="margin-top: 12px;">${quietDots(3, 4, 4)}</div>
+  </div>
+  <div class="folio" style="position: absolute; bottom: 34px; right: 64px;">71</div>
+</div>`); })();
+writeFileSync(join(OUT, "MaColumnTitle.dc.html"), maColumnTitle);
 writeFileSync(join(OUT, "CreamAndInk.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -571,6 +583,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     A("HandInked.dc.html", 800, 1160, "Hand-inked"),
     A("Ma.dc.html", 1600, 1160, "Ma"),
     A("MaColumn.dc.html", 2400, 1160, "Ma · day and dots in the column"),
+    A("MaColumnTitle.dc.html", 3200, 1160, "Ma · day up top, title and dots in the column"),
     { ...A("MaHighText.dc.html", 0, 0, "Ma · text high, grid low"), page: "page-2" },
     { ...A("MaHighGrid.dc.html", 800, 0, "Ma · grid high, text low"), page: "page-2" },
     { ...A("MaCentered.dc.html", 1600, 0, "Ma · centred"), page: "page-2" },
@@ -615,6 +628,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "n-tategaki", x: 1600, y: -120, w: 640, text: "Tategaki. The genre runs vertically down the outer edge in Japanese, the day number appears twice, once in kanji. The Japanese carries the identity; the Latin is the caption." },
     { id: "n-earth", x: 0, y: 2180, w: 640, text: "Earth accent. One clay tone (#B5643C) on the day mark, difficulty and folio rules, nothing on the puzzle itself. Tradeoff: any colour switches the whole interior to colour printing, roughly two to three times the unit cost, and colour interiors print on white paper only." },
     { id: "n-hand", x: 800, y: 2180, w: 640, text: "Hand-inked. A faint wobble on the grid lines and digits, as though ruled by hand. Wabi-sabi in the object itself, not the decoration. Risk: at 300 dpi the wobble must stay under about 0.3 pt or it reads as a printing fault." },
+    { id: "n-ma-col2", x: 3200, y: 2180, w: 640, text: "Ma, column with title. The day and its kanji go back to the top-left in ink; the column beside the grid holds the whispered genre name, then the dots at 4 px, as small as the original Ma's." },
     { id: "n-ma-col", x: 2400, y: 2180, w: 640, text: "Ma, column. The original Ma with the day, its kanji and the dots moved into the narrow column beside the grid, where the title and rules were. The genre name stays as a whisper below them; the rules are gone; nothing sits at the top of the page." },
     { id: "n-ma", x: 1600, y: 2180, w: 640, text: "Ma. Negative space as the subject: the top half is empty, the grid is smaller and sits low on the outer edge, the rules run in a narrow column. The quietest page, and the least conventional." },
     { id: "ma-brief", page: "page-2", x: 0, y: -230, w: 1240, text: "Ma variants. Every page here follows two rules: the grid owns its full horizontal band and shares it with nothing, and the name, Japanese name, rules and difficulty are one block. Only the block's position and the grid's size and position change. Same cream stock, ink and type as page one." },
@@ -659,6 +673,6 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
     { id: "hi-7", page: "page-7", x: 2400, y: 2170, w: 640, text: "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px." },
   ],
-  launch: { view: "canvas", page: "page-7" },
+  launch: { view: "canvas", page: "page-1" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

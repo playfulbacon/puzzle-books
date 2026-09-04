@@ -64,6 +64,15 @@
       "print": "fixed"
     },
     {
+      "file": "MaColumnTitle.dc.html",
+      "x": 3200,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Ma · day up top, title and dots in the column",
+      "print": "fixed"
+    },
+    {
       "file": "MaHighText.dc.html",
       "x": 0,
       "y": 0,
@@ -488,6 +497,13 @@
       "text": "Hand-inked. A faint wobble on the grid lines and digits, as though ruled by hand. Wabi-sabi in the object itself, not the decoration. Risk: at 300 dpi the wobble must stay under about 0.3 pt or it reads as a printing fault."
     },
     {
+      "id": "n-ma-col2",
+      "x": 3200,
+      "y": 2180,
+      "w": 640,
+      "text": "Ma, column with title. The day and its kanji go back to the top-left in ink; the column beside the grid holds the whispered genre name, then the dots at 4 px, as small as the original Ma's."
+    },
+    {
       "id": "n-ma-col",
       "x": 2400,
       "y": 2180,
@@ -832,6 +848,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-7"
+    "page": "page-1"
   }
 }
