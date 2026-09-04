@@ -38,6 +38,16 @@ Page four, "Label below, refined": day and challenge at whisper weight and colou
 - `LbTwoEnds.dc.html` — day at the gutter, challenge at the outer margin
 - `LbCrosswise.dc.html` — right-aligned above, caption left below
 - `LbAllBelow.dc.html` — nothing above the grid; everything on the line beneath it
+
+Page five, "Ma, small grid": grids of 440, 400 and 360 px so the emptiness reads as space, with the
+caption in its own band.
+
+- `SmOriginal.dc.html` — the original Ma, whispered
+- `SmGutter.dc.html` — grid at the gutter, words right-aligned
+- `SmCentred.dc.html` — 400 px grid centred low
+- `SmTextTop.dc.html` — all words in one whisper block at the top-left
+- `SmInverted.dc.html` — grid high, words at the bottom-left
+- `SmSmallest.dc.html` — 360 px grid, the most empty page
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

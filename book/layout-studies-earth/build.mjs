@@ -408,6 +408,68 @@ writeFileSync(join(OUT, "LbTwoEnds.dc.html"), lbTwoEnds);
 writeFileSync(join(OUT, "LbCrosswise.dc.html"), lbCrosswise);
 writeFileSync(join(OUT, "LbAllBelow.dc.html"), lbAllBelow);
 
+
+// =====================================================================================
+// Ma, small grid. The grid stays well short of the page width so the emptiness reads as space,
+// not margin. Day and challenge at whisper weight; the caption lives in its own band.
+const smallGrid = (p, cell, left, top) => { const w = p.params.cols * cell + (p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? cell : cell * 0.3); return grid(p, cell, `position: absolute; left: ${left}px; top: ${top}px; width: ${w}px; height: ${w}px;`); };
+const RIGHT = 64, LEFT = 72, PAGE_W = 672;
+const gw = (p, cell) => p.params.cols * cell + (p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? cell : cell * 0.3);
+
+// 1. The original Ma, whispered. Grid 440 low at the outer margin, day left and challenge right up top, caption beneath the grid's band.
+const smOriginal = (() => { const p = P.masyu, c = 40, w = gw(p, c); return wrap(`<div class="page">
+  <div style="position: absolute; left: ${LEFT}px; top: 96px;">${dayLine(63)}</div>
+  <div style="position: absolute; right: ${RIGHT}px; top: 96px;">${challengeLine(3)}</div>
+  ${smallGrid(p, c, PAGE_W - RIGHT - w, 400)}
+  <div style="position: absolute; left: ${LEFT}px; top: 868px;">${whisper(p, { size: 10, width: 460 })}</div>
+  ${folio(71, "right: 64px;")}
+</div>`); })();
+
+// 2. Gutter. Grid low at the gutter instead; day and challenge right-aligned up top; caption right-aligned beneath.
+const smGutter = (() => { const p = P.gokigen, c = 40, w = gw(p, c); return wrap(`<div class="page">
+  <div style="position: absolute; right: ${RIGHT}px; top: 96px; display: flex; gap: 36px; align-items: center;">${dayLine(47)}${challengeLine(3)}</div>
+  ${smallGrid(p, c, LEFT - c * 0.5, 400)}
+  <div style="position: absolute; right: ${RIGHT}px; top: 868px;">${whisper(p, { size: 10, width: 500, align: "right" })}</div>
+  ${folio(55, "left: 72px;")}
+</div>`); })();
+
+// 3. Centred small. A 400 px grid centred low; day and challenge stacked at the gutter up top; caption beneath at the gutter.
+const smCentred = (() => { const p = P.shikaku, c = 40, w = gw(p, c); return wrap(`<div class="page">
+  <div style="position: absolute; left: ${LEFT}px; top: 96px; display: flex; flex-direction: column; gap: 14px;">${dayLine(58)}${challengeLine(2)}</div>
+  ${smallGrid(p, c, (PAGE_W - w) / 2, 420)}
+  <div style="position: absolute; left: ${LEFT}px; top: 868px;">${whisper(p, { size: 10, width: 460 })}</div>
+  ${folio(66, "left: 0; right: 0; text-align: center;")}
+</div>`); })();
+
+// 4. Text up top. All the words in one whisper block at the top-left: day, challenge, then the caption. Grid low at the outer margin.
+const smTextTop = (() => { const p = P.slither, c = 40, w = gw(p, c); return wrap(`<div class="page">
+  <div style="position: absolute; left: ${LEFT}px; top: 96px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">${dayLine(22)}${challengeLine(2)}<div style="margin-top: 10px;">${whisper(p, { size: 10, width: 300 })}</div></div>
+  ${smallGrid(p, c, PAGE_W - RIGHT - w, 420)}
+  ${folio(30, "right: 64px;")}
+</div>`); })();
+
+// 5. Inverted diagonal. Grid high at the outer margin; all the words at the bottom-left, the empty space running down and left.
+const smInverted = (() => { const p = P.hashi, c = 40, w = gw(p, c); return wrap(`<div class="page">
+  ${smallGrid(p, c, PAGE_W - RIGHT - w, 84)}
+  <div style="position: absolute; left: ${LEFT}px; bottom: 96px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">${dayLine(31)}${challengeLine(2)}<div style="margin-top: 10px;">${whisper(p, { size: 10, width: 320 })}</div></div>
+  ${folio(39, "right: 64px;")}
+</div>`); })();
+
+// 6. Smallest. A 360 px grid low at the outer margin; one whisper line up top; caption at the bottom-left. The most empty page in the set.
+const smSmallest = (() => { const p = P.nurikabe, c = 44, w = gw(p, c); return wrap(`<div class="page">
+  <div style="position: absolute; left: ${LEFT}px; top: 96px; display: flex; gap: 36px; align-items: center;">${dayLine(14)}${challengeLine(3)}</div>
+  ${smallGrid(p, c, PAGE_W - RIGHT - w, 470)}
+  <div style="position: absolute; left: ${LEFT}px; top: 868px;">${whisper(p, { size: 10, width: 420 })}</div>
+  ${folio(22, "right: 64px;")}
+</div>`); })();
+
+writeFileSync(join(OUT, "SmOriginal.dc.html"), smOriginal);
+writeFileSync(join(OUT, "SmGutter.dc.html"), smGutter);
+writeFileSync(join(OUT, "SmCentred.dc.html"), smCentred);
+writeFileSync(join(OUT, "SmTextTop.dc.html"), smTextTop);
+writeFileSync(join(OUT, "SmInverted.dc.html"), smInverted);
+writeFileSync(join(OUT, "SmSmallest.dc.html"), smSmallest);
+
 writeFileSync(join(OUT, "Main.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -441,8 +503,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("LbTwoEnds.dc.html", 0, 1160, "Label below · two ends"), page: "page-4" },
     { ...A("LbCrosswise.dc.html", 800, 1160, "Label below · crosswise"), page: "page-4" },
     { ...A("LbAllBelow.dc.html", 1600, 1160, "Label below · all below"), page: "page-4" },
+    { ...A("SmOriginal.dc.html", 0, 0, "Small grid · the original Ma, whispered"), page: "page-5" },
+    { ...A("SmGutter.dc.html", 800, 0, "Small grid · at the gutter"), page: "page-5" },
+    { ...A("SmCentred.dc.html", 1600, 0, "Small grid · centred"), page: "page-5" },
+    { ...A("SmTextTop.dc.html", 0, 1160, "Small grid · words up top"), page: "page-5" },
+    { ...A("SmInverted.dc.html", 800, 1160, "Small grid · inverted diagonal"), page: "page-5" },
+    { ...A("SmSmallest.dc.html", 1600, 1160, "Small grid · smallest"), page: "page-5" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -472,7 +540,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "lb-4", page: "page-4", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, challenge at the outer margin on one line, spanning the grid's width. Caption left." },
     { id: "lb-5", page: "page-4", x: 800, y: 2170, w: 640, text: "Crosswise. Day and challenge right-aligned above; caption left below. The two texts frame the grid diagonally." },
     { id: "lb-6", page: "page-4", x: 1600, y: 2170, w: 640, text: "All below. Nothing above the grid at all; caption left and day/challenge right share the line beneath it. The quietest of the six." },
+    { id: "sm-brief", page: "page-5", x: 0, y: -230, w: 1240, text: "Ma, small grid. What the original Ma had that the later pages lost: a grid well short of the page width, so the emptiness reads as space rather than margin. Grids here are 440, 400 and 360 px (cells of 11.6, 10.6 and 9.5 mm, all comfortable for pencil). Day and challenge at whisper weight; the genre caption lives in its own band, never beside the grid." },
+    { id: "sm-1", page: "page-5", x: 0, y: -110, w: 640, text: "The original Ma, whispered. Grid 440 low at the outer margin, day left and challenge right up top, caption beneath the grid's band. The closest to the page you missed." },
+    { id: "sm-2", page: "page-5", x: 800, y: -110, w: 640, text: "At the gutter. The same grid low at the gutter instead; the words right-aligned. Empty space now sits at the outer edge where the thumb rests." },
+    { id: "sm-3", page: "page-5", x: 1600, y: -110, w: 640, text: "Centred. A 400 px grid centred low; the words at the gutter. Calmer, more symmetrical, a little less Ma." },
+    { id: "sm-4", page: "page-5", x: 0, y: 2170, w: 640, text: "Words up top. Day, challenge and caption gathered into one whisper block top-left; nothing under the grid. The reader takes in everything before the puzzle." },
+    { id: "sm-5", page: "page-5", x: 800, y: 2170, w: 640, text: "Inverted diagonal. Grid high at the outer margin, all the words at the bottom-left. The emptiness runs down and to the left instead." },
+    { id: "sm-6", page: "page-5", x: 1600, y: 2170, w: 640, text: "Smallest. A 360 px grid low at the outer margin, one whisper line up top, caption at the bottom-left. The most empty page in the set; check the 9.5 mm cells feel right in your hand." },
   ],
-  launch: { view: "canvas", page: "page-4" },
+  launch: { view: "canvas", page: "page-5" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

@@ -233,6 +233,66 @@
       "title": "Label below · all below",
       "print": "fixed",
       "page": "page-4"
+    },
+    {
+      "file": "SmOriginal.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Small grid · the original Ma, whispered",
+      "print": "fixed",
+      "page": "page-5"
+    },
+    {
+      "file": "SmGutter.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Small grid · at the gutter",
+      "print": "fixed",
+      "page": "page-5"
+    },
+    {
+      "file": "SmCentred.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Small grid · centred",
+      "print": "fixed",
+      "page": "page-5"
+    },
+    {
+      "file": "SmTextTop.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Small grid · words up top",
+      "print": "fixed",
+      "page": "page-5"
+    },
+    {
+      "file": "SmInverted.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Small grid · inverted diagonal",
+      "print": "fixed",
+      "page": "page-5"
+    },
+    {
+      "file": "SmSmallest.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Small grid · smallest",
+      "print": "fixed",
+      "page": "page-5"
     }
   ],
   "pages": [
@@ -251,6 +311,10 @@
     {
       "id": "page-4",
       "name": "Label below, refined"
+    },
+    {
+      "id": "page-5",
+      "name": "Ma, small grid"
     }
   ],
   "annotations": [
@@ -470,10 +534,66 @@
       "y": 2170,
       "w": 640,
       "text": "All below. Nothing above the grid at all; caption left and day/challenge right share the line beneath it. The quietest of the six."
+    },
+    {
+      "id": "sm-brief",
+      "page": "page-5",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Ma, small grid. What the original Ma had that the later pages lost: a grid well short of the page width, so the emptiness reads as space rather than margin. Grids here are 440, 400 and 360 px (cells of 11.6, 10.6 and 9.5 mm, all comfortable for pencil). Day and challenge at whisper weight; the genre caption lives in its own band, never beside the grid."
+    },
+    {
+      "id": "sm-1",
+      "page": "page-5",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "The original Ma, whispered. Grid 440 low at the outer margin, day left and challenge right up top, caption beneath the grid's band. The closest to the page you missed."
+    },
+    {
+      "id": "sm-2",
+      "page": "page-5",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "At the gutter. The same grid low at the gutter instead; the words right-aligned. Empty space now sits at the outer edge where the thumb rests."
+    },
+    {
+      "id": "sm-3",
+      "page": "page-5",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Centred. A 400 px grid centred low; the words at the gutter. Calmer, more symmetrical, a little less Ma."
+    },
+    {
+      "id": "sm-4",
+      "page": "page-5",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Words up top. Day, challenge and caption gathered into one whisper block top-left; nothing under the grid. The reader takes in everything before the puzzle."
+    },
+    {
+      "id": "sm-5",
+      "page": "page-5",
+      "x": 800,
+      "y": 2170,
+      "w": 640,
+      "text": "Inverted diagonal. Grid high at the outer margin, all the words at the bottom-left. The emptiness runs down and to the left instead."
+    },
+    {
+      "id": "sm-6",
+      "page": "page-5",
+      "x": 1600,
+      "y": 2170,
+      "w": 640,
+      "text": "Smallest. A 360 px grid low at the outer margin, one whisper line up top, caption at the bottom-left. The most empty page in the set; check the 9.5 mm cells feel right in your hand."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-4"
+    "page": "page-5"
   }
 }
