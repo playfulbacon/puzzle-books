@@ -20,6 +20,16 @@ and group name, Japanese name, rules and difficulty into one block.
 - `MaDiagonal.dc.html` — block flush right, smaller grid at the gutter
 - `MaBottom.dc.html` — block and grid stacked on the bottom margin
 - `MaBrush.dc.html` — kana in the brush face leads the block
+
+Page three, "Day forward": day and difficulty carry the page; the genre name and rules are a whisper
+or absent, on the assumption that each genre's enso opener states them once.
+
+- `DayNumeral.dc.html` — large numeral at the gutter, five circles, one-line whisper
+- `DayDiagonal.dc.html` — same block flush right, smaller grid at the gutter
+- `DayKanji.dc.html` — day in brush-face kanji numerals, title only
+- `DayDots.dc.html` — five large circles as the anchor, genre as a label under the grid
+- `DayLabelBelow.dc.html` — numeral and dots on one line, caption under the grid
+- `DayOnly.dc.html` — day and dots only
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

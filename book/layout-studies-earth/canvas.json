@@ -113,6 +113,66 @@
       "title": "Ma · brush name",
       "print": "fixed",
       "page": "page-2"
+    },
+    {
+      "file": "DayNumeral.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Day · numeral",
+      "print": "fixed",
+      "page": "page-3"
+    },
+    {
+      "file": "DayDiagonal.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Day · diagonal numeral",
+      "print": "fixed",
+      "page": "page-3"
+    },
+    {
+      "file": "DayKanji.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Day · kanji",
+      "print": "fixed",
+      "page": "page-3"
+    },
+    {
+      "file": "DayDots.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Day · dots as the mark",
+      "print": "fixed",
+      "page": "page-3"
+    },
+    {
+      "file": "DayLabelBelow.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Day · label below",
+      "print": "fixed",
+      "page": "page-3"
+    },
+    {
+      "file": "DayOnly.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Day · day only",
+      "print": "fixed",
+      "page": "page-3"
     }
   ],
   "pages": [
@@ -123,6 +183,10 @@
     {
       "id": "page-2",
       "name": "Ma variants"
+    },
+    {
+      "id": "page-3",
+      "name": "Day forward"
     }
   ],
   "annotations": [
@@ -230,10 +294,66 @@
       "y": 2170,
       "w": 640,
       "text": "Brush name. The kana leads the block in the brush face, the Latin becomes a small caption. Same geometry as the default with a different voice."
+    },
+    {
+      "id": "day-brief",
+      "page": "page-3",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Day forward. Built from the two favourites (text high / grid low, and diagonal). The day and the difficulty now carry the page; the genre name and rules are a whisper in ash grey, or gone. The assumption: each genre section opens with an enso page that names the puzzle and states its rules once."
+    },
+    {
+      "id": "day-1",
+      "page": "page-3",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "Numeral. A large light numeral at the gutter, five circles beneath, the genre and rule in 11 px ash. The grid keeps its full width."
+    },
+    {
+      "id": "day-2",
+      "page": "page-3",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "Diagonal numeral. Same block flush right at the outer edge, smaller grid at the gutter."
+    },
+    {
+      "id": "day-3",
+      "page": "page-3",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Kanji. The day in kanji numerals in the brush face, Arabic small beside it. Title kept, rules dropped."
+    },
+    {
+      "id": "day-4",
+      "page": "page-3",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Dots as the mark. The difficulty is the anchor: five large circles. The genre sits under the grid like a museum label."
+    },
+    {
+      "id": "day-5",
+      "page": "page-3",
+      "x": 800,
+      "y": 2170,
+      "w": 640,
+      "text": "Label below. Numeral and dots on one line up top; genre and rule become a 10 px caption beneath the grid."
+    },
+    {
+      "id": "day-6",
+      "page": "page-3",
+      "x": 1600,
+      "y": 2170,
+      "w": 640,
+      "text": "Day only. Nothing but the day and the dots. The grid is the only thing that says what it is. Purest, and the biggest bet on the opener pages doing their job."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-2"
+    "page": "page-3"
   }
 }

@@ -260,6 +260,97 @@ writeFileSync(join(OUT, "MaDiagonal.dc.html"), maDiagonal);
 writeFileSync(join(OUT, "MaBottom.dc.html"), maBottom);
 writeFileSync(join(OUT, "MaBrush.dc.html"), maBrush);
 
+
+// =====================================================================================
+// Day forward. Day and difficulty carry the page; title and rules whisper or vanish.
+const bigDots = (n, size = 13, gap = 10) => `<div style="display: flex; gap: ${gap}px;">${Array.from({ length: 5 }, (_, i) => `<span style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 1.5px solid ${INK}; background: ${i < n ? INK : "transparent"}; display: inline-block;"></span>`).join("")}</div>`;
+const whisper = (p, { withRules = true, size = 11, color = "#9A948A", width = 420, align = "left" } = {}) => {
+  const [name, kana] = NAMES[p.type];
+  return `<div style="display: flex; flex-direction: column; gap: 6px; width: ${width}px; text-align: ${align}; color: ${color};">
+    <span style="font-size: ${size}px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;">${name} <span class="jp" style="letter-spacing: 0.1em; text-transform: none; font-weight: 400;">${kana}</span></span>
+    ${withRules ? `<span style="font-size: ${size + 1}px; line-height: 1.5; font-style: italic;">${RULES[p.type]}</span>` : ""}
+  </div>`;
+};
+const KANJI_DAY = { 14: "十四", 22: "二十二", 31: "三十一", 47: "四十七", 58: "五十八", 63: "六十三" };
+
+// 1. Numeral. A large light numeral at the gutter, dots beneath, the genre a one-line whisper. Grid low, full width.
+const dayNumeral = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 72px; display: flex; flex-direction: column; gap: 18px; align-items: flex-start;">
+    <span class="small" style="margin-left: 6px;">Day</span>
+    <span style="font-size: 132px; font-weight: 300; line-height: 0.82; letter-spacing: -0.03em; margin-top: -8px;">63</span>
+    <div style="margin-left: 6px; margin-top: 6px;">${bigDots(3)}</div>
+    <div style="margin-left: 6px; margin-top: 10px;">${whisper(P.masyu)}</div>
+  </div>
+  ${grid(P.masyu, 50, "position: absolute; left: 68px; top: 384px; width: 536px; height: 536px;")}
+  ${folio(71, "right: 64px;")}
+</div>`);
+
+// 2. Diagonal numeral. The same block set flush right; a smaller grid at the gutter.
+const dayDiagonal = wrap(`<div class="page">
+  <div style="position: absolute; right: 64px; top: 72px; display: flex; flex-direction: column; gap: 18px; align-items: flex-end;">
+    <span class="small">Day</span>
+    <span style="font-size: 132px; font-weight: 300; line-height: 0.82; letter-spacing: -0.03em; margin-top: -8px;">31</span>
+    <div style="margin-top: 6px;">${bigDots(2)}</div>
+    <div style="margin-top: 10px;">${whisper(P.hashi, { width: 340, align: "right" })}</div>
+  </div>
+  ${grid(P.hashi, 44, "position: absolute; left: 68px; top: 452px; width: 440px; height: 440px;")}
+  ${folio(39, "right: 64px;")}
+</div>`);
+
+// 3. Kanji day. The day in kanji numerals in the brush face, Arabic small beside, dots below. Title only, no rules.
+const dayKanji = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 84px; display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+    <div style="display: flex; align-items: baseline; gap: 18px;">
+      <span class="brush" style="font-size: 84px; line-height: 1; color: ${INK};">${KANJI_DAY[47]}</span>
+      <span class="small" style="font-size: 14px;">Day 47</span>
+    </div>
+    ${bigDots(3)}
+    <div style="margin-top: 6px;">${whisper(P.gokigen, { withRules: false })}</div>
+  </div>
+  ${grid(P.gokigen, 50, "position: absolute; left: 68px; top: 372px; width: 536px; height: 536px;")}
+  ${folio(55, "right: 64px;")}
+</div>`);
+
+// 4. Dots as the mark. Difficulty is the anchor: five large circles under a small "Day 22". Title as a museum label under the grid.
+const dayDots = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 96px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;">
+    <span style="font-size: 26px; font-weight: 300; letter-spacing: 0.06em;">Day 22</span>
+    ${bigDots(2, 22, 14)}
+  </div>
+  ${grid(P.slither, 50, "position: absolute; left: 68px; top: 300px; width: 536px; height: 536px;")}
+  <div style="position: absolute; left: 72px; top: 856px;">${whisper(P.slither, { withRules: false, size: 10 })}</div>
+  ${folio(30, "right: 64px;")}
+</div>`);
+
+// 5. Label below. Big numeral and dots high; the genre and one rule line sit under the grid like a caption, smaller and greyer than anything else.
+const dayLabelBelow = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 72px; display: flex; flex-direction: row; align-items: flex-end; gap: 22px;">
+    <span style="font-size: 132px; font-weight: 300; line-height: 0.82; letter-spacing: -0.03em;">58</span>
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 8px;"><span class="small">Day</span>${bigDots(2)}</div>
+  </div>
+  ${grid(P.shikaku, 50, "position: absolute; left: 68px; top: 300px; width: 536px; height: 536px;")}
+  <div style="position: absolute; left: 72px; top: 860px;">${whisper(P.shikaku, { size: 10, width: 460 })}</div>
+  ${folio(66, "right: 64px;")}
+</div>`);
+
+// 6. Day only. Diagonal geometry, and nothing but the day and dots at the outer margin. The grid is the only thing that says what it is.
+const dayOnly = wrap(`<div class="page">
+  <div style="position: absolute; right: 64px; top: 72px; display: flex; flex-direction: column; gap: 18px; align-items: flex-end;">
+    <span class="small">Day</span>
+    <span style="font-size: 132px; font-weight: 300; line-height: 0.82; letter-spacing: -0.03em; margin-top: -8px;">14</span>
+    <div style="margin-top: 6px;">${bigDots(3)}</div>
+  </div>
+  ${grid(P.nurikabe, 55, "position: absolute; left: 68px; top: 452px; width: 440px; height: 440px;")}
+  ${folio(22, "right: 64px;")}
+</div>`);
+
+writeFileSync(join(OUT, "DayNumeral.dc.html"), dayNumeral);
+writeFileSync(join(OUT, "DayDiagonal.dc.html"), dayDiagonal);
+writeFileSync(join(OUT, "DayKanji.dc.html"), dayKanji);
+writeFileSync(join(OUT, "DayDots.dc.html"), dayDots);
+writeFileSync(join(OUT, "DayLabelBelow.dc.html"), dayLabelBelow);
+writeFileSync(join(OUT, "DayOnly.dc.html"), dayOnly);
+
 writeFileSync(join(OUT, "Main.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -281,8 +372,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("MaDiagonal.dc.html", 0, 1160, "Ma · diagonal"), page: "page-2" },
     { ...A("MaBottom.dc.html", 800, 1160, "Ma · bottom-anchored"), page: "page-2" },
     { ...A("MaBrush.dc.html", 1600, 1160, "Ma · brush name"), page: "page-2" },
+    { ...A("DayNumeral.dc.html", 0, 0, "Day · numeral"), page: "page-3" },
+    { ...A("DayDiagonal.dc.html", 800, 0, "Day · diagonal numeral"), page: "page-3" },
+    { ...A("DayKanji.dc.html", 1600, 0, "Day · kanji"), page: "page-3" },
+    { ...A("DayDots.dc.html", 0, 1160, "Day · dots as the mark"), page: "page-3" },
+    { ...A("DayLabelBelow.dc.html", 800, 1160, "Day · label below"), page: "page-3" },
+    { ...A("DayOnly.dc.html", 1600, 1160, "Day · day only"), page: "page-3" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -298,7 +395,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "ma-4", page: "page-2", x: 0, y: 2170, w: 640, text: "Diagonal. Block flush right at the outer margin, smaller grid at the gutter. The emptiness runs corner to corner. Most tension, least symmetry." },
     { id: "ma-5", page: "page-2", x: 800, y: 2170, w: 640, text: "Bottom-anchored. Block and grid stack on the bottom margin; the whole top half is silence. Reads as one heavy object placed on a shelf." },
     { id: "ma-6", page: "page-2", x: 1600, y: 2170, w: 640, text: "Brush name. The kana leads the block in the brush face, the Latin becomes a small caption. Same geometry as the default with a different voice." },
+    { id: "day-brief", page: "page-3", x: 0, y: -230, w: 1240, text: "Day forward. Built from the two favourites (text high / grid low, and diagonal). The day and the difficulty now carry the page; the genre name and rules are a whisper in ash grey, or gone. The assumption: each genre section opens with an enso page that names the puzzle and states its rules once." },
+    { id: "day-1", page: "page-3", x: 0, y: -110, w: 640, text: "Numeral. A large light numeral at the gutter, five circles beneath, the genre and rule in 11 px ash. The grid keeps its full width." },
+    { id: "day-2", page: "page-3", x: 800, y: -110, w: 640, text: "Diagonal numeral. Same block flush right at the outer edge, smaller grid at the gutter." },
+    { id: "day-3", page: "page-3", x: 1600, y: -110, w: 640, text: "Kanji. The day in kanji numerals in the brush face, Arabic small beside it. Title kept, rules dropped." },
+    { id: "day-4", page: "page-3", x: 0, y: 2170, w: 640, text: "Dots as the mark. The difficulty is the anchor: five large circles. The genre sits under the grid like a museum label." },
+    { id: "day-5", page: "page-3", x: 800, y: 2170, w: 640, text: "Label below. Numeral and dots on one line up top; genre and rule become a 10 px caption beneath the grid." },
+    { id: "day-6", page: "page-3", x: 1600, y: 2170, w: 640, text: "Day only. Nothing but the day and the dots. The grid is the only thing that says what it is. Purest, and the biggest bet on the opener pages doing their job." },
   ],
-  launch: { view: "canvas", page: "page-2" },
+  launch: { view: "canvas", page: "page-3" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);
