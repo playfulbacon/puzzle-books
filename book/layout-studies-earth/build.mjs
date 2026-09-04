@@ -566,6 +566,16 @@ const hiCentredAshDots = wrap(`<div class="page">
   <div class="folio" style="position: absolute; bottom: 30px; right: 64px;">30</div>
 </div>`);
 writeFileSync(join(OUT, "HiCentredAshDots.dc.html"), hiCentredAshDots);
+// Text-width: the visible grid edges sit exactly on the text margins (72 px and 64 px), so the
+// dots, the day line and the caption share the same left and right edges. Slitherlink's drawing
+// pads half a cell around the dots, so the box is sized and offset to put the dots on the margins.
+const hiTextWidth = (() => { const p = P.slither, cols = p.params.cols, visible = 672 - 72 - 64, cell = visible / cols, size = cell * (cols + 1), left = 72 - cell / 2, top = (960 - size) / 2; return wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; right: 64px; top: 96px; display: flex; justify-content: space-between; align-items: baseline;"><div style="display: flex; align-items: baseline; gap: 14px;">${dayInk(22)}${kanjiInk(22)}</div>${quietDots(2, 5, 5)}</div>
+  ${inkedAt(p, size, left, top)}
+  <div style="position: absolute; left: 72px; bottom: 64px;">${whisper(p, { size: 10, width: 536 })}</div>
+  <div class="folio" style="position: absolute; bottom: 30px; right: 64px;">30</div>
+</div>`); })();
+writeFileSync(join(OUT, "HiTextWidth.dc.html"), hiTextWidth);
 writeFileSync(join(OUT, "HiLeft.dc.html"), hiLeft);
 writeFileSync(join(OUT, "HiStrong.dc.html"), hiStrong);
 writeFileSync(join(OUT, "HiRight.dc.html"), hiRight);
@@ -652,6 +662,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("HiTwoEndsInkLow.dc.html", 3200, 1160, "Hand-inked · two ends, in ink, lower"), page: "page-7" },
     { ...A("HiCentred.dc.html", 4000, 1160, "Hand-inked · centred, caption at the foot"), page: "page-7" },
     { ...A("HiCentredAshDots.dc.html", 4800, 1160, "Hand-inked · centred, ash dots"), page: "page-7" },
+    { ...A("HiTextWidth.dc.html", 5600, 1160, "Hand-inked · text-width grid"), page: "page-7" },
   ],
   pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }],
   annotations: [
@@ -704,6 +715,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
+    { id: "hi-11", page: "page-7", x: 5600, y: 2170, w: 640, text: "Text-width. The grid's outer dots sit exactly on the text margins, so the day line, the grid and the caption share one left edge and one right edge. Cells are 14.2 mm, the largest in the set." },
     { id: "hi-10", page: "page-7", x: 4800, y: 2170, w: 640, text: "Centred, ash dots. The same page with the dots in the caption's ash; only the day and the puzzle remain in ink." },
     { id: "hi-9", page: "page-7", x: 4000, y: 2170, w: 640, text: "Centred. A 440 px grid dead centre with equal space on every side; the ink day line up top; the caption anchored to the bottom margin. The most symmetrical page in the set." },
     { id: "hi-8", page: "page-7", x: 3200, y: 2170, w: 640, text: "Two ends, in ink, lower. The grid drops 70 px and the caption tucks in 16 px beneath it, so puzzle and caption read as one object and the empty band above grows to a third of the page." },

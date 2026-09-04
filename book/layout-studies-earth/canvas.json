@@ -451,6 +451,16 @@
       "title": "Hand-inked · centred, ash dots",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "HiTextWidth.dc.html",
+      "x": 5600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · text-width grid",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -866,6 +876,14 @@
       "y": 2170,
       "w": 640,
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
+    },
+    {
+      "id": "hi-11",
+      "page": "page-7",
+      "x": 5600,
+      "y": 2170,
+      "w": 640,
+      "text": "Text-width. The grid's outer dots sit exactly on the text margins, so the day line, the grid and the caption share one left edge and one right edge. Cells are 14.2 mm, the largest in the set."
     },
     {
       "id": "hi-10",
