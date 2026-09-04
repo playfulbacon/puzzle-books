@@ -441,6 +441,16 @@
       "title": "Hand-inked · centred, caption at the foot",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "HiCentredAshDots.dc.html",
+      "x": 4800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · centred, ash dots",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -856,6 +866,14 @@
       "y": 2170,
       "w": 640,
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
+    },
+    {
+      "id": "hi-10",
+      "page": "page-7",
+      "x": 4800,
+      "y": 2170,
+      "w": 640,
+      "text": "Centred, ash dots. The same page with the dots in the caption's ash; only the day and the puzzle remain in ink."
     },
     {
       "id": "hi-9",
