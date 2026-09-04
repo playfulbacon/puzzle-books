@@ -265,10 +265,10 @@ writeFileSync(join(OUT, "MaBrush.dc.html"), maBrush);
 // =====================================================================================
 // Day forward. Day and difficulty carry the page; title and rules whisper or vanish.
 const bigDots = (n, size = 13, gap = 10) => `<div style="display: flex; gap: ${gap}px;">${Array.from({ length: 5 }, (_, i) => `<span style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 1.5px solid ${INK}; background: ${i < n ? INK : "transparent"}; display: inline-block;"></span>`).join("")}</div>`;
-const whisper = (p, { withRules = true, size = 11, color = "#9A948A", width = 420, align = "left" } = {}) => {
+const whisper = (p, { withRules = true, size = 11, color = "#9A948A", width = 420, align = "left", kana: showKana = true } = {}) => {
   const [name, kana] = NAMES[p.type];
   return `<div style="display: flex; flex-direction: column; gap: 6px; width: ${width}px; text-align: ${align}; color: ${color};">
-    <span style="font-size: ${size}px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;">${name} <span class="jp" style="letter-spacing: 0.1em; text-transform: none; font-weight: 400;">${kana}</span></span>
+    <span style="font-size: ${size}px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;">${name}${showKana ? ` <span class="jp" style="letter-spacing: 0.1em; text-transform: none; font-weight: 400;">${kana}</span>` : ""}</span>
     ${withRules ? `<span style="font-size: ${size + 1}px; line-height: 1.5; font-style: italic;">${RULES[p.type]}</span>` : ""}
   </div>`;
 };
@@ -635,7 +635,26 @@ writeFileSync(join(OUT, "RfZenKaku.dc.html"), formatPageDotsLow(P.slither, 22, 2
 writeFileSync(join(OUT, "RfShikakuGaramond.dc.html"), formatPageDotsLow(P.shikaku, 58, 2, 66, { font: FONTS_TRY.ebgaramond }));
 writeFileSync(join(OUT, "RfMasyu.dc.html"), formatPageDotsLow(P.masyu, 63, 3, 71));
 writeFileSync(join(OUT, "RfHashiGaramond.dc.html"), formatPageDotsLow(P.hashi, 31, 2, 39, { font: FONTS_TRY.ebgaramond }));
-writeFileSync(join(OUT, "Main.dc.html"), formatPage(P.slither, 22, 2, 30));
+// Final format: EB Garamond digits (now the core default), larger ink day, no Japanese.
+const dayLarge = (day) => `<span style="font-size: 18px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: ${INK};">Day ${day}</span>`;
+const finalPage = (p, day, band, folioNo) => {
+  const cols = p.params.cols, L = 96, R = 88, visible = 672 - L - R;
+  const extra = p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3;
+  const cell = visible / cols, size = cell * (cols + extra), left = L - (extra / 2) * cell, top = (960 - size) / 2;
+  return wrap(`<div class="page">
+  <div style="position: absolute; left: ${L}px; top: 100px;">${dayLarge(day)}</div>
+  ${inkedAt(p, size, left, top)}
+  <div style="position: absolute; left: ${L}px; bottom: 72px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">${quietDots(band, 5, 5)}${whisper(p, { size: 10, width: visible, kana: false })}</div>
+  <div class="folio" style="position: absolute; bottom: 34px; right: ${R}px;">${folioNo}</div>
+</div>`);
+};
+writeFileSync(join(OUT, "Main.dc.html"), finalPage(P.slither, 22, 2, 30));
+writeFileSync(join(OUT, "FinMasyu.dc.html"), finalPage(P.masyu, 63, 3, 71));
+writeFileSync(join(OUT, "FinGokigen.dc.html"), finalPage(P.gokigen, 47, 3, 55));
+writeFileSync(join(OUT, "FinHashi.dc.html"), finalPage(P.hashi, 31, 2, 39));
+writeFileSync(join(OUT, "FinShikaku.dc.html"), finalPage(P.shikaku, 58, 2, 66));
+writeFileSync(join(OUT, "FinNurikabe.dc.html"), finalPage(P.nurikabe, 14, 3, 22));
+writeFileSync(join(OUT, "FmtSlitherlink.dc.html"), formatPage(P.slither, 22, 2, 30));
 writeFileSync(join(OUT, "FmtMasyu.dc.html"), formatPage(P.masyu, 63, 3, 71));
 writeFileSync(join(OUT, "FmtGokigen.dc.html"), formatPage(P.gokigen, 47, 3, 55));
 writeFileSync(join(OUT, "FmtHashi.dc.html"), formatPage(P.hashi, 31, 2, 39));
@@ -729,7 +748,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("HiCentredAshDots.dc.html", 4800, 1160, "Hand-inked · centred, ash dots"), page: "page-7" },
     { ...A("HiTextWidth.dc.html", 5600, 1160, "Hand-inked · text-width grid"), page: "page-7" },
     { ...A("HiTextWidthIn.dc.html", 6400, 1160, "Hand-inked · text-width, margins in"), page: "page-7" },
-    { ...A("Main.dc.html", 0, 0, "Slitherlink"), page: "page-8" },
+    { ...A("FmtSlitherlink.dc.html", 0, 0, "Slitherlink"), page: "page-8" },
     { ...A("FmtMasyu.dc.html", 800, 0, "Masyu"), page: "page-8" },
     { ...A("FmtGokigen.dc.html", 1600, 0, "Gokigen Naname"), page: "page-8" },
     { ...A("FmtHashi.dc.html", 0, 1160, "Hashiwokakero"), page: "page-8" },
@@ -749,8 +768,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("RfShikakuGaramond.dc.html", 800, 1160, "Shikaku · light grid, EB Garamond"), page: "page-10" },
     { ...A("RfMasyu.dc.html", 1600, 1160, "Masyu · paper pearls, light grid"), page: "page-10" },
     { ...A("RfHashiGaramond.dc.html", 2400, 1160, "Hashi · paper islands, EB Garamond"), page: "page-10" },
+    { ...A("Main.dc.html", 0, 0, "Slitherlink"), page: "page-11" },
+    { ...A("FinMasyu.dc.html", 800, 0, "Masyu"), page: "page-11" },
+    { ...A("FinGokigen.dc.html", 1600, 0, "Gokigen Naname"), page: "page-11" },
+    { ...A("FinHashi.dc.html", 0, 1160, "Hashiwokakero"), page: "page-11" },
+    { ...A("FinShikaku.dc.html", 800, 1160, "Shikaku"), page: "page-11" },
+    { ...A("FinNurikabe.dc.html", 1600, 1160, "Nurikabe"), page: "page-11" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }, { id: "page-8", name: "The format, all genres" }, { id: "page-9", name: "The format, dots above the title" }, { id: "page-10", name: "Puzzle refinements" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }, { id: "page-8", name: "The format, all genres" }, { id: "page-9", name: "The format, dots above the title" }, { id: "page-10", name: "Puzzle refinements" }, { id: "page-11", name: "Final format" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -801,6 +826,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
+    { id: "fin-brief", page: "page-11", x: 0, y: -200, w: 1240, text: "Final format, all genres. EB Garamond digits everywhere (now the default in the shared core, so the review site matches). The day steps up to 18 px in ink; no Japanese anywhere on the page. Dots then genre name then one rule line at the foot, all in ash. Lighter grids, paper-toned fills, the hand-ruled wobble." },
     { id: "rf-brief", page: "page-10", x: 0, y: -230, w: 1240, text: "Puzzle refinements, in the shared core so the book and the review site draw the same thing. No white anywhere: pearls, islands and vertex circles fill with the paper tone. Grids go light: inner rules 0.012 of a cell in ash, only the outer border in ink at 0.03; Slitherlink dots and pearl strokes thinner too. The top row tries five digit faces on the same Slitherlink; the bottom row shows the lighter grids on Shikaku, Masyu and Hashi." },
     { id: "rf-1", page: "page-10", x: 0, y: -110, w: 640, text: "Cormorant Garamond. Matches the page type exactly; lining figures, fine and a little delicate at this size." },
     { id: "rf-2", page: "page-10", x: 800, y: -110, w: 640, text: "EB Garamond. A sturdier Garamond; same family feeling, more ink on the page, reads clearly at 12.9 mm cells. Recommended." },
@@ -816,6 +842,6 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-8", page: "page-7", x: 3200, y: 2170, w: 640, text: "Two ends, in ink, lower. The grid drops 70 px and the caption tucks in 16 px beneath it, so puzzle and caption read as one object and the empty band above grows to a third of the page." },
     { id: "hi-7", page: "page-7", x: 2400, y: 2170, w: 640, text: "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px." },
   ],
-  launch: { view: "canvas", page: "page-10" },
+  launch: { view: "canvas", page: "page-11" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);

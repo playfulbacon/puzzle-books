@@ -473,7 +473,7 @@
       "page": "page-7"
     },
     {
-      "file": "Main.dc.html",
+      "file": "FmtSlitherlink.dc.html",
       "x": 0,
       "y": 0,
       "w": 672,
@@ -671,6 +671,66 @@
       "title": "Hashi · paper islands, EB Garamond",
       "print": "fixed",
       "page": "page-10"
+    },
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Slitherlink",
+      "print": "fixed",
+      "page": "page-11"
+    },
+    {
+      "file": "FinMasyu.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Masyu",
+      "print": "fixed",
+      "page": "page-11"
+    },
+    {
+      "file": "FinGokigen.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Gokigen Naname",
+      "print": "fixed",
+      "page": "page-11"
+    },
+    {
+      "file": "FinHashi.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hashiwokakero",
+      "print": "fixed",
+      "page": "page-11"
+    },
+    {
+      "file": "FinShikaku.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Shikaku",
+      "print": "fixed",
+      "page": "page-11"
+    },
+    {
+      "file": "FinNurikabe.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Nurikabe",
+      "print": "fixed",
+      "page": "page-11"
     }
   ],
   "pages": [
@@ -713,6 +773,10 @@
     {
       "id": "page-10",
       "name": "Puzzle refinements"
+    },
+    {
+      "id": "page-11",
+      "name": "Final format"
     }
   ],
   "annotations": [
@@ -1100,6 +1164,14 @@
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
     },
     {
+      "id": "fin-brief",
+      "page": "page-11",
+      "x": 0,
+      "y": -200,
+      "w": 1240,
+      "text": "Final format, all genres. EB Garamond digits everywhere (now the default in the shared core, so the review site matches). The day steps up to 18 px in ink; no Japanese anywhere on the page. Dots then genre name then one rule line at the foot, all in ash. Lighter grids, paper-toned fills, the hand-ruled wobble."
+    },
+    {
       "id": "rf-brief",
       "page": "page-10",
       "x": 0,
@@ -1214,6 +1286,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-10"
+    "page": "page-11"
   }
 }

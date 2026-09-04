@@ -77,7 +77,7 @@ kanji and dots up top, whispered caption beneath.
 
 Page eight, "The format, all genres": the chosen page format (margins 96 / 88 px, grid edges on the
 text margins, centred vertically, ink day with kanji, ash dots, whispered caption, hand-ruled wobble)
-applied to every genre. `Main.dc.html` is the Slitherlink page; `FmtMasyu`, `FmtGokigen`, `FmtHashi`,
+applied to every genre. `FmtSlitherlink.dc.html` is the Slitherlink page; `FmtMasyu`, `FmtGokigen`, `FmtHashi`,
 `FmtShikaku`, `FmtNurikabe` are the others.
 
 Page nine, "The format, dots above the title": the same format with only the day on the top line
@@ -89,6 +89,10 @@ review site agree. No white fills (paper tone instead), inner grid rules 0.012 o
 with only the outer border in ink, thinner dots and pearl strokes, and a digit-font option.
 `RfCormorant`, `RfGaramond`, `RfShippori`, `RfKlee`, `RfZenKaku` try five faces on one
 Slitherlink; `RfShikakuGaramond`, `RfMasyu`, `RfHashiGaramond` show the lighter grids.
+
+Page eleven, "Final format": EB Garamond digits (the core default), 18 px ink day, no Japanese,
+dots then genre name then one rule line at the foot. `Main.dc.html` is the Slitherlink page;
+`FinMasyu`, `FinGokigen`, `FinHashi`, `FinShikaku`, `FinNurikabe` are the others.
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

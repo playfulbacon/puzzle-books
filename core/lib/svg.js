@@ -1,7 +1,7 @@
 // Shared drawing constants so every genre draws with the same ink, weights, and type.
 export const INK = "#1c1b18";
 export const PAPER = "#ffffff";
-export const DIGIT_FONT = "'IBM Plex Sans', Helvetica, Arial, sans-serif";
+export const DIGIT_FONT = "'EB Garamond', Garamond, 'Palatino Linotype', Georgia, serif";
 // Line weights as fractions of a cell, and the soft tone for inner rules. Outer borders stay ink.
 export const LINE_INNER = 0.012, LINE_OUTER = 0.03, SOFT = "#9a948a";
 export const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
