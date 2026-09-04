@@ -421,6 +421,16 @@
       "title": "Hand-inked · two ends, in ink",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "HiTwoEndsInkLow.dc.html",
+      "x": 3200,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · two ends, in ink, lower",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -838,6 +848,14 @@
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
     },
     {
+      "id": "hi-8",
+      "page": "page-7",
+      "x": 3200,
+      "y": 2170,
+      "w": 640,
+      "text": "Two ends, in ink, lower. The grid drops 70 px and the caption tucks in 16 px beneath it, so puzzle and caption read as one object and the empty band above grows to a third of the page."
+    },
+    {
       "id": "hi-7",
       "page": "page-7",
       "x": 2400,
@@ -848,6 +866,6 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-1"
+    "page": "page-7"
   }
 }
