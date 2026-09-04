@@ -431,6 +431,16 @@
       "title": "Hand-inked · two ends, in ink, lower",
       "print": "fixed",
       "page": "page-7"
+    },
+    {
+      "file": "HiCentred.dc.html",
+      "x": 4000,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Hand-inked · centred, caption at the foot",
+      "print": "fixed",
+      "page": "page-7"
     }
   ],
   "pages": [
@@ -846,6 +856,14 @@
       "y": 2170,
       "w": 640,
       "text": "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most."
+    },
+    {
+      "id": "hi-9",
+      "page": "page-7",
+      "x": 4000,
+      "y": 2170,
+      "w": 640,
+      "text": "Centred. A 440 px grid dead centre with equal space on every side; the ink day line up top; the caption anchored to the bottom margin. The most symmetrical page in the set."
     },
     {
       "id": "hi-8",

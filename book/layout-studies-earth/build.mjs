@@ -544,6 +544,20 @@ const hiTwoEndsInkLow = wrap(`<div class="page">
   ${folio(30, "right: 64px;")}
 </div>`);
 writeFileSync(join(OUT, "HiTwoEndsInkLow.dc.html"), hiTwoEndsInkLow);
+// Centred: a 440 px grid in the middle of the page with space on every side; day line up top;
+// the caption anchored to the bottom margin.
+const inkedAt = (p, size, left, top, scale = 1.6, seed = 11) => { const cell = size / (p.params.cols + (p.type === "slitherlink" || p.type === "hashi" || p.type === "gokigen" ? 1 : 0.3)); return `
+  <div style="position: absolute; left: ${left}px; top: ${top}px; width: ${size}px; height: ${size}px;">
+    <svg width="0" height="0" style="position:absolute;"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="${seed}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="${scale}"/></filter></defs></svg>
+    <div style="width: 100%; height: 100%; filter: url(#ink);">${art(p, cell)}</div>
+  </div>`; };
+const hiCentred = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; right: 64px; top: 96px; display: flex; justify-content: space-between; align-items: baseline;"><div style="display: flex; align-items: baseline; gap: 14px;">${dayInk(22)}${kanjiInk(22)}</div>${inkDots(2)}</div>
+  ${inkedAt(P.slither, 440, (672 - 440) / 2, (960 - 440) / 2)}
+  <div style="position: absolute; left: 72px; bottom: 64px;">${whisper(P.slither, { size: 10, width: 460 })}</div>
+  <div class="folio" style="position: absolute; bottom: 30px; right: 64px;">30</div>
+</div>`);
+writeFileSync(join(OUT, "HiCentred.dc.html"), hiCentred);
 writeFileSync(join(OUT, "HiLeft.dc.html"), hiLeft);
 writeFileSync(join(OUT, "HiStrong.dc.html"), hiStrong);
 writeFileSync(join(OUT, "HiRight.dc.html"), hiRight);
@@ -628,6 +642,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("HiNuri.dc.html", 1600, 1160, "Hand-inked · medium wobble"), page: "page-7" },
     { ...A("HiTwoEndsInk.dc.html", 2400, 1160, "Hand-inked · two ends, in ink"), page: "page-7" },
     { ...A("HiTwoEndsInkLow.dc.html", 3200, 1160, "Hand-inked · two ends, in ink, lower"), page: "page-7" },
+    { ...A("HiCentred.dc.html", 4000, 1160, "Hand-inked · centred, caption at the foot"), page: "page-7" },
   ],
   pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }, { id: "page-5", name: "Ma, small grid" }, { id: "page-6", name: "Chosen" }, { id: "page-7", name: "Hand-inked, refined" }],
   annotations: [
@@ -680,6 +695,7 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "hi-4", page: "page-7", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, dots at the outer margin, on one line spanning the grid." },
     { id: "hi-5", page: "page-7", x: 800, y: 2170, w: 640, text: "Crosswise. Day and dots left above, caption right below." },
     { id: "hi-6", page: "page-7", x: 1600, y: 2170, w: 640, text: "Medium wobble on a Nurikabe grid, whose heavy border shows the effect most." },
+    { id: "hi-9", page: "page-7", x: 4000, y: 2170, w: 640, text: "Centred. A 440 px grid dead centre with equal space on every side; the ink day line up top; the caption anchored to the bottom margin. The most symmetrical page in the set." },
     { id: "hi-8", page: "page-7", x: 3200, y: 2170, w: 640, text: "Two ends, in ink, lower. The grid drops 70 px and the caption tucks in 16 px beneath it, so puzzle and caption read as one object and the empty band above grows to a third of the page." },
     { id: "hi-7", page: "page-7", x: 2400, y: 2170, w: 640, text: "Two ends, in ink. The same page with the whole upper line, day, kanji and dots, in the puzzle's black, and the dots down to 5 px." },
   ],

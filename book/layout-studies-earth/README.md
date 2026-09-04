@@ -70,6 +70,7 @@ kanji and dots up top, whispered caption beneath.
 - `HiNuri.dc.html` — medium wobble on a heavy-bordered Nurikabe grid
 - `HiTwoEndsInk.dc.html` — two ends with the whole upper line in ink and 5 px dots
 - `HiTwoEndsInkLow.dc.html` — the same, grid lower and caption tucked close beneath it
+- `HiCentred.dc.html` — 440 px grid centred on the page, caption anchored to the bottom margin
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).
