@@ -173,6 +173,66 @@
       "title": "Day · day only",
       "print": "fixed",
       "page": "page-3"
+    },
+    {
+      "file": "LbLeftStacked.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Label below · left, stacked",
+      "print": "fixed",
+      "page": "page-4"
+    },
+    {
+      "file": "LbLeftLine.dc.html",
+      "x": 800,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Label below · left, one line",
+      "print": "fixed",
+      "page": "page-4"
+    },
+    {
+      "file": "LbRightStacked.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 672,
+      "h": 960,
+      "title": "Label below · right, stacked",
+      "print": "fixed",
+      "page": "page-4"
+    },
+    {
+      "file": "LbTwoEnds.dc.html",
+      "x": 0,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Label below · two ends",
+      "print": "fixed",
+      "page": "page-4"
+    },
+    {
+      "file": "LbCrosswise.dc.html",
+      "x": 800,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Label below · crosswise",
+      "print": "fixed",
+      "page": "page-4"
+    },
+    {
+      "file": "LbAllBelow.dc.html",
+      "x": 1600,
+      "y": 1160,
+      "w": 672,
+      "h": 960,
+      "title": "Label below · all below",
+      "print": "fixed",
+      "page": "page-4"
     }
   ],
   "pages": [
@@ -187,6 +247,10 @@
     {
       "id": "page-3",
       "name": "Day forward"
+    },
+    {
+      "id": "page-4",
+      "name": "Label below, refined"
     }
   ],
   "annotations": [
@@ -350,10 +414,66 @@
       "y": 2170,
       "w": 640,
       "text": "Day only. Nothing but the day and the dots. The grid is the only thing that says what it is. Purest, and the biggest bet on the opener pages doing their job."
+    },
+    {
+      "id": "lb-brief",
+      "page": "page-4",
+      "x": 0,
+      "y": -230,
+      "w": 1240,
+      "text": "Label below, refined. Day and challenge come down to the same whisper weight and ash colour as the caption: 13 px spaced capitals, 9 px circles. Day and its number sit together; the word Challenge sits beside the dots. No offsets. The grid keeps its band; the genre and one rule line stay as the caption beneath it."
+    },
+    {
+      "id": "lb-1",
+      "page": "page-4",
+      "x": 0,
+      "y": -110,
+      "w": 640,
+      "text": "Left, stacked. Day above challenge at the gutter. Caption below at the gutter."
+    },
+    {
+      "id": "lb-2",
+      "page": "page-4",
+      "x": 800,
+      "y": -110,
+      "w": 640,
+      "text": "Left, one line. Day and challenge on a single line, a wide space between them."
+    },
+    {
+      "id": "lb-3",
+      "page": "page-4",
+      "x": 1600,
+      "y": -110,
+      "w": 640,
+      "text": "Right, stacked. Everything at the outer margin, caption right-aligned too; the folio moves to the gutter."
+    },
+    {
+      "id": "lb-4",
+      "page": "page-4",
+      "x": 0,
+      "y": 2170,
+      "w": 640,
+      "text": "Two ends. Day at the gutter, challenge at the outer margin on one line, spanning the grid's width. Caption left."
+    },
+    {
+      "id": "lb-5",
+      "page": "page-4",
+      "x": 800,
+      "y": 2170,
+      "w": 640,
+      "text": "Crosswise. Day and challenge right-aligned above; caption left below. The two texts frame the grid diagonally."
+    },
+    {
+      "id": "lb-6",
+      "page": "page-4",
+      "x": 1600,
+      "y": 2170,
+      "w": 640,
+      "text": "All below. Nothing above the grid at all; caption left and day/challenge right share the line beneath it. The quietest of the six."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-3"
+    "page": "page-4"
   }
 }

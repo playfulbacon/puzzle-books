@@ -30,6 +30,14 @@ or absent, on the assumption that each genre's enso opener states them once.
 - `DayDots.dc.html` — five large circles as the anchor, genre as a label under the grid
 - `DayLabelBelow.dc.html` — numeral and dots on one line, caption under the grid
 - `DayOnly.dc.html` — day and dots only
+
+Page four, "Label below, refined": day and challenge at whisper weight and colour, set simply.
+
+- `LbLeftStacked.dc.html`, `LbLeftLine.dc.html` — left-aligned, stacked or one line
+- `LbRightStacked.dc.html` — right-aligned, caption right-aligned too
+- `LbTwoEnds.dc.html` — day at the gutter, challenge at the outer margin
+- `LbCrosswise.dc.html` — right-aligned above, caption left below
+- `LbAllBelow.dc.html` — nothing above the grid; everything on the line beneath it
 - `build.mjs` regenerates the pages from the batches: `node book/layout-studies-earth/build.mjs <outdir>`
 
 Palette: paper #F3EEE3, ink #1A1917, ash #8E877B, clay #B5643C (accent variant only).

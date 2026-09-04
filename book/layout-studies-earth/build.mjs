@@ -351,6 +351,63 @@ writeFileSync(join(OUT, "DayDots.dc.html"), dayDots);
 writeFileSync(join(OUT, "DayLabelBelow.dc.html"), dayLabelBelow);
 writeFileSync(join(OUT, "DayOnly.dc.html"), dayOnly);
 
+
+// =====================================================================================
+// Label below, refined. Day and challenge at whisper weight and colour, set simply on a line.
+const ASH = "#9A948A";
+const quietDots = (n, size = 9, gap = 7) => `<span style="display: inline-flex; gap: ${gap}px; align-items: center;">${Array.from({ length: 5 }, (_, i) => `<span style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 1.2px solid ${ASH}; background: ${i < n ? ASH : "transparent"}; display: inline-block;"></span>`).join("")}</span>`;
+const meta = (text) => `<span style="font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: ${ASH};">${text}</span>`;
+const dayLine = (day) => meta(`Day ${day}`);
+const challengeLine = (band) => `<span style="display: inline-flex; align-items: center; gap: 12px;">${meta("Challenge")}${quietDots(band)}</span>`;
+const GRID_TOP = 300;
+const gridBand = (p) => grid(p, 50, `position: absolute; left: 68px; top: ${GRID_TOP}px; width: 536px; height: 536px;`);
+const caption = (p, side = "left") => `<div style="position: absolute; ${side}: ${side === "left" ? 72 : 64}px; top: 862px;">${whisper(p, { size: 10, width: side === "left" ? 460 : 536, align: side })}</div>`;
+
+// 1. Left, stacked. Day above challenge at the gutter; caption below left.
+const lbLeftStacked = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 96px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">${dayLine(58)}${challengeLine(2)}</div>
+  ${gridBand(P.shikaku)}${caption(P.shikaku)}${folio(66, "right: 64px;")}
+</div>`);
+
+// 2. Left, one line. Day and challenge on a single line, separated by a wide space.
+const lbLeftLine = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; top: 96px; display: flex; gap: 36px; align-items: center;">${dayLine(63)}${challengeLine(3)}</div>
+  ${gridBand(P.masyu)}${caption(P.masyu)}${folio(71, "right: 64px;")}
+</div>`);
+
+// 3. Right, stacked. Everything at the outer margin, caption right-aligned too.
+const lbRightStacked = wrap(`<div class="page">
+  <div style="position: absolute; right: 64px; top: 96px; display: flex; flex-direction: column; gap: 14px; align-items: flex-end;">${dayLine(47)}${challengeLine(3)}</div>
+  ${gridBand(P.gokigen)}${caption(P.gokigen, "right")}${folio(55, "left: 72px;")}
+</div>`);
+
+// 4. Two ends. Day at the gutter, challenge at the outer margin, one line; caption below left.
+const lbTwoEnds = wrap(`<div class="page">
+  <div style="position: absolute; left: 72px; right: 64px; top: 96px; display: flex; justify-content: space-between; align-items: center;">${dayLine(22)}${challengeLine(2)}</div>
+  ${gridBand(P.slither)}${caption(P.slither)}${folio(30, "right: 64px;")}
+</div>`);
+
+// 5. Crosswise. Day and challenge right-aligned up top, caption left below.
+const lbCrosswise = wrap(`<div class="page">
+  <div style="position: absolute; right: 64px; top: 96px; display: flex; gap: 36px; align-items: center;">${dayLine(31)}${challengeLine(2)}</div>
+  ${gridBand(P.hashi)}${caption(P.hashi)}${folio(39, "right: 64px;")}
+</div>`);
+
+// 6. All below. Nothing above the grid; caption left and day/challenge right share the line under it.
+const lbAllBelow = wrap(`<div class="page">
+  ${gridBand(P.nurikabe.type ? { ...P.nurikabe } : P.nurikabe)}
+  <div style="position: absolute; left: 72px; top: 852px;">${whisper(P.nurikabe, { size: 10, width: 330 })}</div>
+  <div style="position: absolute; right: 64px; top: 852px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">${dayLine(14)}${challengeLine(3)}</div>
+  <div class="folio" style="position: absolute; bottom: 16px; left: 0; right: 0; text-align: center;">22</div>
+</div>`);
+
+writeFileSync(join(OUT, "LbLeftStacked.dc.html"), lbLeftStacked);
+writeFileSync(join(OUT, "LbLeftLine.dc.html"), lbLeftLine);
+writeFileSync(join(OUT, "LbRightStacked.dc.html"), lbRightStacked);
+writeFileSync(join(OUT, "LbTwoEnds.dc.html"), lbTwoEnds);
+writeFileSync(join(OUT, "LbCrosswise.dc.html"), lbCrosswise);
+writeFileSync(join(OUT, "LbAllBelow.dc.html"), lbAllBelow);
+
 writeFileSync(join(OUT, "Main.dc.html"), creamAndInk);
 writeFileSync(join(OUT, "EnsoOpener.dc.html"), ensoOpener);
 writeFileSync(join(OUT, "Tategaki.dc.html"), tategaki);
@@ -378,8 +435,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { ...A("DayDots.dc.html", 0, 1160, "Day · dots as the mark"), page: "page-3" },
     { ...A("DayLabelBelow.dc.html", 800, 1160, "Day · label below"), page: "page-3" },
     { ...A("DayOnly.dc.html", 1600, 1160, "Day · day only"), page: "page-3" },
+    { ...A("LbLeftStacked.dc.html", 0, 0, "Label below · left, stacked"), page: "page-4" },
+    { ...A("LbLeftLine.dc.html", 800, 0, "Label below · left, one line"), page: "page-4" },
+    { ...A("LbRightStacked.dc.html", 1600, 0, "Label below · right, stacked"), page: "page-4" },
+    { ...A("LbTwoEnds.dc.html", 0, 1160, "Label below · two ends"), page: "page-4" },
+    { ...A("LbCrosswise.dc.html", 800, 1160, "Label below · crosswise"), page: "page-4" },
+    { ...A("LbAllBelow.dc.html", 1600, 1160, "Label below · all below"), page: "page-4" },
   ],
-  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }],
+  pages: [{ id: "page-1", name: "Earth and ink" }, { id: "page-2", name: "Ma variants" }, { id: "page-3", name: "Day forward" }, { id: "page-4", name: "Label below, refined" }],
   annotations: [
     { id: "brief", x: 0, y: -260, w: 1240, text: "Earth and ink. Cream stock (#F3EEE3, free on black-and-white print-on-demand), one black ink, Cormorant Garamond for Latin, Yuji Syuku brush kana for the Japanese names, IBM Plex Sans digits inside the grids. All puzzles on these pages are real, verified-unique puzzles from the review batches. 7 × 10 in, right-hand pages, 0.75 in gutter." },
     { id: "n-main", x: 0, y: -120, w: 640, text: "Cream and ink. The base page. Type shrinks, the grid drops into the lower two thirds, nothing is ruled or boxed. The restraint is the design." },
@@ -402,7 +465,14 @@ writeFileSync(join(OUT, "canvas.json"), JSON.stringify({
     { id: "day-4", page: "page-3", x: 0, y: 2170, w: 640, text: "Dots as the mark. The difficulty is the anchor: five large circles. The genre sits under the grid like a museum label." },
     { id: "day-5", page: "page-3", x: 800, y: 2170, w: 640, text: "Label below. Numeral and dots on one line up top; genre and rule become a 10 px caption beneath the grid." },
     { id: "day-6", page: "page-3", x: 1600, y: 2170, w: 640, text: "Day only. Nothing but the day and the dots. The grid is the only thing that says what it is. Purest, and the biggest bet on the opener pages doing their job." },
+    { id: "lb-brief", page: "page-4", x: 0, y: -230, w: 1240, text: "Label below, refined. Day and challenge come down to the same whisper weight and ash colour as the caption: 13 px spaced capitals, 9 px circles. Day and its number sit together; the word Challenge sits beside the dots. No offsets. The grid keeps its band; the genre and one rule line stay as the caption beneath it." },
+    { id: "lb-1", page: "page-4", x: 0, y: -110, w: 640, text: "Left, stacked. Day above challenge at the gutter. Caption below at the gutter." },
+    { id: "lb-2", page: "page-4", x: 800, y: -110, w: 640, text: "Left, one line. Day and challenge on a single line, a wide space between them." },
+    { id: "lb-3", page: "page-4", x: 1600, y: -110, w: 640, text: "Right, stacked. Everything at the outer margin, caption right-aligned too; the folio moves to the gutter." },
+    { id: "lb-4", page: "page-4", x: 0, y: 2170, w: 640, text: "Two ends. Day at the gutter, challenge at the outer margin on one line, spanning the grid's width. Caption left." },
+    { id: "lb-5", page: "page-4", x: 800, y: 2170, w: 640, text: "Crosswise. Day and challenge right-aligned above; caption left below. The two texts frame the grid diagonally." },
+    { id: "lb-6", page: "page-4", x: 1600, y: 2170, w: 640, text: "All below. Nothing above the grid at all; caption left and day/challenge right share the line beneath it. The quietest of the six." },
   ],
-  launch: { view: "canvas", page: "page-3" },
+  launch: { view: "canvas", page: "page-4" },
 }, null, 2));
 console.log("wrote 6 artboards to", OUT);
